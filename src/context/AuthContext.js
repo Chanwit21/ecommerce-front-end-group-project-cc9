@@ -29,7 +29,7 @@ const REDUCER_FN = (state, action) => {
   }
 };
 
-const AuthContextProvider = (children) => {
+const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(REDUCER_FN, INIT_STATE);
   return <AuthContext.Provider value={{ state, dispatch }}>{children}</AuthContext.Provider>;
 };
