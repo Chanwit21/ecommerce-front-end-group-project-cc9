@@ -2,7 +2,7 @@ import jwtDecode from 'jwt-decode';
 import { useContext } from 'react';
 import { useReducer } from 'react';
 import { createContext } from 'react';
-import user, { getToken, removeToken, setToken } from '../service/localStorage';
+import { user, getToken, removeToken, setToken } from '../service/localStorage';
 
 const AuthContext = createContext();
 
