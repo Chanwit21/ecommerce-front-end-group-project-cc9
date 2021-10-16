@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 function NavHeader() {
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-dark' style={{ height: '5vw' }}>
+    <nav className='navbar navbar-expand-lg navbar-light bg-dark flex-grow-0' style={{ height: '5vw' }}>
       <div className='container' style={{ width: '70%', height: '100%' }}>
         <NavLink className='navbar-brand color-light text-light' to='#'>
           Navbar
