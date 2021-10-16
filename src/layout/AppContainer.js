@@ -4,11 +4,9 @@ import NavHeader from '../component/NavHeader';
 
 function AppContainer({ children }) {
   return (
-    <div className='d-flex flex-column'>
+    <div className='d-flex flex-column' style={{ height: '100vh' }}>
       <NavHeader />
-      <div className='flex-grow-1' style={{ minHeight: '100vh' }}>
-        {children}
-      </div>
+      <div className='flex-grow-1'>{children}</div>
       <Footer />
     </div>
   );
