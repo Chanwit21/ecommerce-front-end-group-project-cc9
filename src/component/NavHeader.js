@@ -1,10 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+const style = {
+  nav: { height: '5vw' },
+  navHeader: { width: '70%', height: '100%' },
+  veticalLine: { height: '1.7vw', opacity: '40%' },
+};
+
 function NavHeader() {
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-dark flex-grow-0' style={{ height: '5vw' }}>
-      <div className='container' style={{ width: '70%', height: '100%' }}>
+    <nav className='navbar navbar-expand-lg navbar-light bg-dark flex-grow-0' style={style.nav}>
+      <div className='container' style={style.navHeader}>
         <NavLink className='navbar-brand color-light text-light' to='#'>
           Navbar
         </NavLink>
@@ -19,10 +25,10 @@ function NavHeader() {
         <ul className='navbar-nav d-flex justify-content-center align-items-center'>
           <li className='nav-item'>
             <NavLink className='nav-link dropdown-toggle text-light' to='#'>
-              Dropdown
+              Login / Register
             </NavLink>
           </li>
-          <li className='nav-item border-end' style={{ height: '1.7vw', opacity: '40%' }}></li>
+          <li className='nav-item border-end' style={style.veticalLine}></li>
           <li className='nav-item'>
             <NavLink className='nav-link text-light' to='#'>
               <i className='bi bi-cart-fill me-2'></i>
