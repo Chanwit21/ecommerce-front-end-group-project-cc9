@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import routesAll from './route/route';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { useAuthContext } from './context/AuthContext';
+import NavHeader from './component/NavHeader';
 
 function App() {
+  const {
+    state: { user },
+  } = useAuthContext();
+  const role = user ? user.role : 'GUEST';
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <NavHeader />
+      <Switch>
+        {routesAll[role].routes.map((route, index) => {
+          return <Route key={index} to={route.path} component={route.component} />;
+        })}
+        <Redirect to={routesAll[role].redirect} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
