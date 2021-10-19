@@ -46,62 +46,69 @@ function ProductDescription() {
         </div>
       </div>
       <div className='p-4' style={{ backgroundColor: '#FEF6F8' }}>
-        <div className="card p-4"> {/* product info*/}
-          <h5>PRODUCT INFO</h5>
-          <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quo eius nostrum dicta assumenda dignissimos! Nulla eius dicta dolorem voluptate consequatur hic harum eaque sapiente, enim repudiandae magnam sed beatae aliquam cum ab aliquid sequi asperiores consequuntur aperiam. Hic, laborum! Nulla quo molestiae, esse eligendi et id quibusdam odit omnis!</span>
-        </div>
-        <div className="card my-4 p-4"> {/* ingreduents*/}
-          <h5>INGREDIENTS</h5>
-          <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quo eius nostrum dicta assumenda dignissimos! Nulla eius dicta dolorem voluptate consequatur hic harum eaque sapiente, enim repudiandae magnam sed beatae aliquam cum ab aliquid sequi asperiores consequuntur aperiam. Hic, laborum! Nulla quo molestiae, esse eligendi et id quibusdam odit omnis!</span>
-        </div>
-        <div className="card my-4 p-4"> {/*delivery*/}
-          <h5>DELIVERY</h5>
-          <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quo eius nostrum dicta assumenda dignissimos! Nulla eius dicta dolorem voluptate consequatur hic harum eaque sapiente, enim repudiandae magnam sed beatae aliquam cum ab aliquid sequi asperiores consequuntur aperiam. Hic, laborum! Nulla quo molestiae, esse eligendi et id quibusdam odit omnis!</span>
-        </div>
-        <div className="card my-4 p-4"> {/* payment and security*/}
-          <h5>{`PAYMENT & SECURITY`}</h5>
-          <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quo eius nostrum dicta assumenda dignissimos! Nulla eius dicta dolorem voluptate consequatur hic harum eaque sapiente, enim repudiandae magnam sed beatae aliquam cum ab aliquid sequi asperiores consequuntur aperiam. Hic, laborum! Nulla quo molestiae, esse eligendi et id quibusdam odit omnis!</span>
+        <div className="accordion" id="accordionPanelsStayOpenExample">
+          <div className="card "> {/* product info*/}
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="panelsStayOpen-headingOne">
+                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                  <h5>PRODUCT INFO</h5>
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div className="accordion-body">
+                  <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classNamees that we use to style each element. These classNamees control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="card my-4"> {/* ingreduents*/}
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="panelsStayOpen-headingOne">
+                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+                  <h5>INGREDIENTS</h5>
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div className="accordion-body">
+                  <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classNamees that we use to style each element. These classNamees control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="card my-4"> {/*delivery*/}
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="panelsStayOpen-headingOne">
+                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
+                  <h5>DELIVERY</h5>
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div className="accordion-body">
+                  <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classNamees that we use to style each element. These classNamees control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="card my-4"> {/* payment and security*/}
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="panelsStayOpen-headingOne">
+                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
+                  <h5>{`PAYMENT & SECURITY`}</h5>
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseFour" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div className="accordion-body">
+                  <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classNamees that we use to style each element. These classNamees control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="accordion" id="accordionPanelsStayOpenExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-              Accordion Item #1
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-            <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-              Accordion Item #2
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-            <div class="accordion-body">
-              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-              Accordion Item #3
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-            <div class="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+
+
+    </div >
   )
 }
 
