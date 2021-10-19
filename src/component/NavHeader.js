@@ -1,43 +1,108 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const style = {
-  nav: { height: '5vw' },
-  navHeader: { width: '70%', height: '100%' },
-  veticalLine: { height: '1.7vw', opacity: '40%' },
-};
-
 function NavHeader() {
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-dark flex-grow-0' style={style.nav}>
-      <div className='container' style={style.navHeader}>
-        <NavLink className='navbar-brand color-light text-light' to='#'>
-          Navbar
-        </NavLink>
-        <form className='d-flex flex-grow-1'>
-          <div className='input-group'>
-            <input className='form-control' type='search' placeholder='Search' />
-            <button className='btn btn-outline-success' type='submit'>
-              <i class='bi bi-search'></i>
-            </button>
-          </div>
-        </form>
-        <ul className='navbar-nav d-flex justify-content-center align-items-center'>
-          <li className='nav-item'>
-            <NavLink className='nav-link dropdown-toggle text-light' to='#'>
-              Login / Register
-            </NavLink>
-          </li>
-          <li className='nav-item border-end' style={style.veticalLine}></li>
-          <li className='nav-item'>
-            <NavLink className='nav-link text-light' to='#'>
-              <i className='bi bi-cart-fill me-2'></i>
-              Cart
-            </NavLink>
-          </li>
-        </ul>
+    <>
+      <div className='container-fluid text-center' style={{ backgroundColor: '#FAF2F4' }}>
+        free shipping with any order!
       </div>
-    </nav>
+      <nav className='navbar navbar-expand-lg navbar-light flex-grow-0 shadow-sm'>
+        <div className='container'>
+          <NavLink to='/' className='navbar-brand'>
+            MAKE ME GLOW
+          </NavLink>
+          <button
+            className='navbar-toggler'
+            type='button'
+            data-bs-toggle='collapse'
+            data-bs-target='#navbarNavDropdown'
+            aria-controls='navbarNavDropdown'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+          >
+            <span className='navbar-toggler-icon'></span>
+          </button>
+          <div className='collapse navbar-collapse flex-grow-0' id='navbarNavDropdown'>
+            <ul className='navbar-nav'>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='#'>
+                  NEW
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='#'>
+                  FACE
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='#'>
+                  CHEEK
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='#'>
+                  LIPS
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='#'>
+                  EYES
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='#'>
+                  BODY
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='#'>
+                  SALE
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+          <div className='collapse navbar-collapse flex-grow-0'>
+            <ul className='navbar-nav'>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='#'>
+                  <button type='button' className=' btn px-0 position-relative'>
+                    <i class='bi bi-person-circle'></i>
+                  </button>
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='#'>
+                  <button type='button' className='btn px-0 position-relative'>
+                    <i class='bi bi-search'></i>
+                  </button>
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='#'>
+                  <button type='button' className='btn px-0 position-relative'>
+                    <i class='bi bi-heart'></i>
+                  </button>
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink className='nav-link' to='#'>
+                  <button type='button' className='btn px-0 position-relative'>
+                    <i className='bi bi-handbag'></i>
+                    <span
+                      className='position-absolute translate-middle badge rounded-pill bg-danger'
+                      style={{ left: '140%', top: '10%' }}
+                    >
+                      0<span className='visually-hidden'>Cart Count</span>
+                    </span>
+                  </button>
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 }
 

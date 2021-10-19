@@ -45,17 +45,17 @@ const REDUCER_FN = (state, action) => {
 const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(REDUCER_FN, INIT_STATE);
 
-  const context = useAuthContext();
+  const authContext = useAuthContext();
 
   useEffect(() => {
     const fetchCart = async () => {
-      const res = context.state.user?.role === 'CUSTOMER' ? await axios.get('/carts') : null;
+      const res = authContext.state.user?.role === 'CUSTOMER' ? await axios.get('/carts') : null;
       if (res) {
         dispatch({ type: 'SET_CART', payload: { carts: res.data.carts, countCart: res.data.countCart } });
       }
     };
     fetchCart();
-  }, [context]);
+  }, [authContext]);
 
   return <CartContext.Provider value={{ state, dispatch }}>{children}</CartContext.Provider>;
 };
