@@ -16,7 +16,7 @@ function App() {
         <AppContainer>
           <Switch>
             {routesAll[role].routes.map((route, index) => {
-              return <Route key={index} to={route.path} component={route.component} />;
+              return <Route exact key={index} path={route.path} component={route.component} />;
             })}
             <Redirect to={routesAll[role].redirect} />
           </Switch>
