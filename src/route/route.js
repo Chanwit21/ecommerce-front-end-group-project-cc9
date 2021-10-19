@@ -1,22 +1,25 @@
-import Home from "../pages/Home";
-import ProductDescription from "../pages/ProductDescription";
+import Home from '../pages/Home';
+import ProductDescription from '../pages/ProductDescription';
 
 const routesAll = {
   GUEST: {
-    routes: [{ path: '/', component: Home },
-    { path: '/productDescription', component: ProductDescription }
+    routes: [
+      { path: '/', component: Home },
+      { path: '/productDescription', component: ProductDescription },
     ],
     redirect: '/',
   },
   CUSTOMER: {
-    routes: [{ path: '/', component: Home },
-    { path: '/productDescription', component: ProductDescription }
+    routes: [
+      { path: '/', component: Home },
+      { path: '/productDescription', component: ProductDescription },
     ],
     redirect: '/',
   },
   ADMIN: {
-    routes: [{ path: '/', component: Home },
-    { path: '/productDescription', component: ProductDescription }
+    routes: [
+      { path: '/', component: Home },
+      { path: '/productDescription', component: ProductDescription },
     ],
     redirect: '/',
   },
