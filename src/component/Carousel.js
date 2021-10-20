@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import test1 from '../pic/mocks/pexels-ella-olsson-1640771.jpg';
-import test2 from '../pic/mocks/pexels-jane-d-1128678.jpg';
-import test3 from '../pic/mocks/pexels-kaboompics-com-5938.jpg';
+import test1 from '../pic/mocks/pexels-karolina-grabowska-4202325.jpg';
+import test2 from '../pic/mocks/pexels-karolina-grabowska-4239013.jpg';
+import test3 from '../pic/mocks/pexels-michelle-leman-6798761.jpg';
 
 function Carousel() {
   const [imagesPromo, setImagesPromo] = useState([
@@ -39,7 +39,7 @@ function Carousel() {
     return (
       <div className={`carousel-item${index === 0 ? ' active' : ''}`}>
         <img src={item.image} className='d-block w-100' alt='...' style={{ height: '80vh', objectFit: 'cover' }} />
-        <div className='carousel-caption d-none d-md-block'>
+        <div className='carousel-caption d-none d-md-block' style={{ color: '#000' }}>
           <h5>{item.header}</h5>
           <p>{item.title}</p>
         </div>
