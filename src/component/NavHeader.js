@@ -73,7 +73,12 @@ function NavHeader() {
               </li>
               <li className='nav-item'>
                 <NavLink className='nav-link' to='#'>
-                  <button type='button' className='btn px-0 position-relative'>
+                  <button
+                    type='button'
+                    className='btn px-0 position-relative'
+                    data-bs-toggle='collapse'
+                    data-bs-target='#collapseExample'
+                  >
                     <i class='bi bi-search'></i>
                   </button>
                 </NavLink>
@@ -102,6 +107,28 @@ function NavHeader() {
           </div>
         </div>
       </nav>
+      <div className='collapse container border-0' id='collapseExample'>
+        <form>
+          <div className='d-flex flex-row'>
+            <div className='input-group my-3'>
+              <span className='input-group-text border-end-0' style={{ backgroundColor: '#FEF3F5' }}>
+                <i class='bi bi-search'></i>
+              </span>
+              <input
+                type='text'
+                className='form-control border-start-0 border-end-0'
+                placeholder='Search'
+                style={{ backgroundColor: '#FEF3F5' }}
+              />
+              <span className='input-group-text' style={{ backgroundColor: '#FEF3F5', borderLeft: 'none' }}>
+                <button type='button' className='btn p-0' data-bs-toggle='collapse' data-bs-target='#collapseExample'>
+                  <i class='bi bi-x-lg'></i>
+                </button>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
     </>
   );
 }
