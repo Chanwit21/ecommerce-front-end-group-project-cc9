@@ -67,7 +67,7 @@ function NavHeader() {
               <li className='nav-item'>
                 <button type='button' className=' btn px-0 position-relative'>
                   <Link className='nav-link active' to='/login' style={{ opacity: '100%' }}>
-                    <i class='bi bi-person-circle'></i>
+                    <i className='bi bi-person-circle'></i>
                   </Link>
                 </button>
               </li>
@@ -79,14 +79,14 @@ function NavHeader() {
                     data-bs-toggle='collapse'
                     data-bs-target='#collapseExample'
                   >
-                    <i class='bi bi-search'></i>
+                    <i className='bi bi-search'></i>
                   </button>
                 </NavLink>
               </li>
               <li className='nav-item'>
                 <button type='button' className='btn px-0 position-relative'>
                   <NavLink className='nav-link' to='#'>
-                    <i class='bi bi-heart'></i>
+                    <i className='bi bi-heart'></i>
                   </NavLink>
                 </button>
               </li>
@@ -112,7 +112,7 @@ function NavHeader() {
           <div className='d-flex flex-row'>
             <div className='input-group my-3'>
               <span className='input-group-text border-end-0' style={{ backgroundColor: '#FEF3F5' }}>
-                <i class='bi bi-search'></i>
+                <i className='bi bi-search'></i>
               </span>
               <input
                 type='text'
@@ -122,7 +122,7 @@ function NavHeader() {
               />
               <span className='input-group-text' style={{ backgroundColor: '#FEF3F5', borderLeft: 'none' }}>
                 <button type='button' className='btn p-0' data-bs-toggle='collapse' data-bs-target='#collapseExample'>
-                  <i class='bi bi-x-lg'></i>
+                  <i className='bi bi-x-lg'></i>
                 </button>
               </span>
             </div>

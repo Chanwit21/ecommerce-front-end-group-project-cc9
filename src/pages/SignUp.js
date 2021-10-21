@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function SignUp() {
+  const [signUpForm, setSignUpForm] = useState({ firstName: '', lastName: '', email: '', password: '' });
+
+  const handleChangeInput = (field, e) => {
+    setSignUpForm((cur) => {
+      const clone = { ...cur };
+      clone[field] = e.target.value;
+      return clone;
+    });
+  };
+
   return (
     <div
       className='d-flex justify-content-center align-items-center'
@@ -28,6 +38,8 @@ function SignUp() {
                 className='form-control'
                 style={{ backgroundColor: '#FEF3F5' }}
                 placeholder='Firstname'
+                value={setSignUpForm.firstName}
+                onChange={(e) => handleChangeInput('firstName', e)}
               />
             </div>
             <div className='col-6 mt-4 mb-3'>
@@ -63,8 +75,8 @@ function SignUp() {
               />
             </div>
             <div className='col-12 text-center mb-4'>
-              <input class='form-check-input' type='checkbox' value='' id='flexCheckChecked' />
-              <label class='form-check-label ms-3' for='flexCheckChecked'>
+              <input className='form-check-input' type='checkbox' value='' id='flexCheckChecked' />
+              <label className='form-check-label ms-3' htmlFor='flexCheckChecked'>
                 <span style={{ opacity: '50%' }}> I have read the </span> Privace Policy
               </label>
             </div>

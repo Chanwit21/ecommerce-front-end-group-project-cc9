@@ -18,6 +18,7 @@ const routesAll = {
   CUSTOMER: {
     routes: [
       { path: '/', component: Home },
+      { path: '/checkout', component: Checkout },
       { path: '/productDescription', component: ProductDescription },
     ],
     redirect: '/',
