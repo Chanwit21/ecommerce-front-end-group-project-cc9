@@ -24,10 +24,7 @@ const routesAll = {
     redirect: '/',
   },
   ADMIN: {
-    routes: [
-      { path: '/', component: Home },
-      { path: '/productDescription', component: ProductDescription },
-    ],
+    routes: [{ path: '/productDescription', component: ProductDescription }],
     redirect: '/',
   },
 };
