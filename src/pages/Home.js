@@ -1,11 +1,18 @@
-import React from 'react';
-import Carousel from '../component/Carousel';
+import React from "react";
+import Carousel from "../component/Carousel";
+import HomeQuote from "../component/HomeQuote";
+import ProductFiltered from "../component/ProductFitered";
+import ProductDetail from "../component/productDescription/ProductDetail";
 
-function Home() {
+function Home(filtered) {
   return (
     <div>
       <Carousel />
-      Home Page
+      <ProductFiltered filtered="FEATURED PRODUCT" />
+      <HomeQuote />
+      <ProductDetail />
+      <HomeQuote />
+      <ProductFiltered filtered="BEST SELLERS" />
     </div>
   );
 }
