@@ -16,6 +16,7 @@ const routesAll = {
   },
   ADMIN: {
     routes: [{ path: '/', component: Home },
+
     { path: '/productDescription/:productId', component: ProductDescription }
     ],
     redirect: '/',
