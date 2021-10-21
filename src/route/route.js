@@ -1,27 +1,34 @@
 import Checkout from '../pages/Checkout';
 import Home from '../pages/Home';
+import Login from '../pages/Login';
 import ProductDescription from '../pages/ProductDescription';
+import ShoppingCart from '../pages/ShoppingCart';
+import SignUp from '../pages/SignUp';
 
 const routesAll = {
   GUEST: {
     routes: [
       { path: '/', component: Home },
+      { path: '/login', component: Login },
+      { path: '/sign_up', component: SignUp },
       { path: '/checkout', component: Checkout },
-      { path: '/productDescription', component: ProductDescription },
+      { path: '/shoppingCart', component: ShoppingCart },
+      { path: '/productDescription/:productId', component: ProductDescription },
     ],
     redirect: '/',
   },
   CUSTOMER: {
     routes: [
       { path: '/', component: Home },
-      { path: '/productDescription', component: ProductDescription },
+      { path: '/checkout', component: Checkout },
+      { path: '/productDescription/:productId', component: ProductDescription },
     ],
     redirect: '/',
   },
   ADMIN: {
     routes: [
       { path: '/', component: Home },
-      { path: '/productDescription', component: ProductDescription },
+      { path: '/productDescription/:productId', component: ProductDescription },
     ],
     redirect: '/',
   },
