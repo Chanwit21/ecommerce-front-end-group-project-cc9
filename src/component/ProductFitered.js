@@ -27,8 +27,8 @@ function ProductFiltered({ filtered }) {
         className='d-inline-flex justify-content-center align-items-center mb-5 '
       >
         {productBox.map((item) => (
-          <>
-            <div className='d-flex align-items-center flex-column p-3'>
+         
+            <div key={item.id} className='d-flex align-items-center flex-column p-3'>
               <i
                 className='bi bi-suit-heart-fill align-self-end p-2'
                 style={{ position: 'absolute', cursor: 'pointer' }}
@@ -46,7 +46,7 @@ function ProductFiltered({ filtered }) {
                 <span>select shade</span>
               </button>
             </div>
-          </>
+          
         ))}
       </div>
     </>
