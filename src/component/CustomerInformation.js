@@ -20,11 +20,14 @@ function CustomerInformation({ customerAddress }) {
       >
         <p className='m-0'>customermail@gmail.com</p>
       </div>
-      {isAddingAddress ? (
-        <AddAddressForm setIsAddingAddress={setIsAddingAddress} />
-      ) : (
-        <CustomerAddress customerAddress={customerAddress} setIsAddingAddress={setIsAddingAddress} />
-      )}
+      <div className='mt-5' style={{ width: '90%' }}>
+        <h4>SHIPPING ADDRESS</h4>
+        {isAddingAddress ? (
+          <AddAddressForm setIsAddingAddress={setIsAddingAddress} />
+        ) : (
+          <CustomerAddress customerAddress={customerAddress} setIsAddingAddress={setIsAddingAddress} />
+        )}
+      </div>
       <div className='d-flex mt-5 justify-content-between' style={{ width: '90%', borderBottom: '1px solid #0003' }}>
         <h4>PAYMENT</h4>
         <div className='mb-2'>
@@ -45,6 +48,7 @@ function CustomerInformation({ customerAddress }) {
           />
         </div>
       </div>
+
       {isSelectAnotherCard ? (
         <CreditCardForm setIsSelectAnotherCard={setIsSelectAnotherCard} />
       ) : (

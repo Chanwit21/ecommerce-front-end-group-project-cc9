@@ -5,8 +5,7 @@ function AddAddressForm({ setIsAddingAddress }) {
     setIsAddingAddress(false);
   };
   return (
-    <div className='mt-5' style={{ width: '90%' }}>
-      <h4>SHIPPING ADDRESS</h4>
+    <>
       <form>
         <div className='row mt-4'>
           <div className='mb-3 col-6'>
@@ -56,7 +55,7 @@ function AddAddressForm({ setIsAddingAddress }) {
       <button type='button' className='btn' onClick={handleClickBack}>
         {'< Back To Choose Address'}
       </button>
-    </div>
+    </>
   );
 }
 

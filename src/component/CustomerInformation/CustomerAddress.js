@@ -17,13 +17,12 @@ function CustomerAddress({ customerAddress, setIsAddingAddress }) {
   });
 
   return (
-    <div className='mt-5' style={{ width: '90%' }}>
-      <h4>SHIPPING ADDRESS</h4>
+    <>
       {customerAddressShow}
       <button type='button' className='btn' onClick={handleClickAnotherAddress}>
         {'Another Address >'}
       </button>
-    </div>
+    </>
   );
 }
 
