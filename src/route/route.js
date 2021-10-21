@@ -4,19 +4,19 @@ import ProductDescription from "../pages/ProductDescription";
 const routesAll = {
   GUEST: {
     routes: [{ path: '/', component: Home },
-    { path: '/productDescription', component: ProductDescription }
+    { path: '/productDescription/:productId', component: ProductDescription }
     ],
     redirect: '/',
   },
   CUSTOMER: {
     routes: [{ path: '/', component: Home },
-    { path: '/productDescription', component: ProductDescription }
+    { path: '/productDescription/:productId', component: ProductDescription }
     ],
     redirect: '/',
   },
   ADMIN: {
     routes: [{ path: '/', component: Home },
-    { path: '/productDescription', component: ProductDescription }
+    { path: '/productDescription/:productId', component: ProductDescription }
     ],
     redirect: '/',
   },
