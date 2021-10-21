@@ -1,6 +1,6 @@
 import Home from "../pages/Home";
 import ProductDescription from "../pages/ProductDescription";
-
+//ssssss
 const routesAll = {
   GUEST: {
     routes: [{ path: '/', component: Home },
