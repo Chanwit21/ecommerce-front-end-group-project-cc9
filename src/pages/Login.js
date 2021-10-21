@@ -33,13 +33,14 @@ function Login() {
       console.log(resFacebook);
     } else {
       try {
-        await axios.post('/users/login/facebook', {
+        const res = await axios.post('/users/login/facebook', {
           email: resFacebook.email,
           firstName: resFacebook.first_name,
           lastName: resFacebook.last_name,
           facebookId: resFacebook.userID,
           imageUrl: resFacebook.picture.data.url,
         });
+        dispatch({ type: 'LOGIN', payload: { token: res.data.token } });
       } catch (err) {
         console.dir(err);
       }
