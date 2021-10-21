@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import Checkout from '../pages/Checkout';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import ProductDescription from '../pages/ProductDescription';
 import SignUp from '../pages/SignUp';
+=======
+import Home from "../pages/Home";
+import ProductDescription from "../pages/ProductDescription";
+//ssssss\\
+
+
+>>>>>>> productDescription
 
 const routesAll = {
   GUEST: {
