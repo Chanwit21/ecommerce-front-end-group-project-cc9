@@ -5,10 +5,10 @@
   background-color: #fff;
   color: black;
 }
-.accordion-button::after {
+.productDescriptionPage .accordion-button::after {
   background-image: url('https://cdn-icons-png.flaticon.com/512/1237/1237946.png');
 }
 
-.accordion-button:not(.collapsed)::after {
-  background-image: url('https://cdn-icons.flaticon.com/png/512/657/premium/657059.png?token=exp=1634704834~hmac=640ee8e067fd7c4197b680a1f8bdde51');
+.productDescriptionPage .accordion-button:not(.collapsed)::after {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/447/447047.png');
 }
