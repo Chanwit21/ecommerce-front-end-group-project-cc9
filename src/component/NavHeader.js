@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function NavHeader() {
   return (
@@ -65,11 +65,11 @@ function NavHeader() {
           <div className='collapse navbar-collapse flex-grow-0'>
             <ul className='navbar-nav'>
               <li className='nav-item'>
-                <NavLink className='nav-link' to='#'>
-                  <button type='button' className=' btn px-0 position-relative'>
+                <button type='button' className=' btn px-0 position-relative'>
+                  <Link className='nav-link active' to='/login' style={{ opacity: '100%' }}>
                     <i class='bi bi-person-circle'></i>
-                  </button>
-                </NavLink>
+                  </Link>
+                </button>
               </li>
               <li className='nav-item'>
                 <NavLink className='nav-link' to='#'>
@@ -84,24 +84,24 @@ function NavHeader() {
                 </NavLink>
               </li>
               <li className='nav-item'>
-                <NavLink className='nav-link' to='#'>
-                  <button type='button' className='btn px-0 position-relative'>
+                <button type='button' className='btn px-0 position-relative'>
+                  <NavLink className='nav-link' to='#'>
                     <i class='bi bi-heart'></i>
-                  </button>
-                </NavLink>
+                  </NavLink>
+                </button>
               </li>
               <li className='nav-item'>
-                <NavLink className='nav-link' to='#'>
-                  <button type='button' className='btn px-0 position-relative'>
+                <button type='button' className='btn px-0 position-relative'>
+                  <NavLink className='nav-link' to='#'>
                     <i className='bi bi-handbag'></i>
                     <span
                       className='position-absolute translate-middle badge rounded-pill bg-danger'
-                      style={{ left: '140%', top: '10%' }}
+                      style={{ left: '85%', top: '30%' }}
                     >
                       0<span className='visually-hidden'>Cart Count</span>
                     </span>
-                  </button>
-                </NavLink>
+                  </NavLink>
+                </button>
               </li>
             </ul>
           </div>
