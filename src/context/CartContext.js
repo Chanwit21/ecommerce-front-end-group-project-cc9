@@ -49,9 +49,13 @@ const CartContextProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchCart = async () => {
-      const res = authContext.state.user?.role === 'CUSTOMER' ? await axios.get('/carts') : null;
-      if (res) {
-        dispatch({ type: 'SET_CART', payload: { carts: res.data.carts, countCart: res.data.countCart } });
+      try {
+        const res = authContext.state.user?.role === 'CUSTOMER' ? await axios.get('/carts') : null;
+        if (res) {
+          dispatch({ type: 'SET_CART', payload: { carts: res.data.carts, countCart: res.data.countCart } });
+        }
+      } catch (err) {
+        console.dir(err);
       }
     };
     fetchCart();
