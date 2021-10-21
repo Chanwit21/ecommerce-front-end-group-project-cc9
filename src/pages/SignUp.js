@@ -62,6 +62,11 @@ function SignUp() {
                 placeholder='Confirm Password'
               />
             </div>
+            <div className='col-12 mb-3'>
+              <div id='passwordHelpBlock' class='form-text'>
+                Your password must be 8-20 characters long, contain letters, numbers and special characters.
+              </div>
+            </div>
             <div className='col-12 text-center mb-4'>
               <input class='form-check-input' type='checkbox' value='' id='flexCheckChecked' />
               <label class='form-check-label ms-3' for='flexCheckChecked'>
