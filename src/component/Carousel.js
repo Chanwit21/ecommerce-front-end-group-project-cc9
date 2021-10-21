@@ -6,16 +6,19 @@ import test3 from '../pic/mocks/pexels-michelle-leman-6798761.jpg';
 function Carousel() {
   const [imagesPromo, setImagesPromo] = useState([
     {
+      id: '1',
       image: test1,
       header: 'First slide label',
       title: 'Some representative placeholder content for the first slide.',
     },
     {
+      id: '2',
       image: test2,
       header: 'Second slide label',
       title: 'Some representative placeholder content for the second slide.',
     },
     {
+      id: '3',
       image: test3,
       header: 'Third slide label',
       title: 'Some representative placeholder content for the third slide.',
@@ -25,6 +28,7 @@ function Carousel() {
   const buttonCarousel = imagesPromo.map((item, index) => {
     return (
       <button
+        key={item.id}
         type='button'
         data-bs-target='#carouselExampleIndicators'
         data-bs-slide-to={index}
@@ -37,7 +41,7 @@ function Carousel() {
 
   const imagesCarousel = imagesPromo.map((item, index) => {
     return (
-      <div className={`carousel-item${index === 0 ? ' active' : ''}`}>
+      <div key={item.id} className={`carousel-item${index === 0 ? ' active' : ''}`}>
         <img src={item.image} className='d-block w-100' alt='...' style={{ height: '80vh', objectFit: 'cover' }} />
         <div className='carousel-caption d-none d-md-block' style={{ color: '#000' }}>
           <h5>{item.header}</h5>

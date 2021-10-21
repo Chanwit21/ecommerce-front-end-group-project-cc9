@@ -1,7 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { useAuthContext } from '../context/AuthContext';
+import axios from '../config/axios';
 
 function Login() {
+  const { dispatch } = useAuthContext();
+  const responseGoogle = async (resGoogle) => {
+    console.log(resGoogle);
+    if (resGoogle.error) {
+      console.log(resGoogle);
+    } else {
+      try {
+        const res = await axios.post('/users/login/google', {
+          email: resGoogle.profileObj.email,
+          firstName: resGoogle.profileObj.givenName,
+          lastName: resGoogle.profileObj.familyName,
+          googleId: resGoogle.googleId,
+          imageUrl: resGoogle.profileObj.imageUrl,
+        });
+        dispatch({ type: 'LOGIN', payload: { token: res.data.token } });
+      } catch (err) {
+        console.dir(err);
+      }
+    }
+  };
+
+  const responseFacebook = async (resFacebook) => {
+    if (resFacebook.error) {
+      console.log(resFacebook);
+    } else {
+      try {
+        const res = await axios.post('/users/login/facebook', {
+          email: resFacebook.email,
+          firstName: resFacebook.first_name,
+          lastName: resFacebook.last_name,
+          facebookId: resFacebook.userID,
+          imageUrl: resFacebook.picture.data.url,
+        });
+        dispatch({ type: 'LOGIN', payload: { token: res.data.token } });
+      } catch (err) {
+        console.dir(err);
+      }
+    }
+  };
+
   return (
     <div
       className='d-flex justify-content-center align-items-center'
@@ -40,14 +84,33 @@ function Login() {
               </button>
             </div>
             <div className='col-6 mb-2 d-flex justify-content-end mt-2'>
-              <button className='btn px-0' type='button'>
-                <img src='https://img.icons8.com/color/48/000000/google-logo.png' alt='google' />
-              </button>
+              <GoogleLogin
+                clientId='684198466107-poqu69vu8e9vaorbal2v969qghe3cc5v.apps.googleusercontent.com'
+                render={(renderProps) => (
+                  <button
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                    className='btn px-0'
+                    type='button'
+                  >
+                    <img src='https://img.icons8.com/color/48/000000/google-logo.png' alt='google' />
+                  </button>
+                )}
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+              />
             </div>
             <div className='col-6 mb-2 d-flex justify-content-start mt-2'>
-              <button className='btn px-0' type='button'>
-                <img src='https://img.icons8.com/color/48/000000/facebook-circled--v1.png' alt='facebook' />
-              </button>
+              <FacebookLogin
+                appId='375623747555872'
+                fields='first_name,last_name,email,picture'
+                callback={responseFacebook}
+                render={(renderProps) => (
+                  <button onClick={renderProps.onClick} className='btn px-0' type='button'>
+                    <img src='https://img.icons8.com/color/48/000000/facebook-circled--v1.png' alt='facebook' />
+                  </button>
+                )}
+              />
             </div>
             <div className='col-12 text-center mb-4'>
               <div>

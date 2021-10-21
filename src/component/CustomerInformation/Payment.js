@@ -22,14 +22,14 @@ function Payment({ customerCards, setIsSelectAnotherCard }) {
     <>
       <div className='d-flex mt-5 justify-content-between' style={{ width: '90%', borderBottom: '1px solid #0003' }}>
         <h4>PAYMENT</h4>
-        <div>
+        <div className='mb-2'>
           <img
             src={visaIcon}
             alt='visa-icon'
             style={{
               height: '2.083333333333333vw',
               border: '2px solid #0003',
-              borderRadius: '0.54vw',
+
               width: '3.020833333333333vw',
             }}
           />
@@ -37,7 +37,7 @@ function Payment({ customerCards, setIsSelectAnotherCard }) {
             className='ms-2 p-1'
             src={masterCardIcon}
             alt='visa-icon'
-            style={{ height: '2.083333333333333vw', border: '2px solid #0003', borderRadius: '0.54vw' }}
+            style={{ height: '2.083333333333333vw', border: '2px solid #0003' }}
           />
         </div>
       </div>

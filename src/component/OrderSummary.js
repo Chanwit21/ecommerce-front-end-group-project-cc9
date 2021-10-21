@@ -20,6 +20,7 @@ function OrderSummary({ orderItems }) {
   }, 0);
 
   const shipping = 0;
+
   return (
     <>
       <h2 className='pb-3' style={{ borderBottom: '1px solid #0003' }}>
