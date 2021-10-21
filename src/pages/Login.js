@@ -126,6 +126,7 @@ function Login() {
                   value={loginForm.password}
                   onChange={(e) => handleChangeInput('password', e)}
                 />
+                {errorLoginFrom.password ? <div className='invalid-feedback'>{errorLoginFrom.password}</div> : null}
               </div>
               <div className='col-12 mb-2'>
                 <button
