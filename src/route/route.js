@@ -11,7 +11,7 @@ const routesAll = {
       { path: '/login', component: Login },
       { path: '/sign_up', component: SignUp },
       { path: '/checkout', component: Checkout },
-      { path: '/productDescription', component: ProductDescription },
+      { path: '/productDescription/:productId', component: ProductDescription },
     ],
     redirect: '/',
   },
@@ -19,14 +19,14 @@ const routesAll = {
     routes: [
       { path: '/', component: Home },
       { path: '/checkout', component: Checkout },
-      { path: '/productDescription', component: ProductDescription },
+      { path: '/productDescription/:productId', component: ProductDescription },
     ],
     redirect: '/',
   },
   ADMIN: {
     routes: [
       { path: '/', component: Home },
-      { path: '/productDescription', component: ProductDescription },
+      { path: '/productDescription/:productId', component: ProductDescription },
     ],
     redirect: '/',
   },
