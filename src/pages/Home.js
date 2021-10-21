@@ -10,7 +10,7 @@ function Home(filtered) {
       <Carousel />
       <ProductFiltered filtered="FEATURED PRODUCT" />
       <HomeQuote />
-      <ProductDetail />
+      {/* <ProductDetail /> */}
       <HomeQuote />
       <ProductFiltered filtered="BEST SELLERS" />
     </div>
