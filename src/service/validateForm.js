@@ -17,10 +17,6 @@ export const validatePassword = (password) => {
     return 'Password is require!!';
   }
 
-  if (!isStrongPassword(password, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1 })) {
-    return 'Password is unsecured!!';
-  }
-
   return '';
 };
 
