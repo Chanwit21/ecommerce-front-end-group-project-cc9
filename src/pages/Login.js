@@ -119,7 +119,7 @@ function Login() {
                   Password
                 </label>
                 <input
-                  type='text'
+                  type='password'
                   className={`form-control${errorLoginFrom.password ? ' is-invalid' : ''}`}
                   id='password'
                   style={{ backgroundColor: '#FEF3F5' }}
