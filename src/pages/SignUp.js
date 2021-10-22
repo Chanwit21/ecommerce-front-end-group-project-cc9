@@ -22,6 +22,7 @@ function SignUp() {
     email: '',
     password: '',
   });
+  const [isAccept, setIsAccept] = useState(false);
 
   const history = useHistory();
 
@@ -38,6 +39,10 @@ function SignUp() {
         return clone;
       });
     }
+  };
+
+  const handleChangeCheckBox = (e) => {
+    setIsAccept((cur) => !cur);
   };
 
   const handleSubmitSignUp = async (e) => {
@@ -58,15 +63,19 @@ function SignUp() {
 
     if (!errorFirstName && !errorLastName && !errorEmail && !errorPassword) {
       try {
-        await axios.post('/users/register', { ...signUpForm });
-        setSignUpForm({
-          firstName: '',
-          lastName: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-        });
-        history.push({ pathname: '/login' });
+        if (isAccept) {
+          await axios.post('/users/register', { ...signUpForm });
+          setSignUpForm({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+          });
+          history.push({ pathname: '/login' });
+        } else {
+          alert('Please Read the Privace Policy and accept');
+        }
       } catch (err) {
         console.dir(err);
       }
@@ -154,7 +163,13 @@ function SignUp() {
                 </div>
               </div>
               <div className='col-12 text-center mb-4'>
-                <input className='form-check-input' type='checkbox' value='' id='flexCheckChecked' />
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  checked={isAccept}
+                  id='flexCheckChecked'
+                  onChange={handleChangeCheckBox}
+                />
                 <label className='form-check-label ms-3' htmlFor='flexCheckChecked'>
                   <span style={{ opacity: '50%' }}> I have read the </span> Privace Policy
                 </label>
