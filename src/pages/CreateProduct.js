@@ -5,7 +5,7 @@ function CreateProduct() {
     <div
       className='d-flex justify-content-center'
       style={{
-        background: 'linear-gradient(0deg, #FEFFFF 0%, #FEF3F5 100%)',
+        background: '#FEF3F5',
         width: '100%',
         minHeight: '70vh',
       }}
