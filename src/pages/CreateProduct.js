@@ -1,6 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
+import DragAndDrop from '../component/CreateProduct/DragAndDrop';
 
 function CreateProduct() {
+  const [imagesFile, setImagesFile] = useState(new Array(6).fill(null));
+  const [imagesShow, setImagesShow] = useState(['', '', '', '', '', '']);
+  // console.log(imagesFile);
+
+  const imagesShowList = imagesShow.map((imageUrl, index) => {
+    return (
+      <DragAndDrop
+        key={index}
+        imageUrl={imageUrl}
+        index={index}
+        setImagesShow={setImagesShow}
+        setImagesFile={setImagesFile}
+      />
+    );
+  });
+
   return (
     <div
       className='d-flex justify-content-center'
@@ -51,6 +68,12 @@ function CreateProduct() {
                 Options - Color Code #
               </label>
               <input type='text' id='colorCode' className='form-control' />
+            </div>
+            <div className='col-12 mb-2'>
+              <label className='form-label'>Images</label>
+              <div className='row border rounded py-4 px-4' style={{ margin: '1px' }}>
+                {imagesShowList}
+              </div>
             </div>
             <div className='col-12 mb-2'>
               <label htmlFor='description' className='form-label'>
