@@ -13,7 +13,6 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile }) {
   };
 
   const handleChangeInput = async (e) => {
-    console.log(e.target.files[0].type);
     if (['image/png', 'image/jpg', 'image/jpeg'].includes(e.target.files[0].type)) {
       try {
         setImagesFile((cur) => {
@@ -48,7 +47,7 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile }) {
   const handleDropFile = async (e) => {
     e.preventDefault();
     setIsDragOver(false);
-    console.log(e.dataTransfer.files[0]);
+
     if (['image/png', 'image/jpg', 'image/jpeg'].includes(e.dataTransfer.files[0].type)) {
       try {
         setImagesFile((cur) => {
@@ -97,8 +96,8 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile }) {
           opacity: imageUrl ? '' : '50%',
           backgroundImage: `url(${imageUrl})`,
           backgroundSize: 'cover',
-          height: '15vw',
-          width: '15vw',
+          height: '14vw',
+          width: '14vw',
         }}
       >
         {imageUrl ? (
