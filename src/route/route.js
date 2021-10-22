@@ -1,4 +1,5 @@
 import Checkout from '../pages/Checkout';
+import ContactUs from '../pages/ContactUs';
 import CreateProduct from '../pages/CreateProduct';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
@@ -15,6 +16,7 @@ const routesAll = {
       { path: '/checkout', component: Checkout },
       { path: '/shoppingCart', component: ShoppingCart },
       { path: '/create_product', component: CreateProduct },
+      { path: '/contact_us', component: ContactUs },
       { path: '/productDescription/:productId', component: ProductDescription },
     ],
     redirect: '/',
