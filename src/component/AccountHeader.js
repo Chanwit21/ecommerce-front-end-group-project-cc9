@@ -9,34 +9,50 @@ function AccountHeader() {
           height: "200px",
           backgroundColor: "#FEF3F5",
         }}
-        className=" container d-flex flex-column "
+        className=" container d-flex flex-column justify-content-between "
       >
-        <h3>MY ACCOUNT</h3>
-        <div>
+        <h3 className="fw-bold mt-3">MY ACCOUNT</h3>
+        <div className=" ">
           <button
-            className="btn"
+            className="btn me-3"
             style={{
+              width: "200PX",
+              height: "55px",
               backgroundColor: "#FFD6DC",
             }}
-          ></button>
+          >
+            <span className="fw-bold">MY ACCOUNT</span>
+          </button>
           <button
-            className="btn"
+            className="btn me-3"
             style={{
+              width: "200PX",
+              height: "55px",
               backgroundColor: "#FFD6DC",
             }}
-          ></button>
+          >
+            <span className="fw-bold">MY ADDRESS</span>
+          </button>
           <button
-            className="btn"
+            className="btn me-3"
             style={{
+              width: "200PX",
+              height: "55px",
               backgroundColor: "#FFD6DC",
             }}
-          ></button>
+          >
+            <span className="fw-bold">PAYMENT</span>
+          </button>
           <button
-            className="btn"
+            className="btn me-3"
             style={{
+              width: "200PX",
+              height: "55px",
               backgroundColor: "#FFD6DC",
             }}
-          ></button>
+          >
+            <span className="fw-bold">FAVORITE ITEMS</span>
+          </button>
         </div>
       </div>
     </>
