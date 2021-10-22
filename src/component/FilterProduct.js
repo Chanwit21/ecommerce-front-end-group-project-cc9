@@ -23,25 +23,25 @@ function FilterProduct() {
           <div id='accordiotFace' className='accordion-collapse collapse' aria-labelledby='face'>
             <div className='accordion-body'>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='foundation'>
+                <label className='form-check-label' htmlFor='foundation'>
                   Foundation
                 </label>
                 <input className='form-check-input' type='checkbox' id='foundation' />
               </div>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='powder'>
+                <label className='form-check-label' htmlFor='powder'>
                   Powder
                 </label>
                 <input className='form-check-input' type='checkbox' id='powder' />
               </div>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='concealer'>
+                <label className='form-check-label' htmlFor='concealer'>
                   Concealer
                 </label>
                 <input className='form-check-input' type='checkbox' id='concealer' />
               </div>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='primer'>
+                <label className='form-check-label' htmlFor='primer'>
                   Primer
                 </label>
                 <input className='form-check-input' type='checkbox' id='primer' />
@@ -65,19 +65,19 @@ function FilterProduct() {
           <div id='accordionSheek' className='accordion-collapse collapse' aria-labelledby='panelsStayOpen-headingTwo'>
             <div className='accordion-body'>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='blush'>
+                <label className='form-check-label' htmlFor='blush'>
                   Blush
                 </label>
-                <input class='form-check-input' type='checkbox' id='blush' />
+                <input className='form-check-input' type='checkbox' id='blush' />
               </div>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='bronzer'>
+                <label className='form-check-label' htmlFor='bronzer'>
                   Bronzer
                 </label>
                 <input className='form-check-input' type='checkbox' id='bronzer' />
               </div>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='hightlighter'>
+                <label className='form-check-label' htmlFor='hightlighter'>
                   Hightlighter
                 </label>
                 <input className='form-check-input' type='checkbox' id='hightlighter' />
@@ -101,25 +101,25 @@ function FilterProduct() {
           <div id='accordionLips' className='accordion-collapse collapse' aria-labelledby='panelsStayOpen-headingThree'>
             <div className='accordion-body'>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='liquidLipstick'>
+                <label className='form-check-label' htmlFor='liquidLipstick'>
                   Liquid Lipstick
                 </label>
-                <input class='form-check-input' type='checkbox' id='liquidLipstick' />
+                <input className='form-check-input' type='checkbox' id='liquidLipstick' />
               </div>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='lipstick'>
+                <label className='form-check-label' htmlFor='lipstick'>
                   Lipstick
                 </label>
                 <input className='form-check-input' type='checkbox' id='lipstick' />
               </div>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='lipLiner'>
+                <label className='form-check-label' htmlFor='lipLiner'>
                   Lip Liner
                 </label>
                 <input className='form-check-input' type='checkbox' id='lipLiner' />
               </div>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='lipBlam'>
+                <label className='form-check-label' htmlFor='lipBlam'>
                   Lip Blam
                 </label>
                 <input className='form-check-input' type='checkbox' id='lipBlam' />
@@ -143,25 +143,25 @@ function FilterProduct() {
           <div id='accordionEyes' className='accordion-collapse collapse' aria-labelledby='panelsStayOpen-headingThree'>
             <div className='accordion-body'>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='eyeshadow'>
+                <label className='form-check-label' htmlFor='eyeshadow'>
                   Eyeshadow
                 </label>
-                <input class='form-check-input' type='checkbox' id='eyeshadow' />
+                <input className='form-check-input' type='checkbox' id='eyeshadow' />
               </div>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='eyebrows'>
+                <label className='form-check-label' htmlFor='eyebrows'>
                   Eyebrows
                 </label>
                 <input className='form-check-input' type='checkbox' id='eyebrows' />
               </div>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='eyeliner'>
+                <label className='form-check-label' htmlFor='eyeliner'>
                   Eyeliner
                 </label>
                 <input className='form-check-input' type='checkbox' id='eyeliner' />
               </div>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='mascrara'>
+                <label className='form-check-label' htmlFor='mascrara'>
                   Mascrara
                 </label>
                 <input className='form-check-input' type='checkbox' id='mascrara' />
@@ -185,10 +185,10 @@ function FilterProduct() {
           <div id='accordionBody' className='accordion-collapse collapse' aria-labelledby='panelsStayOpen-headingThree'>
             <div className='accordion-body'>
               <div className='d-flex justify-content-between mb-2'>
-                <label className='form-check-label' for='bodyMakeup'>
+                <label className='form-check-label' htmlFor='bodyMakeup'>
                   Body Makeup
                 </label>
-                <input class='form-check-input' type='checkbox' id='bodyMakeup' />
+                <input className='form-check-input' type='checkbox' id='bodyMakeup' />
               </div>
             </div>
           </div>

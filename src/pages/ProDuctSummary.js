@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FilterProduct from '../component/FilterProduct';
+import ProductSummaryList from '../component/ProductSummary/ProductSummaryList';
+import { products } from '../mocks/product';
 
-function ProDuctSummary() {
+function ProductSummary() {
+  const productsTableBody = products.map((product) => {
+    return <ProductSummaryList key={product.id} product={product} />;
+  });
+  console.log(products);
+
   return (
     <div className='container my-5'>
       <div className='d-flex justify-content-between mb-3'>
@@ -20,17 +27,34 @@ function ProDuctSummary() {
         <div className='col-10'>
           <table style={{ width: '100%' }}>
             <thead>
-              <tr className='bg-dark'>
-                <th className='text-white p-2'>PRODUCT ID</th>
-                <th className='text-white p-2'>PRODUCT NAME</th>
-                <th className='text-white p-2'>COLOR</th>
-                <th className='text-white p-2'>CATEGORY</th>
-                <th className='text-white p-2'>STOCK</th>
-                <th className='text-white p-2'>BOOKED</th>
-                <th className='text-white p-2'>READY TO SELL</th>
-                <th className='text-white p-2'>ACTION</th>
+              <tr className='bg-dark border border-dark'>
+                <th className='text-white p-2 text-center' colSpan='1'>
+                  PRODUCT ID
+                </th>
+                <th className='text-white p-2 text-center' colSpan='2'>
+                  PRODUCT NAME
+                </th>
+                <th className='text-white p-2 text-center' colSpan='1'>
+                  COLOR
+                </th>
+                <th className='text-white p-2 text-center' colSpan='1'>
+                  CATEGORY
+                </th>
+                <th className='text-white p-2 text-center' colSpan='1'>
+                  STOCK
+                </th>
+                <th className='text-white p-2 text-center' colSpan='1'>
+                  BOOKED
+                </th>
+                <th className='text-white p-2 text-center' colSpan='1'>
+                  READY TO SELL
+                </th>
+                <th className='text-white p-2 text-center' colSpan='2'>
+                  ACTION
+                </th>
               </tr>
             </thead>
+            <tbody>{productsTableBody}</tbody>
           </table>
         </div>
       </div>
@@ -38,4 +62,4 @@ function ProDuctSummary() {
   );
 }
 
-export default ProDuctSummary;
+export default ProductSummary;
