@@ -3,6 +3,8 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import ProductDescription from '../pages/ProductDescription';
 import SignUp from '../pages/SignUp';
+import Transaction from '../pages/Transaction'
+
 
 const routesAll = {
   GUEST: {
@@ -11,7 +13,8 @@ const routesAll = {
       { path: '/login', component: Login },
       { path: '/sign_up', component: SignUp },
       { path: '/checkout', component: Checkout },
-      { path: '/productDescription/:productId', component: ProductDescription },
+      { path: '/productDescription/:productName', component: ProductDescription },
+      { path: '/transaction', component: Transaction },
     ],
     redirect: '/',
   },
@@ -19,14 +22,14 @@ const routesAll = {
     routes: [
       { path: '/', component: Home },
       { path: '/checkout', component: Checkout },
-      { path: '/productDescription/:productId', component: ProductDescription },
+      { path: '/productDescription/:productName', component: ProductDescription },
     ],
     redirect: '/',
   },
   ADMIN: {
     routes: [
       { path: '/', component: Home },
-      { path: '/productDescription/:productId', component: ProductDescription },
+      { path: '/productDescription/:productName', component: ProductDescription },
     ],
     redirect: '/',
   },
