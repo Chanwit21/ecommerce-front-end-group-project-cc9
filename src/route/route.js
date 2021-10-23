@@ -9,6 +9,8 @@ import SignUp from '../pages/SignUp';
 import CreateProduct from '../pages/CreateProduct';
 import ContactUs from '../pages/ContactUs';
 import ProductSummary from '../pages/ProductSummary';
+import UserPayment from '../pages/UserPayment';
+import UserAddCard from '../pages/UserAddCard';
 
 const routesAll = {
   GUEST: {
@@ -21,6 +23,8 @@ const routesAll = {
       { path: '/create_product', component: CreateProduct },
       { path: '/contact_us', component: ContactUs },
       { path: '/product_summary', component: ProductSummary },
+      { path: '/user_payment', component: UserPayment },
+      { path: '/user_add_card', component: UserAddCard },
       { path: '/productDescription/:productId', component: ProductDescription },
       { path: '/myProFile', component: MyProfile },
       { path: '/favorite', component: Favorite },
