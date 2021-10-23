@@ -35,7 +35,7 @@ function Footer() {
                 </NavLink>
               </li>
               <li className='nav-item'>
-                <NavLink to='#' className='nav-link' style={{ color: '#FFFFFF' }}>
+                <NavLink to='/contact_us' className='nav-link' style={{ color: '#FFFFFF' }}>
                   Contact Us
                 </NavLink>
               </li>
