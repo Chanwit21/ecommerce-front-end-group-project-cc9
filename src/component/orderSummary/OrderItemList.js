@@ -13,7 +13,7 @@ function OrderItemList({ imageUrl, name, color, quality, totalPrice }) {
         <p className='m-0 p-0 opacity-50'>{color}</p>
         <div className='d-flex justify-content-between'>
           <p className='m-0 p-0 opacity-50'>Qty: {quality}</p>
-          <p className='m-0 p-0'>{formatePrice(totalPrice)}</p>
+          <p className='m-0 p-0 pe-3'>{formatePrice(totalPrice)}</p>
         </div>
       </div>
     </div>
