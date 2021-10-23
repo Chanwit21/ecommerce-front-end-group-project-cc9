@@ -6,7 +6,7 @@ import { useAuthContext } from '../context/AuthContext'
 import '../css/productDescription.css'
 
 function ProductDescription() {
-  const { productId } = useParams();
+  const { productName } = useParams();
   const { state: { user } } = useAuthContext()
 
   const [product, setProduct] = useState([])
@@ -15,8 +15,7 @@ function ProductDescription() {
   console.log(`user`, user)
   useEffect(() => {
     const run = async () => {
-      console.log(`productId`, productId)
-      const { data: { product, productImage } } = await axios.get(`/product/${productId}`)
+      const { data: { product, productImage } } = await axios.get(`/product/${productName}`)
       console.log(`product`, product)
       console.log(`productImage`, productImage)
       if (user) {
