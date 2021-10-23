@@ -9,7 +9,7 @@ import SignUp from '../pages/SignUp';
 import Transaction from '../pages/Transaction'
 import CreateProduct from '../pages/CreateProduct';
 import ContactUs from '../pages/ContactUs';
-import ProductSummary from '../pages/ProductSummary';
+import ProductSummary from '../pages/ProDuctSummary';
 import UserPayment from '../pages/UserPayment';
 import UserAddCard from '../pages/UserAddCard';
 

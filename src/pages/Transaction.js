@@ -2,6 +2,7 @@ import axios from '../config/axios'
 import React, { useEffect, useState } from 'react'
 import RevenueChart from '../component/transaction/RevenueChart'
 import moment from 'moment';
+import AccountHeader from '../component/AccountHeader';
 
 function Transaction() {
   const [selectedTime, setSelectedTime] = useState('day')
@@ -103,6 +104,7 @@ function Transaction() {
 
   return (
     <div className='transactionPage'>
+      <AccountHeader />
       <div className="container" style={{ width: '80vw' }}> {/*revenue*/}
         <div className="my-5 p-4">
           <div className="row">

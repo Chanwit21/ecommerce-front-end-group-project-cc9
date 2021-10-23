@@ -19,7 +19,7 @@ axios.interceptors.response.use(
   (err) => {
     if (err.response?.status === 401) {
       removeToken();
-      window.location.href = `${API}/loginpage`;
+      window.location.href = `http://localhost:3000/login`;
     }
     return Promise.reject(err);
   }
