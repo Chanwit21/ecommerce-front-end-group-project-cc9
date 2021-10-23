@@ -8,6 +8,8 @@ const INIT_STATE = {
   carts: [],
   countCart: 0,
 };
+// dispatch({ type: 'ADD_CART', payload: { product: {} } });
+// dispatch({ type: 'UPDATE_CART', payload: { product: {}, productId: '' } });
 
 const REDUCER_FN = (state, action) => {
   switch (action.type) {
@@ -16,7 +18,7 @@ const REDUCER_FN = (state, action) => {
       const countCart = action.payload.countCart;
       return { carts, countCart };
     }
-    case 'CREATE_CART': {
+    case 'ADD_CART': {
       const product = action.payload.product;
       const newCarts = JSON.parse(JSON.stringify(state.carts));
       newCarts.push(product);

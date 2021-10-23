@@ -8,7 +8,7 @@ function ProductSummary() {
   const productsTableBody = products.map((product) => {
     return <ProductSummaryList key={product.id} product={product} />;
   });
-  console.log(products);
+  // console.log(products);
 
   return (
     <div className='container my-5'>
@@ -44,10 +44,7 @@ function ProductSummary() {
                   STOCK
                 </th>
                 <th className='text-white p-2 text-center' colSpan='1'>
-                  BOOKED
-                </th>
-                <th className='text-white p-2 text-center' colSpan='1'>
-                  READY TO SELL
+                  READY TO SHIP
                 </th>
                 <th className='text-white p-2 text-center' colSpan='2'>
                   ACTION
