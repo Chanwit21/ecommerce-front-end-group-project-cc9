@@ -27,20 +27,19 @@ function Footer() {
           <div className='col-1'></div>
           <div className='col-3'>
             <h4>Help</h4>
-            <p>
-              <ul className='navbar-nav'>
-                <li className='nav-item'>
-                  <NavLink to='#' className='nav-link' style={{ color: '#FFFFFF' }}>
-                    Terms of Services
-                  </NavLink>
-                </li>
-                <li className='nav-item'>
-                  <NavLink to='#' className='nav-link' style={{ color: '#FFFFFF' }}>
-                    Contact Us
-                  </NavLink>
-                </li>
-              </ul>
-            </p>
+
+            <ul className='navbar-nav'>
+              <li className='nav-item'>
+                <NavLink to='#' className='nav-link' style={{ color: '#FFFFFF' }}>
+                  Terms of Services
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink to='/contact_us' className='nav-link' style={{ color: '#FFFFFF' }}>
+                  Contact Us
+                </NavLink>
+              </li>
+            </ul>
           </div>
           <div className='col-3'>
             <h4>We Accept</h4>
