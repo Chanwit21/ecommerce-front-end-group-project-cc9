@@ -76,12 +76,29 @@ function Transaction() {
 
 
 
-
     }
     run()
   }, [selectWeek, selectedTime])
 
-
+  const topFiveColor = ['#DF316E', '#40C9BA', '#98C6FF', '#9F7DE1', '#FEDF9A']
+  const categoryImg = {
+    foundation: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Foundation_phqyge.jpg',
+    power: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Balm_jck6hf.png',
+    concealer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Concealer_aocfpl.png',
+    primer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Primer_fkjcm3.jpg',
+    blush: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998899/Blush_kv89pz.jpg',
+    bronzer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Bronzer_ngvzby.jpg',
+    highlighter: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Highlighter_mc29py.jpg',
+    liquidLipstick: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Liquid_Lip_ipjiux.png',
+    lipstick: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Libstick_dt5dbz.png',
+    lipLiner: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Liner_vuizz8.png',
+    lipBlam: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Balm_jck6hf.png',
+    eyeShadow: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Eyeshadow_bdtaa7.png',
+    eyeBrows: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Eyebrows_jfxtxf.png',
+    eyeLiner: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Eyeliner_np6msk.png',
+    mascara: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Mascara_oyfzhv.png',
+    bodyMakeup: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998903/Body_cd2xfp.png',
+  }
 
 
   return (
@@ -124,13 +141,13 @@ function Transaction() {
             </div>
             <div className="col-4"> {/*best seller*/}
               <div className="my-2 mx-5 d-flex flex-column justify-content-center align-items-center">
-                <h4 style={{ fontSize: '24px' }}>BEST SELLER</h4>
+                <h4 style={{ fontSize: '24px' }}>{`BEST SELLER (${selectedTime})`}</h4>
                 {sortCategoryResult.map((item, index) => {
                   if (index >= 5) return;
                   return (
                     <div className='ms-5 d-flex justify-content-start align-items-center' style={{ width: '150px', height: '70px' }}> {/*bs item*/}
-                      <div className=' mx-2 me-4 rounded-pill' style={{ width: '1vw', height: '3.125vw', backgroundColor: '#DF316E', opacity: '50%' }}></div>
-                      <div className=' d-flex flex-column align-items-start justify-content-between'>
+                      <div className='me-4 rounded-pill' style={{ width: '1vw', height: '3.125vw', backgroundColor: topFiveColor[index], opacity: '50%' }}></div>
+                      <div className='d-flex flex-column align-items-start justify-content-between'>
                         <p className='m-0' style={{ fontSize: '18px' }}>{item?.[0]}</p>
                         <p className='m-0' style={{ fontSize: '24px' }}>{`$${item?.[1]}`}</p>
                       </div>
@@ -147,7 +164,7 @@ function Transaction() {
         <div className=" p-4 m-4" style={{ backgroundColor: '#FEF3F5' }}>
           <div className="d-flex align-items-center mt-4 mb-5">
             <h4>PREVIOUS TRANSACTIONS</h4>
-            <div style={{ width: '10vw', height: '4vw', backgroundColor: '#FFD6DC' }} className="badge mx-4 d-flex align-items-center justify-content-center">7-14 JAN 2021</div>
+            <div style={{ height: '4vw', backgroundColor: '#FFD6DC' }} className="badge mx-4 d-flex align-items-center justify-content-center"><span style={{ fontSize: '16px' }}>{selectedTime === 'day' ? `${showTime[0]}` : `${showTime[0]} - ${showTime[1]}`}</span></div>
           </div>
           {sortCategoryResult.map(item => {
             if (!item[1]) return;
@@ -155,7 +172,7 @@ function Transaction() {
               <div className="card border-0 my-4"> {/*trans item*/}
                 <div className="p-4 d-flex align-items-center justify-content-between" style={{ width: '70vw', height: '7vw' }}>
                   <div className="d-flex align-items-center m-5">
-                    <img className='' style={{ width: '5vw', height: '5vw', borderRadius: '50%' }} src="https://cdn.shopify.com/s/files/1/0450/5069/1744/products/1.1_400x.jpg?v=1628594753" alt="" />
+                    <img className='mx-4' style={{ width: '5vw', height: '5vw', borderRadius: '50%' }} src={categoryImg[item?.[0]]} alt="" />
                     <p className='m-0 mx-4 fw-bold'>{item[0]}</p>
                   </div>
                   <p className='m-0 mx-4 text-success fw-bold'>{`+$${item[1]}`}</p>
