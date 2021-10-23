@@ -2,39 +2,38 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 function ProductDetail({ product, IsFavorite, productImage }) {
-  const [numberOfProduct, setNumberOfProduct] = useState(1)
-  const [checkFavorite, setCheckFavorite] = useState(IsFavorite) //IsFavorite from database
-  const [selectedColor, setSelectedColor] = useState(product?.[0]?.color)
+  const [numberOfProduct, setNumberOfProduct] = useState(1);
+  const [checkFavorite, setCheckFavorite] = useState(IsFavorite); //IsFavorite from database
+  const [selectedColor, setSelectedColor] = useState(product?.[0]?.color);
 
   useEffect(() => {
-    setSelectedColor(product?.[0]?.color)
-  }, [product])
+    setSelectedColor(product?.[0]?.color);
+  }, [product]);
 
   useEffect(() => {
-    setCheckFavorite(IsFavorite)
-  }, [IsFavorite])
+    setCheckFavorite(IsFavorite);
+  }, [IsFavorite]);
 
   //* check color idx
-  const idx = product.findIndex(item => item.color === selectedColor);
-  const productId = product[idx]?.id
 
+  const idx = product.findIndex((item) => item.color === selectedColor);
+  const productId = product[idx]?.id;
 
   const handleClickFavorite = async () => {
-
     if (!checkFavorite) {
-      await axios.post('/product/favorite', { productId: product[0].id })
-      setCheckFavorite(true)
+      await axios.post('/product/favorite', { productId: product[0].id });
+      setCheckFavorite(true);
     }
     if (checkFavorite) {
-      await axios.delete(`/product/favorite/${product[0].id}`)
-      setCheckFavorite(false)
+      await axios.delete(`/product/favorite/${product[0].id}`);
+      setCheckFavorite(false);
     }
-  }
+  };
 
   const handleAddToCart = async () => {
-    await axios.post('/product/cart', { quality: numberOfProduct, productId: product[idx].id })
-    alert('add to cart successful')
-  }
+    await axios.post('/product/cart', { quality: numberOfProduct, productId: product[idx].id });
+    alert('add to cart successful');
+  };
 
   return (
     <div>
@@ -53,7 +52,9 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                   style={{ width: '4vw', height: '4vw' }}
                   src={item?.imageUrl}
                   alt=''
-                  onClick={() => { setSelectedColor(item.Product.color); }}
+                  onClick={() => {
+                    setSelectedColor(item.Product.color);
+                  }}
                 />
               ))}
             </div>
@@ -68,7 +69,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
             <div className='col-6 ms-5' style={{ width: '28.75vw' }}>
               <h4 style={{ fontSize: '24px' }}>{product?.[0]?.name}</h4> {/*name*/}
               <hr className='m-0' />
-              <p className='mt-4 fw-bold' style={{ fontSize: '20px' }}>{`$${product?.[idx]?.price}`}</p>  {/*price*/}
+              <p className='mt-4 fw-bold' style={{ fontSize: '20px' }}>{`$${product?.[idx]?.price}`}</p> {/*price*/}
               <p style={{ fontSize: '18px' }}>{product[idx]?.colorName}</p> {/*colorName*/}
               <div className='d-flex'>
                 {product.map((item, index) => (
@@ -82,31 +83,40 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                     }}
                   ></div>
                 ))}
-
               </div>
               <div className='d-flex align-items-center my-4'>
-                <div className='border border-dark d-flex flex-nowrap align-items-center' >
-                  <button onClick={() => setNumberOfProduct(cur => cur > 1 ? cur - 1 : cur)} className='btn'>-</button>
+                <div className='border border-dark d-flex flex-nowrap align-items-center'>
+                  <button onClick={() => setNumberOfProduct((cur) => (cur > 1 ? cur - 1 : cur))} className='btn'>
+                    -
+                  </button>
                   <span>{numberOfProduct}</span>
-                  <button onClick={() => setNumberOfProduct(cur => cur < product[0].count_stock ? cur + 1 : cur)} className='btn'>+</button>
+                  <button
+                    onClick={() => setNumberOfProduct((cur) => (cur < product[0].count_stock ? cur + 1 : cur))}
+                    className='btn'
+                  >
+                    +
+                  </button>
                 </div>
-                <div className="d-flex flex-nowrap">
-                  <button onClick={handleAddToCart} className='btn btn-dark mx-2' style={{ width: '18vw' }}>ADD TO CART</button>
+                <div className='d-flex flex-nowrap'>
+                  <button onClick={handleAddToCart} className='btn btn-dark mx-2' style={{ width: '18vw' }}>
+                    ADD TO CART
+                  </button>
                 </div>
-                {checkFavorite ?
+                {checkFavorite ? (
                   <button onClick={handleClickFavorite} className='btn border border-dark mx-2'>
-                    <i style={{ color: 'black' }} className="bi bi-heart-fill"></i>
-                  </button> :
+                    <i style={{ color: 'black' }} className='bi bi-heart-fill'></i>
+                  </button>
+                ) : (
                   <button onClick={handleClickFavorite} className='btn border border-dark mx-2'>
                     <i className='bi bi-heart-fill'></i>
                   </button>
-                }
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 

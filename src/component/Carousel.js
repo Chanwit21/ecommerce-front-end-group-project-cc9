@@ -1,10 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import test1 from '../pic/mocks/pexels-karolina-grabowska-4202325.jpg';
 import test2 from '../pic/mocks/pexels-karolina-grabowska-4239013.jpg';
 import test3 from '../pic/mocks/pexels-michelle-leman-6798761.jpg';
 
 function Carousel() {
-  const [imagesPromo, setImagesPromo] = useState([
+  // const [imagesPromo, setImagesPromo] = useState([
+  //   {
+  //     image: test1,
+  //     header: 'First slide label',
+  //     title: 'Some representative placeholder content for the first slide.',
+  //   },
+  //   {
+  //     image: test2,
+  //     header: 'Second slide label',
+  //     title: 'Some representative placeholder content for the second slide.',
+  //   },
+  //   {
+  //     image: test3,
+  //     header: 'Third slide label',
+  //     title: 'Some representative placeholder content for the third slide.',
+  //   },
+  // ]);
+
+  const imagesPromo = [
     {
       id: '1',
       image: test1,
@@ -23,7 +41,7 @@ function Carousel() {
       header: 'Third slide label',
       title: 'Some representative placeholder content for the third slide.',
     },
-  ]);
+  ];
 
   const buttonCarousel = imagesPromo.map((item, index) => {
     return (
