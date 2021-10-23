@@ -15,19 +15,19 @@ function ShoppingCartRow({ imageUrl, name, price, color }) {
             <button
               className="btn"
               onClick={() => {
-                setCount(count + 1);
+                count > 0 ? setCount(count - 1) : setCount(count);
               }}
             >
-              +
+              -
             </button>
             <span>{count}</span>
             <button
               className="btn"
               onClick={() => {
-                count > 0 ? setCount(count - 1) : setCount(count);
+                setCount(count + 1);
               }}
             >
-              -
+              +
             </button>
           </div>
         </div>

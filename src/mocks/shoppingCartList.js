@@ -1,7 +1,8 @@
-export const orderItems = [
+import elixir from "../pic/mocks/elixir.png";
+export const shoppingCartList = [
   {
     id: 1,
-    imageUrl: "https://picsum.photos/id/177/3000/3000",
+    imageUrl: elixir,
     quality: 2,
     name: "Product Name",
     colorName: "red",
@@ -9,7 +10,7 @@ export const orderItems = [
   },
   {
     id: 2,
-    imageUrl: "https://picsum.photos/id/177/3000/3000",
+    imageUrl: elixir,
     quality: 1,
     name: "Product Name",
     colorName: "red",
@@ -17,7 +18,7 @@ export const orderItems = [
   },
   {
     id: 3,
-    imageUrl: "https://picsum.photos/id/177/3000/3000",
+    imageUrl: elixir,
     quality: 3,
     name: "Product Name",
     colorName: "red",
@@ -25,7 +26,7 @@ export const orderItems = [
   },
   {
     id: 4,
-    imageUrl: "https://picsum.photos/id/177/3000/3000",
+    imageUrl: elixir,
     quality: 3,
     name: "Product Name",
     colorName: "red",
@@ -33,7 +34,7 @@ export const orderItems = [
   },
   {
     id: 5,
-    imageUrl: "https://picsum.photos/id/177/3000/3000",
+    imageUrl: elixir,
     quality: 3,
     name: "Product Name",
     colorName: "red",
@@ -41,7 +42,7 @@ export const orderItems = [
   },
   {
     id: 6,
-    imageUrl: "https://picsum.photos/id/177/3000/3000",
+    imageUrl: elixir,
     quality: 3,
     name: "Product Name",
     colorName: "red",
@@ -49,7 +50,7 @@ export const orderItems = [
   },
   {
     id: 7,
-    imageUrl: "https://picsum.photos/id/177/3000/3000",
+    imageUrl: elixir,
     quality: 3,
     name: "Product Name",
     colorName: "red",
@@ -57,7 +58,7 @@ export const orderItems = [
   },
   {
     id: 8,
-    imageUrl: "https://picsum.photos/id/177/3000/3000",
+    imageUrl: elixir,
     quality: 3,
     name: "Product Name",
     colorName: "red",

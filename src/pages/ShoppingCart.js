@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ShoppingCartRow from "../component/shoppingCart/ShoppingCartRow";
 import ShoppingCartTotal from "../component/shoppingCart/ShoppingCartTotal";
-import { orderItems } from "../mocks/orderItems";
+import { shoppingCartList } from "../mocks/shoppingCartList";
 
 export default function ShoppingCart() {
   return (
@@ -14,7 +14,7 @@ export default function ShoppingCart() {
             <h5 className="col">Price</h5>
             <h5 className="col">Total</h5>
           </div>
-          {orderItems.map((item) => (
+          {shoppingCartList.map((item) => (
             <ShoppingCartRow
               key={item.id}
               imageUrl={item.imageUrl}
