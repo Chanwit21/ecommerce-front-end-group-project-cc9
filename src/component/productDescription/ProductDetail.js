@@ -21,12 +21,12 @@ function ProductDetail({ product, IsFavorite, productImage }) {
 
   const handleClickFavorite = async () => {
     if (!checkFavorite) {
-      await axios.post('/product/favorite', { productId: product[0].id });
       setCheckFavorite(true);
+      await axios.post('/product/favorite', { productId: product[0].id, productName: product[0].name });
     }
     if (checkFavorite) {
-      await axios.delete(`/product/favorite/${product[0].id}`);
       setCheckFavorite(false);
+      await axios.delete(`/product/favorite/${product[0].id}`);
     }
   };
 
@@ -91,7 +91,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                   </button>
                   <span>{numberOfProduct}</span>
                   <button
-                    onClick={() => setNumberOfProduct((cur) => (cur < product[0].count_stock ? cur + 1 : cur))}
+                    onClick={() => setNumberOfProduct((cur) => (cur < product[0].countStock ? cur + 1 : cur))}
                     className='btn'
                   >
                     +
@@ -108,7 +108,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                   </button>
                 ) : (
                   <button onClick={handleClickFavorite} className='btn border border-dark mx-2'>
-                    <i className='bi bi-heart-fill'></i>
+                    <i className='bi bi-heart'></i>
                   </button>
                 )}
               </div>

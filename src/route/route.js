@@ -8,7 +8,12 @@ import ShoppingCart from '../pages/ShoppingCart';
 import SignUp from '../pages/SignUp';
 import CreateProduct from '../pages/CreateProduct';
 import ContactUs from '../pages/ContactUs';
+import MyAddress from '../pages/MyAddress';
+import AddNewAddress from '../pages/AddNewAddress';
+import Transaction from '../pages/Transaction';
 import ProductSummary from '../pages/ProductSummary';
+import UserPayment from '../pages/UserPayment';
+import UserAddCard from '../pages/UserAddCard';
 
 const routesAll = {
   GUEST: {
@@ -20,10 +25,15 @@ const routesAll = {
       { path: '/shoppingCart', component: ShoppingCart },
       { path: '/create_product', component: CreateProduct },
       { path: '/contact_us', component: ContactUs },
-      { path: '/product_summary', component: ProductSummary },
-      { path: '/productDescription/:productId', component: ProductDescription },
       { path: '/myProFile', component: MyProfile },
+      { path: '/myAddress', component: MyAddress },
+      { path: '/addNewAddress', component: AddNewAddress },
       { path: '/favorite', component: Favorite },
+      { path: '/productDescription/:productName', component: ProductDescription },
+      { path: '/transaction', component: Transaction },
+      { path: '/product_summary', component: ProductSummary },
+      { path: '/user_payment', component: UserPayment },
+      { path: '/user_add_card', component: UserAddCard },
     ],
     redirect: '/',
   },
@@ -31,14 +41,16 @@ const routesAll = {
     routes: [
       { path: '/', component: Home },
       { path: '/checkout', component: Checkout },
-      { path: '/productDescription/:productId', component: ProductDescription },
+      { path: '/productDescription/:productName', component: ProductDescription },
+      { path: '/user_payment', component: UserPayment },
+      { path: '/user_add_card', component: UserAddCard },
     ],
     redirect: '/',
   },
   ADMIN: {
     routes: [
       { path: '/', component: Home },
-      { path: '/productDescription/:productId', component: ProductDescription },
+      { path: '/productDescription/:productName', component: ProductDescription },
     ],
     redirect: '/',
   },

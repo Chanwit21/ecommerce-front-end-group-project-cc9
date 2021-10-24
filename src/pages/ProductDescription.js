@@ -6,11 +6,8 @@ import { useAuthContext } from '../context/AuthContext';
 import '../css/productDescription.css';
 
 function ProductDescription() {
-  const { productId } = useParams();
-  const {
-    state: { user },
-  } = useAuthContext();
-
+  const { productName } = useParams();
+  const { state: { user } } = useAuthContext()
   const [product, setProduct] = useState([]);
   const [IsFavorite, setIsFavorite] = useState(false);
   const [productImage, setProductImage] = useState([]);
@@ -18,16 +15,13 @@ function ProductDescription() {
 
   useEffect(() => {
     const run = async () => {
-      console.log(`productId`, productId);
-      const {
-        data: { product, productImage },
-      } = await axios.get(`/product/${productId}`);
-      console.log(`product`, product);
-      console.log(`productImage`, productImage);
+      const { data: { product, productImage } } = await axios.get(`/product/${productName}`)
+      console.log(`product`, product)
+      console.log(`productImage`, productImage)
       if (user) {
         const {
           data: { IsFavorite },
-        } = await axios.post(`/product/checkFavorite`, { productName: product[0].name });
+        } = await axios.post(`/product/checkFavorite`, { productName: product?.[0]?.name });
         console.log(`IsFavorite`, IsFavorite);
         setIsFavorite(IsFavorite);
       }
@@ -39,11 +33,11 @@ function ProductDescription() {
 
   return (
     <div className='productDescriptionPage'>
-      <ProductDetail product={product} IsFavorite={IsFavorite} productImage={productImage} /> Product Detial
+      <ProductDetail product={product} IsFavorite={IsFavorite} productImage={productImage} />
       <div className='p-4' style={{ backgroundColor: '#FEF6F8' }}>
         <div className='accordion' id='accordionPanelsStayOpenExample'>
           <div className='container'>
-            {' '}
+
             {/* product info*/}
             <div className='border-0'>
               <div className='accordion-item'>
@@ -65,7 +59,7 @@ function ProductDescription() {
                   aria-labelledby='panelsStayOpen-headingOne'
                 >
                   <div className='accordion-body'>
-                    <p>{product?.[0]?.productInfo}</p>
+                    <p>{product?.[0]?.description}</p>
                   </div>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { orderItems } from "../mocks/orderItems";
+import { productItems } from "../mocks/productItems";
 import AccountHeader from "../component/AccountHeader";
 import ProductCardList from "../component/ProductCard/ProductCardList";
 
@@ -8,9 +8,9 @@ function Favorite() {
     <>
       <AccountHeader />
       <div className="container ">
-        <h4 className=" fw-bold d-flex justify-content-center mt-3 ">FAVORITE</h4>
-        <div className=" d-flex row flex-wrap">
-          {orderItems.map((item) => (
+        <h4 className=" fw-bold d-flex justify-content-center mt-5 ">FAVORITE</h4>
+        <div className=" d-flex row flex-wrap mt-5 mb-5">
+          {productItems.map((item) => (
             <div className="col-3">
               <ProductCardList
                 key={item.id}
