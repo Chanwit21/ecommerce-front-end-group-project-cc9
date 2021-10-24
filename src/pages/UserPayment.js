@@ -1,11 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AccountHeader from '../component/AccountHeader';
 import UserPaymentCardList from '../component/UserPayment/UserPaymentCardList';
-import { customerCards } from '../mocks/customerCards';
+// import { customerCards } from '../mocks/customerCards';
 import { Link } from 'react-router-dom';
+import axios from '../config/axios';
 
 function UserPayment() {
-  const customerCardsShow = customerCards.map((card) => <UserPaymentCardList key={card.id} card={card} />);
+  const [customerCards, setCustomerCards] = useState([]);
+
+  useEffect(() => {
+    const fetchCreditCard = async () => {
+      try {
+        const res = await axios.get('/credit_cards');
+        setCustomerCards(res.data.creditCards);
+      } catch (err) {
+        console.dir(err);
+      }
+    };
+    fetchCreditCard();
+  }, []);
+
+  const Omise = window.Omise;
+  Omise.setPublicKey('pkey_test_5pdoxhl4p3erc27pgew');
+
+  const handleClickDeleteCard = async (card_id) => {
+    try {
+      await axios.post(`/credit_cards/${card_id}`);
+      const newCustomerCards = customerCards.filter((card) => card.id !== card_id);
+      setCustomerCards(newCustomerCards);
+    } catch (err) {
+      console.dir(err);
+    }
+  };
+
+  const customerCardsShow = customerCards.map((card) => (
+    <UserPaymentCardList key={card.id} card={card} handleClickDeleteCard={handleClickDeleteCard} />
+  ));
+
   return (
     <>
       <AccountHeader />

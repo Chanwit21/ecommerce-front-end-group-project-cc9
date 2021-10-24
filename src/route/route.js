@@ -42,6 +42,8 @@ const routesAll = {
       { path: '/', component: Home },
       { path: '/checkout', component: Checkout },
       { path: '/productDescription/:productName', component: ProductDescription },
+      { path: '/user_payment', component: UserPayment },
+      { path: '/user_add_card', component: UserAddCard },
     ],
     redirect: '/',
   },
