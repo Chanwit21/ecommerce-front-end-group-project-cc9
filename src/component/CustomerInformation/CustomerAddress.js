@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CustomerAddressList from './CustomerAddressLists';
 
-function CustomerAddress({ customerAddress, setIsAddingAddress }) {
-  const [selectAddress, setSelectAddress] = useState(customerAddress.find((item) => item.isMain).id);
-
+function CustomerAddress({ customerAddress, setIsAddingAddress, setSelectAddress, selectAddress }) {
   const handleChangeAddress = (e) => {
     setSelectAddress(e.target.value);
   };
@@ -13,7 +11,14 @@ function CustomerAddress({ customerAddress, setIsAddingAddress }) {
   };
 
   const customerAddressShow = customerAddress.map((address) => {
-    return <CustomerAddressList address={address} selectAddress={selectAddress} onChange={handleChangeAddress} />;
+    return (
+      <CustomerAddressList
+        key={address.id}
+        address={address}
+        selectAddress={selectAddress}
+        onChange={handleChangeAddress}
+      />
+    );
   });
 
   return (

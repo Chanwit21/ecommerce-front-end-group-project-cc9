@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import ShoppingCartRow from "../component/shoppingCart/ShoppingCartRow";
-import ShoppingCartTotal from "../component/shoppingCart/ShoppingCartTotal";
-import { shoppingCartList } from "../mocks/shoppingCartList";
+import React from 'react';
+import ShoppingCartRow from '../component/shoppingCart/ShoppingCartRow';
+import ShoppingCartTotal from '../component/shoppingCart/ShoppingCartTotal';
+import { shoppingCartList } from '../mocks/shoppingCartList';
 
 export default function ShoppingCart() {
   return (
     <>
-      <div className="d-flex justify-content-evenly ms-5">
-        <div className="p-3 ps-0 me-0 mt-5 mb-5" style={{ width: "964px" }}>
-          <div className="row">
-            <h5 className="col-6">Product</h5>
-            <h5 className="col">QTY</h5>
-            <h5 className="col">Price</h5>
-            <h5 className="col">Total</h5>
+      <div className='d-flex justify-content-evenly ms-5'>
+        <div className='p-3 ps-0 me-0 mt-5 mb-5' style={{ width: '964px' }}>
+          <div className='row'>
+            <h5 className='col-6'>Product</h5>
+            <h5 className='col'>QTY</h5>
+            <h5 className='col'>Price</h5>
+            <h5 className='col'>Total</h5>
           </div>
           {shoppingCartList.map((item) => (
             <ShoppingCartRow
