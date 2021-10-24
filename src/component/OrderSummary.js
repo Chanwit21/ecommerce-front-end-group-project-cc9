@@ -26,7 +26,9 @@ function OrderSummary({ orderItems }) {
       <h2 className='pb-3' style={{ borderBottom: '1px solid #0003' }}>
         ORDER SUMMARY
       </h2>
-      {orderItemsShow}
+      <div className='overflow-auto' style={{ height: '29.16666666666668vw' }}>
+        {orderItemsShow}
+      </div>
       <div
         className='d-flex align-items-end'
         style={{ width: '100%', borderBottom: '1px solid #0003', height: '7.291666666666667vw' }}
@@ -35,13 +37,13 @@ function OrderSummary({ orderItems }) {
           <div className='col-6'>
             <h5>SUBTOTAL</h5>
           </div>
-          <div className='col-6 d-flex justify-content-end p-0'>
+          <div className='col-6 d-flex justify-content-end p-0 pe-3'>
             <p>{formatePrice(subTotal)}</p>
           </div>
           <div className='col-6'>
             <h5>SHIPPING</h5>
           </div>
-          <div className='col-6 d-flex justify-content-end p-0'>
+          <div className='col-6 d-flex justify-content-end p-0 pe-3'>
             <p>{formatePrice(shipping)}</p>
           </div>
         </div>
@@ -50,7 +52,7 @@ function OrderSummary({ orderItems }) {
         <div className='col-6'>
           <h5>TOTAL</h5>
         </div>
-        <div className='col-6 d-flex justify-content-end p-0'>
+        <div className='col-6 d-flex justify-content-end p-0 pe-3'>
           <p>{formatePrice(subTotal - shipping)}</p>
         </div>
       </div>

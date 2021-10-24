@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import Logo from '../pic/icons/mmg-logo.svg';
 
 function NavHeader() {
   return (
     <>
-      <div className='container-fluid text-center' style={{ backgroundColor: '#FAF2F4' }}>
-        free shipping with any order!
+      <div className='container-fluid text-center p-1' style={{ backgroundColor: '#FFD6DC' }}>
+        FREE SHIPPING WITH ANY ORDER!
       </div>
       <nav className='navbar navbar-expand-lg navbar-light flex-grow-0 shadow-sm'>
         <div className='container'>
           <NavLink to='/' className='navbar-brand'>
-            MAKE ME GLOW
+            <img src={Logo} alt='Logo' style={{ width: '13.0625vw' }} />
           </NavLink>
           <button
             className='navbar-toggler'
