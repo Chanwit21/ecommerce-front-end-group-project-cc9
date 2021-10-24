@@ -11,7 +11,7 @@ import ContactUs from '../pages/ContactUs';
 import MyAddress from '../pages/MyAddress';
 import AddNewAddress from '../pages/AddNewAddress';
 import Transaction from '../pages/Transaction';
-import ProductSummary from '../pages/ProDuctSummary';
+import ProductSummary from '../pages/ProductSummary';
 import UserPayment from '../pages/UserPayment';
 import UserAddCard from '../pages/UserAddCard';
 
