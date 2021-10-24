@@ -93,3 +93,47 @@ export const validateCraditCardSecurityCode = (number) => {
 
   return '';
 };
+
+export const validateAddress1 = (address) => {
+  if (!address || address.trim === '') {
+    return 'Address1 is require!!';
+  }
+
+  return '';
+};
+
+export const validateProvince = (province) => {
+  if (!province || province.trim === '') {
+    return 'Province is require!!';
+  }
+
+  return '';
+};
+
+export const validateDistrict = (district) => {
+  if (!district || district.trim === '') {
+    return 'District is require!!';
+  }
+
+  return '';
+};
+
+export const validateSubDistrict = (subDistrict) => {
+  if (!subDistrict || subDistrict.trim === '') {
+    return 'Sub District is require!!';
+  }
+
+  return '';
+};
+
+export const validatePhoneNumber = (phoneNumber) => {
+  if (!phoneNumber || phoneNumber.trim === '') {
+    return 'Phone Number is require!!';
+  }
+
+  if (isNaN(phoneNumber)) {
+    return 'Phone Number must be a number!!';
+  }
+
+  return '';
+};

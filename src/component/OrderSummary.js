@@ -6,6 +6,7 @@ function OrderSummary({ orderItems }) {
   const orderItemsShow = orderItems.map((item) => {
     return (
       <OrderItemList
+        key={item.id}
         imageUrl={item.imageUrl}
         name={item.name}
         color={item.colorName}

@@ -18,7 +18,7 @@ function customerCardsList({ card, cardSelect, onChange }) {
         onChange={(e) => onChange(e)}
         checked={cardSelect === card.id}
       />
-      <label className='form-check-label form-check flex-grow-1' for={`card-${card.id}`}>
+      <label className='form-check-label form-check flex-grow-1' htmlFor={`card-${card.id}`}>
         <div
           className='row border border-dark p-2 rounded m-0 align-items-center'
           style={{ fontSize: '1vw', height: '4vw' }}
