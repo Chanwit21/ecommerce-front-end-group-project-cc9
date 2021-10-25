@@ -1,14 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import axios from '../config/axios';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import FilterProduct from '../component/FilterProduct';
 import ProductSummaryList from '../component/ProductSummary/ProductSummaryList';
-import { products } from '../mocks/product';
 
 function ProductSummary() {
-  const productsTableBody = products.map((product) => {
-    return <ProductSummaryList key={product.id} product={product} />;
+  const [products, setProducts] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+
+  useEffect(() => {
+    const run = async () => {
+      const {
+        data: { products },
+      } = await axios.get('/product');
+      products.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+      console.log(`products`, products);
+      setProducts(products);
+    };
+    run();
+  }, [refresh]);
+
+  const productsTableBody = products?.map((product) => {
+    return <ProductSummaryList key={product.id} product={product} setRefresh={setRefresh} />;
   });
-  // console.log(products);
 
   return (
     <div className='container my-5'>

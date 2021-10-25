@@ -2,13 +2,13 @@ import React from "react";
 import AccountHeader from "../component/AccountHeader";
 import Profile from "../component/MyProfile/Profile";
 
-function MyProfile() {
+function EditMyProfile() {
   return (
     <>
       <AccountHeader />
-      <Profile button="EDIT MY PROFILE" />
+      <Profile button="SAVE" />
     </>
   );
 }
 
-export default MyProfile;
+export default EditMyProfile;

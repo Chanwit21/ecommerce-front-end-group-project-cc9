@@ -1,7 +1,7 @@
 import React from "react";
 import Avartar from "../../pic/mocks/soft-pink.jpg";
 
-function Profile() {
+function Profile({ button }) {
   return (
     <>
       <div className="container">
@@ -55,9 +55,9 @@ function Profile() {
                 style={{ backgroundColor: "#FEF3F5", border: "1px solid #FFD6DC", width: "500px" }}
               />
             </div>
-            <h6 className="d-flex justify-content-center mt-5" style={{ cursor: "pointer" }}>
-              EDIT PROFILE
-            </h6>
+            <button className="btn btn-dark d-flex justify-content-center mt-5" style={{ cursor: "pointer" }}>
+              {button}
+            </button>
           </div>
         </div>
       </div>

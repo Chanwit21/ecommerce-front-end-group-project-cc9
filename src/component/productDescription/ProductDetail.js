@@ -25,8 +25,8 @@ function ProductDetail({ product, IsFavorite, productImage }) {
       await axios.post('/product/favorite', { productId: product[0].id, productName: product[0].name });
     }
     if (checkFavorite) {
-      setCheckFavorite(false);
       await axios.delete(`/product/favorite/${product[0].id}`);
+      setCheckFavorite(false);
     }
   };
 

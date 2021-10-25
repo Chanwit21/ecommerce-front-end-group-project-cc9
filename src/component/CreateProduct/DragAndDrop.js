@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import '../../css/DragAndDrop.css';
 import { toBase64 } from '../../service/convertFile';
 
-function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile }) {
+function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile, setDeletedImg, imagesShow }) {
   const [isDragOver, setIsDragOver] = useState(false);
   const inputRef = useRef();
 
@@ -74,6 +74,9 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile }) {
   };
 
   const handleClickClear = () => {
+    if (imagesShow[index].split(':')[0] === 'https') {
+      setDeletedImg(cur => [...cur, imagesShow[index]])
+    }
     setImagesShow((cur) => {
       const clone = [...cur];
       clone[index] = '';
