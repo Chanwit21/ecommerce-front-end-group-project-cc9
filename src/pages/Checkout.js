@@ -265,6 +265,32 @@ function Checkout() {
             console.dir(err);
           }
         }
+      } else if (!isAddingAddress && !isSelectAnotherCard) {
+        try {
+          const res = await axios.post('/orders/create_order_with_selected_card_and_selected_address', {
+            addressId: selectAddress,
+            creditCardId: selectedCard,
+            amount: subTotal - shipping,
+            orders: [
+              { id: '1', quality: 2 },
+              { id: '2', quality: 2 },
+            ],
+          });
+          console.log(res.data);
+          if (res.data.charge.status === 'failed') {
+            setModal({
+              active: true,
+              message: 'Payment Failed!!',
+              header: 'Payment Status!!',
+              redirect: '/checkout',
+              reload: true,
+            });
+          } else {
+            setModal({ active: true, message: 'Payment SuccessFull!!', header: 'Payment Status!!', redirect: '/' });
+          }
+        } catch (err) {
+          console.dir(err);
+        }
       }
     } catch (err) {
       console.dir(err);
