@@ -45,6 +45,8 @@ const routesAll = {
     routes: [
       { path: '/', component: Home },
       { path: '/productDescription/:productName', component: ProductDescription },
+      { path: '/product_summary', component: ProductSummary },
+      { path: '/create_product', component: CreateProduct },
     ],
     redirect: '/',
   },
