@@ -6,6 +6,7 @@ function OrderSummary({ orderItems }) {
   const orderItemsShow = orderItems.map((item) => {
     return (
       <OrderItemList
+        key={item.id}
         imageUrl={item.imageUrl}
         name={item.name}
         color={item.colorName}
@@ -26,7 +27,7 @@ function OrderSummary({ orderItems }) {
       <h2 className='pb-3' style={{ borderBottom: '1px solid #0003' }}>
         ORDER SUMMARY
       </h2>
-      <div className='overflow-auto' style={{ height: '29.16666666666668vw' }}>
+      <div className='overflow-auto' style={{ maxHeight: '29.16666666666668vw' }}>
         {orderItemsShow}
       </div>
       <div

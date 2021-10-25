@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AddAddressForm from './CustomerInformation/AddAddressForm';
 import CreditCardForm from './CustomerInformation/CreditCardForm';
 import CustomerAddress from './CustomerInformation/CustomerAddress';
 import Payment from './CustomerInformation/Payment';
-import { customerCards } from '../mocks/customerCards';
 import visaIcon from '../pic/icons/294654_visa_icon.svg';
 import masterCardIcon from '../pic/icons/380809_card_master_mastercard_icon.svg';
 
-function CustomerInformation({ customerAddress }) {
-  const [isAddingAddress, setIsAddingAddress] = useState(false);
-  const [isSelectAnotherCard, setIsSelectAnotherCard] = useState(false);
-
+function CustomerInformation({
+  user,
+  isAddingAddress,
+  setIsAddingAddress,
+  customerAddress,
+  addressFrom,
+  setAddressFrom,
+  setSelectAddress,
+  selectAddress,
+  isSelectAnotherCard,
+  setIsSelectAnotherCard,
+  customerCards,
+  errorAddressFrom,
+  cardContent,
+  setCardContent,
+  cardContentError,
+  setCardContentError,
+  setErrorAddressFrom,
+  selectedCard,
+  setSelectedCard,
+}) {
   return (
     <>
       <h3>CUSTOMER INFORMATION</h3>
@@ -18,14 +34,26 @@ function CustomerInformation({ customerAddress }) {
         className='mt-4 d-flex align-items-center justify-content-center rounded'
         style={{ height: '2.34375vw', width: '90%', backgroundColor: '#000', color: '#FFF' }}
       >
-        <p className='m-0'>customermail@gmail.com</p>
+        <p className='m-0'>{user.email}</p>
       </div>
       <div className='mt-5' style={{ width: '90%' }}>
         <h4>SHIPPING ADDRESS</h4>
         {isAddingAddress ? (
-          <AddAddressForm setIsAddingAddress={setIsAddingAddress} />
+          <AddAddressForm
+            setIsAddingAddress={setIsAddingAddress}
+            count={customerAddress.length}
+            addressFrom={addressFrom}
+            setAddressFrom={setAddressFrom}
+            errorAddressFrom={errorAddressFrom}
+            setErrorAddressFrom={setErrorAddressFrom}
+          />
         ) : (
-          <CustomerAddress customerAddress={customerAddress} setIsAddingAddress={setIsAddingAddress} />
+          <CustomerAddress
+            customerAddress={customerAddress}
+            selectAddress={selectAddress}
+            setSelectAddress={setSelectAddress}
+            setIsAddingAddress={setIsAddingAddress}
+          />
         )}
       </div>
       <div className='d-flex mt-5 justify-content-between' style={{ width: '90%', borderBottom: '1px solid #0003' }}>
@@ -50,16 +78,22 @@ function CustomerInformation({ customerAddress }) {
       </div>
 
       {isSelectAnotherCard ? (
-        <CreditCardForm setIsSelectAnotherCard={setIsSelectAnotherCard} />
+        <CreditCardForm
+          setIsSelectAnotherCard={setIsSelectAnotherCard}
+          count={customerCards.length}
+          cardContent={cardContent}
+          setCardContent={setCardContent}
+          cardContentError={cardContentError}
+          setCardContentError={setCardContentError}
+        />
       ) : (
-        <Payment customerCards={customerCards} setIsSelectAnotherCard={setIsSelectAnotherCard} />
+        <Payment
+          customerCards={customerCards}
+          setIsSelectAnotherCard={setIsSelectAnotherCard}
+          selectedCard={selectedCard}
+          setSelectedCard={setSelectedCard}
+        />
       )}
-
-      <div className='d-flex justify-content-center mt-5' style={{ width: '90%' }}>
-        <button className='btn btn-dark' style={{ width: '17.96875vw', height: '2.604166666666667vw' }}>
-          PAY NOW
-        </button>
-      </div>
     </>
   );
 }

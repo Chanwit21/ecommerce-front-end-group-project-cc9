@@ -1,8 +1,10 @@
 import React from "react";
-import { orderItems } from "../mocks/orderItems";
+import { productItems } from "../mocks/productItems";
 import ProductCardList from "./ProductCard/ProductCardList";
 
 function ProductFiltered({ filtered }) {
+  const limitFeatured = productItems.filter((item) => item.id < 5);
+
   return (
     <>
       <div className=" container  d-flex flex-column mt-5">
@@ -17,7 +19,7 @@ function ProductFiltered({ filtered }) {
         style={{ width: "100%", height: "495px" }}
         className="d-inline-flex justify-content-center align-items-center mb-5 "
       >
-        {orderItems.map((item) => (
+        {limitFeatured.map((item) => (
           <>
             <ProductCardList
               key={item.id}

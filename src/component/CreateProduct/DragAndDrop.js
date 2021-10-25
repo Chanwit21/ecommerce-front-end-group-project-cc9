@@ -13,24 +13,26 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile, setDeleted
   };
 
   const handleChangeInput = async (e) => {
-    if (['image/png', 'image/jpg', 'image/jpeg'].includes(e.target.files[0].type)) {
-      try {
-        setImagesFile((cur) => {
-          const clone = [...cur];
-          clone[index] = e.target.files[0];
-          return clone;
-        });
-        const imageUrl = await toBase64(e.target.files[0]);
-        setImagesShow((cur) => {
-          const clone = [...cur];
-          clone[index] = imageUrl;
-          return clone;
-        });
-      } catch (err) {
-        console.log(err);
+    if (e.target.files[0]) {
+      if (['image/png', 'image/jpg', 'image/jpeg'].includes(e.target.files[0]?.type)) {
+        try {
+          setImagesFile((cur) => {
+            const clone = [...cur];
+            clone[index] = e.target.files[0];
+            return clone;
+          });
+          const imageUrl = await toBase64(e.target.files[0]);
+          setImagesShow((cur) => {
+            const clone = [...cur];
+            clone[index] = imageUrl;
+            return clone;
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        alert('Only .png, .jpg and .jpeg format allowed!');
       }
-    } else {
-      alert('Only .png, .jpg and .jpeg format allowed!');
     }
   };
 
@@ -48,24 +50,26 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile, setDeleted
     e.preventDefault();
     setIsDragOver(false);
 
-    if (['image/png', 'image/jpg', 'image/jpeg'].includes(e.dataTransfer.files[0].type)) {
-      try {
-        setImagesFile((cur) => {
-          const clone = [...cur];
-          clone[index] = e.dataTransfer.files[0];
-          return clone;
-        });
-        const imageUrl = await toBase64(e.dataTransfer.files[0]);
-        setImagesShow((cur) => {
-          const clone = [...cur];
-          clone[index] = imageUrl;
-          return clone;
-        });
-      } catch (err) {
-        console.log(err);
+    if (e.dataTransfer.files[0]) {
+      if (['image/png', 'image/jpg', 'image/jpeg'].includes(e.dataTransfer.files[0].type)) {
+        try {
+          setImagesFile((cur) => {
+            const clone = [...cur];
+            clone[index] = e.dataTransfer.files[0];
+            return clone;
+          });
+          const imageUrl = await toBase64(e.dataTransfer.files[0]);
+          setImagesShow((cur) => {
+            const clone = [...cur];
+            clone[index] = imageUrl;
+            return clone;
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        alert('Only .png, .jpg and .jpeg format allowed!');
       }
-    } else {
-      alert('Only .png, .jpg and .jpeg format allowed!');
     }
   };
 

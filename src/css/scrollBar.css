@@ -1,0 +1,6 @@
+.scroll-div {
+  width: 50vw;
+  height: 45vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}

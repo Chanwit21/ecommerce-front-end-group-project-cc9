@@ -1,4 +1,4 @@
-import { isEmail, isStrongPassword, isNumeric, isInt } from 'validator';
+import { isEmail, isStrongPassword, isCreditCard, isNumeric, isInt } from 'validator';
 
 export const validateEmail = (email) => {
   if (!email) {
@@ -54,92 +54,86 @@ export const validatePasswordAndConfirmPassWord = (password, confirmPassword) =>
   return '';
 };
 
-export const validateProductName = (productName) => {
-  if (!productName) {
-    return 'Product Name is require!!';
+export const validateCraditCardNumber = (str) => {
+  if (!str) {
+    return 'Card Number is require!!';
+  }
+
+  if (!isCreditCard(str)) {
+    return 'Card Number is invalid!!';
   }
 
   return '';
 };
 
-export const validatePrice = (price) => {
-  if (!price) {
-    return 'Price is require!!';
-  }
-  if (!isNumeric(price)) {
-    return 'Price must be Number!!';
+export const validateCraditCardName = (str) => {
+  if (!str || str.trim === '') {
+    return 'Cardholder Name is require!!';
   }
 
   return '';
 };
 
-export const validateQuantity = (quantity) => {
-  if (!quantity) {
-    return 'Quantity is require!!';
-  }
-  if (!isInt(quantity)) {
-    return 'Quantity must be Integer!!';
+export const validateCraditCardExp = (str) => {
+  if (!str) {
+    return 'Expiration Date is invalid!!';
   }
 
   return '';
 };
 
-export const validateCategory = (category) => {
-  if (!category) {
-    return 'Category is require!!';
+export const validateCraditCardSecurityCode = (number) => {
+  if (!number || number.trim === '') {
+    return 'Security Code is invalid!!';
+  }
+
+  if (isNaN(number)) {
+    return 'Security Code must be a number!!';
   }
 
   return '';
 };
 
-export const validateColorName = (colorName) => {
-  if (!colorName) {
-    return 'color Name is require!!';
+export const validateAddress1 = (address) => {
+  if (!address || address.trim === '') {
+    return 'Address1 is require!!';
   }
 
   return '';
 };
 
-export const validateColorCode = (colorCode) => {
-  if (!colorCode) {
-    return 'Color Code is require!!';
+export const validateProvince = (province) => {
+  if (!province || province.trim === '') {
+    return 'Province is require!!';
   }
 
   return '';
 };
 
-export const validateDescription = (description) => {
-  if (!description) {
-    return 'Description is require!!';
+export const validateDistrict = (district) => {
+  if (!district || district.trim === '') {
+    return 'District is require!!';
   }
 
   return '';
 };
 
-export const validateIngredients = (ingredients) => {
-  if (!ingredients) {
-    return 'Ingredients is require!!';
+export const validateSubDistrict = (subDistrict) => {
+  if (!subDistrict || subDistrict.trim === '') {
+    return 'Sub District is require!!';
   }
 
   return '';
 };
 
-export const validateImageShow = (imagesShow) => {
-  if (!imagesShow.filter(item => item !== '').length) {
-    return 'Images Show is require!!';
+export const validatePhoneNumber = (phoneNumber) => {
+  if (!phoneNumber || phoneNumber.trim === '') {
+    return 'Phone Number is require!!';
+  }
+
+  if (isNaN(phoneNumber)) {
+    return 'Phone Number must be a number!!';
   }
 
   return '';
 };
-
-export const validateImageFile = (imagesFile) => {
-  if (!imagesFile.filter(item => item !== null).length) {
-    return 'Images File is require!!';
-  }
-
-  return '';
-};
-
-
-
-
