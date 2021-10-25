@@ -16,6 +16,7 @@ import {
   validateProvince,
   validateSubDistrict,
 } from '../service/validateForm';
+import Modal from '../component/Modal';
 
 function Checkout() {
   const [customerAddress, setCustomerAddress] = useState([]);
@@ -56,6 +57,7 @@ function Checkout() {
   });
   const [selectAddress, setSelectAddress] = useState('');
   const [selectedCard, setSelectedCard] = useState('');
+  const [modal, setModal] = useState({ active: false, message: '', header: '', redirect: '/', reload: true });
   const {
     state: { user },
   } = useAuthContext();
@@ -70,6 +72,8 @@ function Checkout() {
         setCustomerAddress(res.data.allAddress);
         if (res.data.count === 0) {
           setIsAddingAddress(true);
+        } else {
+          setSelectAddress(res.data.allAddress[0].id);
         }
       } catch (err) {
         console.dir(err);
@@ -82,6 +86,8 @@ function Checkout() {
         setCustomerCards(res.data.creditCards);
         if (res.data.count === 0) {
           setIsSelectAnotherCard(true);
+        } else {
+          setSelectedCard(res.data.creditCards[0].id);
         }
       } catch (err) {
         console.dir(err);
@@ -91,6 +97,12 @@ function Checkout() {
     fetchAddress();
     fetchCustomerCard();
   }, []);
+
+  const subTotal = orderItems.reduce((acc, cur) => {
+    return acc + cur.quality * cur.price;
+  }, 0);
+
+  const shipping = 0;
 
   const handleSubmitToPay = async () => {
     try {
@@ -106,11 +118,7 @@ function Checkout() {
       const errorSubDistrict = validateSubDistrict(addressFrom.subDistrict);
       const errorPhoneNumber = validatePhoneNumber(addressFrom.phoneNumber);
 
-      if (
-        errorName ||
-        errorNumber ||
-        errorExp ||
-        errorSecureCode ||
+      const haveErrorAddressFrom = !!(
         errorFirstName ||
         errorLastName ||
         errorAddress1 ||
@@ -118,42 +126,144 @@ function Checkout() {
         errorDistrict ||
         errorSubDistrict ||
         errorPhoneNumber
-      ) {
-        setCardContentError({
-          number: errorNumber,
-          name: errorName,
-          expiration: errorExp,
-          securityCode: errorSecureCode,
-        });
-        setErrorAddressFrom({
-          firstName: errorFirstName,
-          lastName: errorLastName,
-          address1: errorAddress1,
-          province: errorProvince,
-          district: errorDistrict,
-          subDistrict: errorSubDistrict,
-          phoneNumber: errorPhoneNumber,
-        });
-      } else {
-        if (isAddingAddress && isSelectAnotherCard) {
+      );
+
+      const haveErrorCreditCardForm = !!(errorName || errorNumber || errorExp || errorSecureCode);
+
+      if (isAddingAddress && isSelectAnotherCard) {
+        if (haveErrorAddressFrom && haveErrorCreditCardForm) {
+          setCardContentError({
+            number: errorNumber,
+            name: errorName,
+            expiration: errorExp,
+            securityCode: errorSecureCode,
+          });
+          setErrorAddressFrom({
+            firstName: errorFirstName,
+            lastName: errorLastName,
+            address1: errorAddress1,
+            province: errorProvince,
+            district: errorDistrict,
+            subDistrict: errorSubDistrict,
+            phoneNumber: errorPhoneNumber,
+          });
+        } else {
           const tokenParameters = {
             expiration_month: cardContent.expiration.split('-')[1],
             expiration_year: cardContent.expiration.split('-')[0],
             name: cardContent.name,
             number: cardContent.number,
-            security_code: 123,
+            security_code: cardContent.securityCode,
           };
           Omise.createToken('card', tokenParameters, async function (statusCode, response) {
             try {
               const res = await axios.post('/orders/create_order_with_address_and_card', {
                 addressCreate: { ...addressFrom },
                 creditCardToken: response.id,
+                amount: subTotal - shipping,
+                orders: [
+                  { id: '1', quality: 2 },
+                  { id: '2', quality: 2 },
+                ],
               });
               console.log(res.data);
+              if (res.data.charge.status === 'failed') {
+                setModal({
+                  active: true,
+                  message: 'Payment Failed!!',
+                  header: 'Payment Status!!',
+                  redirect: '/checkout',
+                  reload: true,
+                });
+              } else {
+                setModal({ active: true, message: 'Payment SuccessFull!!', header: 'Payment Status!!', redirect: '/' });
+              }
             } catch (err) {
               console.dir(err);
             }
           });
+        }
+      } else if (!isAddingAddress && isSelectAnotherCard) {
+        if (haveErrorCreditCardForm) {
+          setCardContentError({
+            number: errorNumber,
+            name: errorName,
+            expiration: errorExp,
+            securityCode: errorSecureCode,
+          });
+        } else {
+          const tokenParameters = {
+            expiration_month: cardContent.expiration.split('-')[1],
+            expiration_year: cardContent.expiration.split('-')[0],
+            name: cardContent.name,
+            number: cardContent.number,
+            security_code: cardContent.securityCode,
+          };
+          Omise.createToken('card', tokenParameters, async function (statusCode, response) {
+            try {
+              const res = await axios.post('/orders/create_order_with_selected_address_and_card', {
+                addressId: selectAddress,
+                creditCardToken: response.id,
+                amount: subTotal - shipping,
+                orders: [
+                  { id: '1', quality: 2 },
+                  { id: '2', quality: 2 },
+                ],
+              });
+              console.log(res.data);
+              if (res.data.charge.status === 'failed') {
+                setModal({
+                  active: true,
+                  message: 'Payment Failed!!',
+                  header: 'Payment Status!!',
+                  redirect: '/checkout',
+                  reload: true,
+                });
+              } else {
+                setModal({ active: true, message: 'Payment SuccessFull!!', header: 'Payment Status!!', redirect: '/' });
+              }
+            } catch (err) {
+              console.dir(err);
+            }
+          });
+        }
+      } else if (isAddingAddress && !isSelectAnotherCard) {
+        if (haveErrorAddressFrom) {
+          setErrorAddressFrom({
+            firstName: errorFirstName,
+            lastName: errorLastName,
+            address1: errorAddress1,
+            province: errorProvince,
+            district: errorDistrict,
+            subDistrict: errorSubDistrict,
+            phoneNumber: errorPhoneNumber,
+          });
+        } else {
+          try {
+            const res = await axios.post('/orders/create_order_with_selected_card_and_address', {
+              addressCreate: { ...addressFrom },
+              creditCardId: selectedCard,
+              amount: subTotal - shipping,
+              orders: [
+                { id: '1', quality: 2 },
+                { id: '2', quality: 2 },
+              ],
+            });
+            console.log(res.data);
+            if (res.data.charge.status === 'failed') {
+              setModal({
+                active: true,
+                message: 'Payment Failed!!',
+                header: 'Payment Status!!',
+                redirect: '/checkout',
+                reload: true,
+              });
+            } else {
+              setModal({ active: true, message: 'Payment SuccessFull!!', header: 'Payment Status!!', redirect: '/' });
+            }
+          } catch (err) {
+            console.dir(err);
+          }
         }
       }
     } catch (err) {
@@ -163,6 +273,7 @@ function Checkout() {
 
   return (
     <div className='container my-5'>
+      <Modal modal={modal} setModal={setModal} />
       <div className='row'>
         <div className='col-6'>
           <CustomerInformation
@@ -189,15 +300,11 @@ function Checkout() {
         </div>
         <div className='col-1'></div>
         <div className='col-4'>
-          <OrderSummary orderItems={orderItems} />
+          <OrderSummary orderItems={orderItems} subTotal={subTotal} shipping={shipping} />
         </div>
         <div className='col-6'>
           <div className='d-flex justify-content-center mt-5' style={{ width: '90%' }}>
-            <button
-              className='btn btn-dark'
-              style={{ width: '17.96875vw', height: '2.604166666666667vw' }}
-              onClick={handleSubmitToPay}
-            >
+            <button className='btn btn-dark' style={{ width: '17.96875vw' }} onClick={handleSubmitToPay}>
               PAY NOW
             </button>
           </div>
