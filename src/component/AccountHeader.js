@@ -11,17 +11,17 @@ function AccountHeader() {
       >
         <div
           style={{
-            height: "200px",
+            height: "160px",
           }}
           className=" container d-flex flex-column justify-content-between "
         >
-          <h3 className="fw-bold mt-3">MY PROFILE</h3>
+          <h3 className="fw-bold mt-5">MY PROFILE</h3>
           <div className=" ">
             <button
               className="btn me-3"
               style={{
-                width: "200PX",
-                height: "55px",
+                width: "160PX",
+                height: "45px",
                 backgroundColor: "#FFD6DC",
               }}
             >
@@ -30,8 +30,18 @@ function AccountHeader() {
             <button
               className="btn me-3"
               style={{
-                width: "200PX",
-                height: "55px",
+                width: "160PX",
+                height: "45px",
+                backgroundColor: "#FFD6DC",
+              }}
+            >
+              <span className="fw-bold">MY ORDERS</span>
+            </button>
+            <button
+              className="btn me-3"
+              style={{
+                width: "160PX",
+                height: "45px",
                 backgroundColor: "#FFD6DC",
               }}
             >
@@ -40,8 +50,8 @@ function AccountHeader() {
             <button
               className="btn me-3"
               style={{
-                width: "200PX",
-                height: "55px",
+                width: "160PX",
+                height: "45px",
                 backgroundColor: "#FFD6DC",
               }}
             >
@@ -50,22 +60,12 @@ function AccountHeader() {
             <button
               className="btn me-3"
               style={{
-                width: "200PX",
-                height: "55px",
+                width: "160PX",
+                height: "45px",
                 backgroundColor: "#FFD6DC",
               }}
             >
               <span className="fw-bold">FAVORITE ITEMS</span>
-            </button>
-            <button
-              className="btn me-3"
-              style={{
-                width: "200PX",
-                height: "55px",
-                backgroundColor: "#FFD6DC",
-              }}
-            >
-              <span className="fw-bold">INBOX</span>
             </button>
           </div>
         </div>
