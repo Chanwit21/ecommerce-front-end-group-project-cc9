@@ -15,7 +15,7 @@ function AccountHeader() {
           }}
           className=" container d-flex flex-column justify-content-between "
         >
-          <h3 className="fw-bold mt-3">MY ACCOUNT</h3>
+          <h3 className="fw-bold mt-3">MY PROFILE</h3>
           <div className=" ">
             <button
               className="btn me-3"
@@ -56,6 +56,16 @@ function AccountHeader() {
               }}
             >
               <span className="fw-bold">FAVORITE ITEMS</span>
+            </button>
+            <button
+              className="btn me-3"
+              style={{
+                width: "200PX",
+                height: "55px",
+                backgroundColor: "#FFD6DC",
+              }}
+            >
+              <span className="fw-bold">INBOX</span>
             </button>
           </div>
         </div>
