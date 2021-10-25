@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logo from '../pic/icons/mmg-logo.svg';
 
 function NavHeader() {
@@ -10,9 +10,9 @@ function NavHeader() {
       </div>
       <nav className='navbar navbar-expand-lg navbar-light flex-grow-0 shadow-sm'>
         <div className='container'>
-          <NavLink to='/' className='navbar-brand'>
+          <Link to='/' className='navbar-brand'>
             <img src={Logo} alt='Logo' style={{ width: '13.0625vw' }} />
-          </NavLink>
+          </Link>
           <button
             className='navbar-toggler'
             type='button'
@@ -27,39 +27,39 @@ function NavHeader() {
           <div className='collapse navbar-collapse flex-grow-0' id='navbarNavDropdown'>
             <ul className='navbar-nav'>
               <li className='nav-item'>
-                <NavLink className='nav-link' to='#'>
+                <Link className='nav-link active' to='/allProduct/new'>
                   NEW
-                </NavLink>
+                </Link>
               </li>
               <li className='nav-item'>
-                <NavLink className='nav-link' to='#'>
+                <Link className='nav-link active' to='/allProduct/face'>
                   FACE
-                </NavLink>
+                </Link>
               </li>
               <li className='nav-item'>
-                <NavLink className='nav-link' to='#'>
+                <Link className='nav-link active' to='/allProduct/cheek'>
                   CHEEK
-                </NavLink>
+                </Link>
               </li>
               <li className='nav-item'>
-                <NavLink className='nav-link' to='#'>
+                <Link className='nav-link active' to='/allProduct/lips'>
                   LIPS
-                </NavLink>
+                </Link>
               </li>
               <li className='nav-item'>
-                <NavLink className='nav-link' to='#'>
+                <Link className='nav-link active' to='/allProduct/eyes'>
                   EYES
-                </NavLink>
+                </Link>
               </li>
               <li className='nav-item'>
-                <NavLink className='nav-link' to='#'>
+                <Link className='nav-link active' to='/allProduct/body'>
                   BODY
-                </NavLink>
+                </Link>
               </li>
               <li className='nav-item'>
-                <NavLink className='nav-link' to='#'>
+                <Link className='nav-link active' to='/allProduct/body'>
                   SALE
-                </NavLink>
+                </Link>
               </li>
             </ul>
           </div>
@@ -67,13 +67,13 @@ function NavHeader() {
             <ul className='navbar-nav'>
               <li className='nav-item'>
                 <button type='button' className=' btn px-0 position-relative'>
-                  <Link className='nav-link active' to='/login' style={{ opacity: '100%' }}>
+                  <Link className='nav-link active active' to='/login' style={{ opacity: '100%' }}>
                     <i className='bi bi-person-circle'></i>
                   </Link>
                 </button>
               </li>
               <li className='nav-item'>
-                <NavLink className='nav-link' to='#'>
+                <Link className='nav-link active' to='#'>
                   <button
                     type='button'
                     className='btn px-0 position-relative'
@@ -82,18 +82,18 @@ function NavHeader() {
                   >
                     <i className='bi bi-search'></i>
                   </button>
-                </NavLink>
+                </Link>
               </li>
               <li className='nav-item'>
                 <button type='button' className='btn px-0 position-relative'>
-                  <NavLink className='nav-link' to='#'>
+                  <Link className='nav-link active' to='#'>
                     <i className='bi bi-heart'></i>
-                  </NavLink>
+                  </Link>
                 </button>
               </li>
               <li className='nav-item'>
                 <button type='button' className='btn px-0 position-relative'>
-                  <NavLink className='nav-link' to='#'>
+                  <Link className='nav-link active' to='#'>
                     <i className='bi bi-handbag'></i>
                     <span
                       className='position-absolute translate-middle badge rounded-pill bg-danger'
@@ -101,7 +101,7 @@ function NavHeader() {
                     >
                       0<span className='visually-hidden'>Cart Count</span>
                     </span>
-                  </NavLink>
+                  </Link>
                 </button>
               </li>
             </ul>
