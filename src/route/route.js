@@ -38,7 +38,10 @@ const routesAll = {
       { path: "/addNewAddress", component: AddNewAddress },
       { path: "/termCondition", component: TermCondition },
       { path: "/favorite", component: Favorite },
-      { path: "/productDescription/:productName", component: ProductDescription },
+      {
+        path: "/productDescription/:productName",
+        component: ProductDescription,
+      },
       { path: "/transaction", component: Transaction },
       { path: "/product_summary", component: ProductSummary },
       { path: "/user_payment", component: UserPayment },
@@ -52,7 +55,10 @@ const routesAll = {
     routes: [
       { path: "/", component: Home },
       { path: "/checkout", component: Checkout },
-      { path: "/productDescription/:productName", component: ProductDescription },
+      {
+        path: "/productDescription/:productName",
+        component: ProductDescription,
+      },
       { path: "/user_payment", component: UserPayment },
       { path: "/user_add_card", component: UserAddCard },
     ],
@@ -60,10 +66,13 @@ const routesAll = {
   },
   ADMIN: {
     routes: [
-      { path: '/', component: Home },
-      { path: '/productDescription/:productName', component: ProductDescription },
-      { path: '/product_summary', component: ProductSummary },
-      { path: '/create_product', component: CreateProduct },
+      { path: "/", component: Home },
+      {
+        path: "/productDescription/:productName",
+        component: ProductDescription,
+      },
+      { path: "/product_summary", component: ProductSummary },
+      { path: "/create_product", component: CreateProduct },
       { path: "/admin_inbox", component: AdminInbox },
       { path: "/admin_profile", component: AdminProfile },
     ],
