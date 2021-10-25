@@ -19,6 +19,7 @@ import EditMyProfile from "../pages/EditMyProfile";
 import ProductSummary from "../pages/ProductSummary";
 import AdminInbox from "../pages/AdminInbox";
 import AdminProfile from "../pages/AdminProfile";
+import EditAdminProfile from "../pages/EditAdminProfile";
 
 const routesAll = {
   GUEST: {
@@ -47,6 +48,7 @@ const routesAll = {
       { path: "/user_add_card", component: UserAddCard },
       { path: "/admin_inbox", component: AdminInbox },
       { path: "/admin_profile", component: AdminProfile },
+      { path: "/admin_profile_edit", component: EditAdminProfile },
     ],
     redirect: "/",
   },
@@ -74,6 +76,7 @@ const routesAll = {
       { path: "/create_product", component: CreateProduct },
       { path: "/admin_inbox", component: AdminInbox },
       { path: "/admin_profile", component: AdminProfile },
+      { path: "/admin_profile_edit", component: EditAdminProfile },
     ],
     redirect: "/",
   },
