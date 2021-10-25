@@ -12,7 +12,7 @@ function CustomerAddressList({ address, selectAddress, onChange }) {
         onChange={(e) => onChange(e)}
         checked={selectAddress === address.id}
       />
-      <label class='form-check-label' for={`address-${address.id}`}>
+      <label className='form-check-label' htmlFor={`address-${address.id}`}>
         <p className='m-0' style={{ fontSize: '0.9vw', fontWeight: '600', opacity: '50%' }}>
           Shipping to
         </p>

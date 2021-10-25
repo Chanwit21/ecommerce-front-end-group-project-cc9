@@ -2,7 +2,7 @@ import React from 'react';
 import { formatePrice } from '../service/IntlFormatter';
 import OrderItemList from './orderSummary/OrderItemList';
 
-function OrderSummary({ orderItems }) {
+function OrderSummary({ orderItems, subTotal, shipping }) {
   const orderItemsShow = orderItems.map((item) => {
     return (
       <OrderItemList
@@ -15,12 +15,6 @@ function OrderSummary({ orderItems }) {
       />
     );
   });
-
-  const subTotal = orderItems.reduce((acc, cur) => {
-    return acc + cur.quality * cur.price;
-  }, 0);
-
-  const shipping = 0;
 
   return (
     <>
