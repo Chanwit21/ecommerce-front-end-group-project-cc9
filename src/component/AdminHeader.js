@@ -1,6 +1,6 @@
 import React from "react";
 
-function AccountHeader() {
+function AdminHeader() {
   return (
     <>
       <div
@@ -15,7 +15,7 @@ function AccountHeader() {
           }}
           className=" container d-flex flex-column justify-content-between "
         >
-          <h3 className="fw-bold mt-5">MY PROFILE</h3>
+          <h3 className="fw-bold mt-5">MY ACCOUNT</h3>
           <div className=" ">
             <button
               className="btn me-3"
@@ -25,7 +25,7 @@ function AccountHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">MY ACCOUNT</span>
+              <span className="fw-bold">MY PROFILE</span>
             </button>
             <button
               className="btn me-3"
@@ -35,7 +35,7 @@ function AccountHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">MY ORDERS</span>
+              <span className="fw-bold">DASHBOARD</span>
             </button>
             <button
               className="btn me-3"
@@ -45,7 +45,7 @@ function AccountHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">MY ADDRESS</span>
+              <span className="fw-bold">PRODUCTS</span>
             </button>
             <button
               className="btn me-3"
@@ -55,7 +55,7 @@ function AccountHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">PAYMENT</span>
+              <span className="fw-bold">SHIPPING</span>
             </button>
             <button
               className="btn me-3"
@@ -65,7 +65,7 @@ function AccountHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">FAVORITE ITEMS</span>
+              <span className="fw-bold">INBOX</span>
             </button>
           </div>
         </div>
@@ -74,4 +74,4 @@ function AccountHeader() {
   );
 }
 
-export default AccountHeader;
+export default AdminHeader;
