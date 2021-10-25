@@ -137,3 +137,89 @@ export const validatePhoneNumber = (phoneNumber) => {
 
   return '';
 };
+
+export const validateProductName = (productName) => {
+  if (!productName) {
+    return 'Product Name is require!!';
+  }
+
+  return '';
+};
+
+export const validatePrice = (price) => {
+  if (!price) {
+    return 'Price is require!!';
+  }
+  if (!isNumeric(price)) {
+    return 'Price must be Number!!';
+  }
+
+  return '';
+};
+
+export const validateQuantity = (quantity) => {
+  if (!quantity) {
+    return 'Quantity is require!!';
+  }
+  if (!isInt(quantity)) {
+    return 'Quantity must be Integer!!';
+  }
+
+  return '';
+};
+
+export const validateCategory = (category) => {
+  if (!category) {
+    return 'Category is require!!';
+  }
+
+  return '';
+};
+
+export const validateColorName = (colorName) => {
+  if (!colorName) {
+    return 'color Name is require!!';
+  }
+
+  return '';
+};
+
+export const validateColorCode = (colorCode) => {
+  if (!colorCode) {
+    return 'Color Code is require!!';
+  }
+
+  return '';
+};
+
+export const validateDescription = (description) => {
+  if (!description) {
+    return 'Description is require!!';
+  }
+
+  return '';
+};
+
+export const validateIngredients = (ingredients) => {
+  if (!ingredients) {
+    return 'Ingredients is require!!';
+  }
+
+  return '';
+};
+
+export const validateImageShow = (imagesShow) => {
+  if (!imagesShow.filter(item => item !== '').length) {
+    return 'Images Show is require!!';
+  }
+
+  return '';
+};
+
+export const validateImageFile = (imagesFile) => {
+  if (!imagesFile.filter(item => item !== null).length) {
+    return 'Images File is require!!';
+  }
+
+  return '';
+};
