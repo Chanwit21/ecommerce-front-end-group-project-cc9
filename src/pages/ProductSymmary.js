@@ -1,6 +1,6 @@
 import axios from '../config/axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FilterProduct from '../component/FilterProduct';
 import ProductSummaryList from '../component/ProductSummary/ProductSummaryList';
 
