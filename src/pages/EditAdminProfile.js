@@ -2,13 +2,13 @@ import React from "react";
 import AdminHeader from "../component/AdminHeader";
 import Profile from "../component/MyProfile/Profile";
 
-function AdminProfile() {
+function EditAdminProfile() {
   return (
     <div>
       <AdminHeader />
-      <Profile button="EDIT MY PROFILE" />
+      <Profile button="SAVE" />
     </div>
   );
 }
 
-export default AdminProfile;
+export default EditAdminProfile;
