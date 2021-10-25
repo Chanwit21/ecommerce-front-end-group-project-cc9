@@ -12,11 +12,14 @@ import MyAddress from "../pages/MyAddress";
 import TermCondition from "../pages/TermCondition";
 import AddNewAddress from "../pages/AddNewAddress";
 import Transaction from "../pages/Transaction";
-import ProductSummary from "../pages/ProDuctSummary";
+
 import UserPayment from "../pages/UserPayment";
 import UserAddCard from "../pages/UserAddCard";
 import AllProduct from "../pages/AllProduct";
 import EditMyProfile from "../pages/EditMyProfile";
+import ProductSummary from "../pages/ProductSummary";
+import AdminInbox from "../pages/AdminInbox";
+import AdminProfile from "../pages/AdminProfile";
 
 const routesAll = {
   GUEST: {
@@ -40,6 +43,8 @@ const routesAll = {
       { path: "/product_summary", component: ProductSummary },
       { path: "/user_payment", component: UserPayment },
       { path: "/user_add_card", component: UserAddCard },
+      { path: "/admin_inbox", component: AdminInbox },
+      { path: "/admin_profile", component: AdminProfile },
     ],
     redirect: "/",
   },
@@ -48,6 +53,8 @@ const routesAll = {
       { path: "/", component: Home },
       { path: "/checkout", component: Checkout },
       { path: "/productDescription/:productName", component: ProductDescription },
+      { path: "/user_payment", component: UserPayment },
+      { path: "/user_add_card", component: UserAddCard },
     ],
     redirect: "/",
   },
@@ -55,6 +62,8 @@ const routesAll = {
     routes: [
       { path: "/", component: Home },
       { path: "/productDescription/:productName", component: ProductDescription },
+      { path: "/admin_inbox", component: AdminInbox },
+      { path: "/admin_profile", component: AdminProfile },
     ],
     redirect: "/",
   },

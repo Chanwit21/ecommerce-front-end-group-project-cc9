@@ -56,7 +56,7 @@ function Profile({ button }) {
               />
             </div>
             <button className="btn btn-dark d-flex justify-content-center mt-5" style={{ cursor: "pointer" }}>
-              EDIT PROFILE
+              {button}
             </button>
           </div>
         </div>

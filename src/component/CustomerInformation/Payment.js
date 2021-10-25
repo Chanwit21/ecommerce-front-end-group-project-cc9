@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CustomerCardsList from './CustomerCardsList';
 
-function Payment({ customerCards, setIsSelectAnotherCard }) {
-  const [cardSelect, setCardSelect] = useState(customerCards[0].id);
-
+function Payment({ customerCards, setIsSelectAnotherCard, selectedCard, setSelectedCard }) {
   const handleChangeCard = (e) => {
-    setCardSelect(e.target.value);
+    setSelectedCard(e.target.value);
   };
 
   const handleClickAnotherCard = () => {
@@ -13,7 +11,7 @@ function Payment({ customerCards, setIsSelectAnotherCard }) {
   };
 
   const customerCardsShow = customerCards.map((card) => (
-    <CustomerCardsList key={card.id} card={card} cardSelect={cardSelect} onChange={handleChangeCard} />
+    <CustomerCardsList key={card.id} card={card} cardSelect={selectedCard} onChange={handleChangeCard} />
   ));
 
   return (
