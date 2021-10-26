@@ -20,6 +20,8 @@ import EditMyProfile from "../pages/EditMyProfile";
 import ProductSummary from "../pages/ProductSummary";
 import AdminInbox from "../pages/AdminInbox";
 import AdminProfile from "../pages/AdminProfile";
+import UserOrderSummary from "../pages/UserOrderSummary";
+import AdminOrderSummary from "../pages/AdminOrderSummary";
 
 const routesAll = {
   GUEST: {
@@ -55,6 +57,9 @@ const routesAll = {
       { path: "/productDescription/:productName", component: ProductDescription },
       { path: "/user_payment", component: UserPayment },
       { path: "/user_add_card", component: UserAddCard },
+      { path: "/myAddress", component: MyAddress },
+      { path: "/addNewAddress", component: AddNewAddress },
+      { path: "/userOrderSummary", component: UserOrderSummary },
     ],
     redirect: "/",
   },
@@ -66,6 +71,9 @@ const routesAll = {
       { path: '/create_product', component: CreateProduct },
       { path: "/admin_inbox", component: AdminInbox },
       { path: "/admin_profile", component: AdminProfile },
+      { path: "/myAddress", component: MyAddress },
+      { path: "/addNewAddress", component: AddNewAddress },
+      { path: "/adminOrderSummary", component: AdminOrderSummary },
     ],
     redirect: "/",
   },
