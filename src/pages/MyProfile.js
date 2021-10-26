@@ -6,7 +6,7 @@ function MyProfile() {
   return (
     <>
       <AccountHeader />
-      <Profile button="EDIT MY PROFILE" />
+      <Profile button="EDIT PROFILE" />
     </>
   );
 }

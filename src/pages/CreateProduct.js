@@ -232,11 +232,11 @@ function CreateProduct() {
               </label>
               <select onChange={e => inputOnChange(e)} className={`form-select ${error.category ? ' is-invalid' : ''}`} id="category">
                 <option value="" selected>select category...</option>
-                <option value="face">FACE</option>
-                <option value="sheek">SHEEK</option>
-                <option value="lips">LIPS</option>
-                <option value="eyes">EYES</option>
-                <option value="body">BODY</option>
+                <option value="FACE">FACE</option>
+                <option value="SHEEK">SHEEK</option>
+                <option value="LIPS">LIPS</option>
+                <option value="EYES">EYES</option>
+                <option value="BODY">BODY</option>
               </select>
               {error.category ? <div className='invalid-feedback'>{error.category}</div> : null}
             </div>

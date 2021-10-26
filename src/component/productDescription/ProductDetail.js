@@ -11,6 +11,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
     dispatch,
   } = useCartContext();
   console.log(carts);
+  const [selectedImg, setSelectedImg] = useState('');
 
   useEffect(() => {
     setSelectedColor(product?.[0]?.color);
@@ -22,13 +23,16 @@ function ProductDetail({ product, IsFavorite, productImage }) {
 
   //* check color idx
 
-  const idx = product.findIndex((item) => item.color === selectedColor);
-  const productId = product[idx]?.id;
+  let imageIdx = productImage.findIndex((item) => item.id === selectedImg);
+  if (imageIdx === -1) imageIdx = 0;
 
   const handleClickFavorite = async () => {
     if (!checkFavorite) {
       setCheckFavorite(true);
-      await axios.post('/product/favorite', { productId: product[0].id, productName: product[0].name });
+      await axios.post('/product/favorite', {
+        productId: productImage[imageIdx].Product.id,
+        productName: productImage[imageIdx].Product.name,
+      });
     }
     if (checkFavorite) {
       await axios.delete(`/product/favorite/${product[0].id}`);
@@ -37,13 +41,16 @@ function ProductDetail({ product, IsFavorite, productImage }) {
   };
 
   const handleAddToCart = async () => {
-    const cartItemIdx = carts.findIndex((item) => item.productId === product[idx].id);
+    const cartItemIdx = carts.findIndex((item) => item.productId === productImage[imageIdx].Product.id);
     if (cartItemIdx === -1) {
-      await axios.post('/product/cart', { quality: numberOfProduct, productId: product[idx].id });
+      await axios.post('/product/cart', { quality: numberOfProduct, productId: productImage[imageIdx].Product.id });
       alert('add to cart successful');
     } else {
       const cartItemUpdate = { ...carts[cartItemIdx], quality: carts[cartItemIdx].quality + numberOfProduct };
-      dispatch({ type: 'UPDATE_CART', payload: { product: cartItemUpdate, productId: product[idx].id } });
+      dispatch({
+        type: 'UPDATE_CART',
+        payload: { product: cartItemUpdate, productId: productImage[imageIdx].Product.id },
+      });
     }
   };
 
@@ -59,35 +66,43 @@ function ProductDetail({ product, IsFavorite, productImage }) {
           <div className='row my-5'>
             <div className='col-1'>
               {productImage.map((item, index) => (
-                <img
-                  className={`mb-2 ${index === idx ? 'border border-dark' : ''}`}
-                  style={{ width: '4vw', height: '4vw', objectFit: 'cover' }}
-                  src={item?.imageUrl}
-                  alt=''
-                  onClick={() => {
-                    setSelectedColor(item.Product.color);
-                  }}
-                />
+                <div className='mb-2'>
+                  <img
+                    className={`${index === imageIdx ? 'border border-dark' : ''}`}
+                    style={{ width: '4vw', height: '4vw' }}
+                    src={item?.imageUrl}
+                    alt=''
+                    onClick={() => {
+                      setSelectedImg(item.id);
+                    }}
+                  />
+                </div>
               ))}
             </div>
             <div className='col-5'>
               <img
                 className='border'
                 style={{ width: '33.6vw', height: '33.6vw', objectFit: 'cover' }}
-                src={productImage?.[idx]?.imageUrl}
+                src={productImage?.[imageIdx]?.imageUrl}
                 alt=''
               />
             </div>
             <div className='col-6 ms-5' style={{ width: '28.75vw' }}>
-              <h4 style={{ fontSize: '24px' }}>{product?.[0]?.name}</h4> {/*name*/}
+              <h4 style={{ fontSize: '24px' }}>{productImage?.[imageIdx]?.Product?.name}</h4> {/*name*/}
               <hr className='m-0' />
-              <p className='mt-4 fw-bold' style={{ fontSize: '20px' }}>{`$${product?.[idx]?.price}`}</p> {/*price*/}
-              <p style={{ fontSize: '18px' }}>{product[idx]?.colorName}</p> {/*colorName*/}
+              <p
+                className='mt-4 fw-bold'
+                style={{ fontSize: '20px' }}
+              >{`$${productImage?.[imageIdx]?.Product?.price}`}</p>{' '}
+              {/*price*/}
+              <p style={{ fontSize: '18px' }}>{productImage?.[imageIdx]?.Product?.colorName}</p> {/*colorName*/}
               <div className='d-flex'>
                 {product.map((item, index) => (
                   <div
-                    className={`me-2 ${index === idx ? 'border border-dark border-2' : ''}`}
-                    onClick={() => setSelectedColor(item?.color)}
+                    className={`me-2 ${
+                      item.color === productImage[imageIdx]?.Product?.color ? 'border border-dark border-2' : ''
+                    }`}
+                    onClick={() => setSelectedImg(productImage.find((itemP) => itemP.Product.color === item.color).id)}
                     style={{
                       width: '40px',
                       height: '40px',
