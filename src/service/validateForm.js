@@ -102,6 +102,14 @@ export const validateAddress1 = (address) => {
   return '';
 };
 
+export const validateAddress2 = (address) => {
+  if (!address || address.trim === '') {
+    return 'Address2 is require!!';
+  }
+
+  return '';
+};
+
 export const validateProvince = (province) => {
   if (!province || province.trim === '') {
     return 'Province is require!!';
