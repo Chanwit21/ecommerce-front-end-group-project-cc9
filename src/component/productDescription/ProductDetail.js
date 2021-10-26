@@ -10,7 +10,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
     state: { carts },
     dispatch,
   } = useCartContext();
-  console.log(carts);
+  // console.log(carts);
   const [selectedImg, setSelectedImg] = useState('');
 
   useEffect(() => {
@@ -41,16 +41,26 @@ function ProductDetail({ product, IsFavorite, productImage }) {
   };
 
   const handleAddToCart = async () => {
-    const cartItemIdx = carts.findIndex((item) => item.productId === productImage[imageIdx].Product.id);
-    if (cartItemIdx === -1) {
-      await axios.post('/product/cart', { quality: numberOfProduct, productId: productImage[imageIdx].Product.id });
-      alert('add to cart successful');
-    } else {
-      const cartItemUpdate = { ...carts[cartItemIdx], quality: carts[cartItemIdx].quality + numberOfProduct };
-      dispatch({
-        type: 'UPDATE_CART',
-        payload: { product: cartItemUpdate, productId: productImage[imageIdx].Product.id },
-      });
+    try {
+      setNumberOfProduct(1);
+      const cartItemIdx = carts.findIndex((item) => item.productId === productImage[imageIdx].Product.id);
+      if (cartItemIdx === -1) {
+        const res = await axios.post('/carts', {
+          quality: numberOfProduct,
+          productId: productImage[imageIdx].Product.id,
+        });
+        dispatch({ type: 'ADD_CART', payload: { product: res.data.cartItem } });
+        alert('add to cart successful');
+      } else {
+        const cartItemUpdate = { ...carts[cartItemIdx], quality: carts[cartItemIdx].quality + numberOfProduct };
+        await axios.post(`/carts/cart_item/${cartItemUpdate.id}`, { quality: cartItemUpdate.quality });
+        dispatch({
+          type: 'UPDATE_CART',
+          payload: { product: cartItemUpdate, productId: productImage[imageIdx].Product.id },
+        });
+      }
+    } catch (err) {
+      console.dir(err);
     }
   };
 
@@ -82,7 +92,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
             <div className='col-5'>
               <img
                 className='border'
-                style={{ width: '33.6vw', height: '33.6vw', objectFit: 'cover' }}
+                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'cover' }}
                 src={productImage?.[imageIdx]?.imageUrl}
                 alt=''
               />

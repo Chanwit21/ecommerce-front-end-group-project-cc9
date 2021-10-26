@@ -85,14 +85,14 @@ function NavHeader() {
               </li>
               <li className='nav-item'>
                 <button type='button' className='btn px-0 position-relative'>
-                  <Link className='nav-link active' to='#'>
+                  <Link className='nav-link active' to='/favorite'>
                     <i className='bi bi-heart'></i>
                   </Link>
                 </button>
               </li>
               <li className='nav-item'>
                 <button type='button' className='btn px-0 position-relative'>
-                  <Link className='nav-link active' to='#'>
+                  <Link className='nav-link active' to='/shoppingCart'>
                     <i className='bi bi-handbag'></i>
                     <span
                       className='position-absolute translate-middle badge rounded-pill bg-danger'
