@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import FilterProduct from '../component/FilterProduct';
 import ProductCardList from '../component/ProductCard/ProductCardList';
@@ -9,7 +9,10 @@ import { Link } from 'react-router-dom';
 function AllProduct() {
   const [product, setProduct] = useState([]);
   const [filterValue, setFilterValue] = useState({ FACE: {}, SHEEK: {}, LIPS: {}, EYES: {}, BODY: {} });
+  const [allowFilter, setAllowFilter] = useState('');
   const params = useParams();
+
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const fetchProductByCategory = async () => {
@@ -20,13 +23,15 @@ function AllProduct() {
         console.dir(err);
       }
     };
+    if (isFirstRender.current) {
+      setAllowFilter(
+        params.category === 'All Product'
+          ? ['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY']
+          : ['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY'].filter((item) => item.toLowerCase() === params.category)
+      );
+    }
     fetchProductByCategory();
   }, [params]);
-
-  const allowFilter =
-    params.category === 'All Product'
-      ? ['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY']
-      : ['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY'].filter((item) => item.toLowerCase() === params.category);
 
   return (
     <>

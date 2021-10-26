@@ -11,6 +11,7 @@ function FilterProduct({ allowFilter, filterValue, setFilterValue }) {
     body: 'false',
   });
 
+  // แก้ BUG ตรงนี้ด้วยน้าา
   useEffect(() => {
     setExpended({
       face: 'false',
@@ -80,7 +81,7 @@ function FilterProduct({ allowFilter, filterValue, setFilterValue }) {
                       type='checkbox'
                       id={tocamelCase(item)}
                       checked={filterValue[filter.name][item]}
-                      onChange={(e) => handleChangeCheckBox(filter.name, tocamelCase(item), e)}
+                      onClick={(e) => handleChangeCheckBox(filter.name, tocamelCase(item), e)}
                     />
                   </div>
                 );

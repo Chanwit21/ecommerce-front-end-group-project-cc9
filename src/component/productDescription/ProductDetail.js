@@ -79,7 +79,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                 <div className='mb-2'>
                   <img
                     className={`${index === imageIdx ? 'border border-dark' : ''}`}
-                    style={{ width: '4vw', height: '4vw' }}
+                    style={{ width: '4vw', height: '4vw', objectFit: 'cover' }}
                     src={item?.imageUrl}
                     alt=''
                     onClick={() => {
@@ -89,10 +89,14 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                 </div>
               ))}
             </div>
-            <div className='col-5'>
+            <div className='col-5' style={{ overflow: 'hidden' }}>
               <img
                 className='border'
-                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'cover' }}
+                style={{
+                  width: '33.6vw',
+                  height: '33.6vw',
+                  objectFit: 'cover',
+                }}
                 src={productImage?.[imageIdx]?.imageUrl}
                 alt=''
               />
