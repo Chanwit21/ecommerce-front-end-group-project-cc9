@@ -8,7 +8,7 @@ function TermCondition() {
         <div className=" container" style={{ backgroundColor: "#FFFFFF", width: "57vw", height: "55vh" }}>
           <h5 className=" d-flex justify-content-center pt-5 pb-3">TERM AND CONDITION</h5>
           <div className="container mb-5 scroll-div">
-            <h6>
+            <h6 className="mb-5">
               TERMS AND CONDITIONS LAST UPDATED October 17, 2021
               <br />
               Welcome to the Make Me Glow Cosmetics website, www.mmgcosmetics.com (the “Website”). MMG Cosmetics
