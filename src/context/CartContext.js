@@ -22,7 +22,7 @@ const REDUCER_FN = (state, action) => {
       const product = action.payload.product;
       const newCarts = JSON.parse(JSON.stringify(state.carts));
       newCarts.push(product);
-      return { carts: newCarts, countCart: newCarts.lenght };
+      return { carts: newCarts, countCart: newCarts.length };
     }
     case 'UPDATE_CART': {
       const product = action.payload.product;
@@ -32,7 +32,7 @@ const REDUCER_FN = (state, action) => {
       if (idx !== -1) {
         newCarts[idx] = product;
       }
-      return { carts: newCarts, countCart: newCarts.lenght };
+      return { carts: newCarts, countCart: newCarts.length };
     }
     case 'DELETE_CART': {
       const productId = action.payload.productId;

@@ -69,6 +69,8 @@ const routesAll = {
       { path: '/addNewAddress', component: AddNewAddress },
       { path: '/allProduct/:category', component: AllProduct },
       { path: '/userOrderSummary', component: UserOrderSummary },
+      { path: '/favorite', component: Favorite },
+      { path: '/shoppingCart', component: ShoppingCart },
     ],
     redirect: '/',
   },

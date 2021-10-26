@@ -1,9 +1,15 @@
 import React from 'react';
 import ShoppingCartRow from '../component/shoppingCart/ShoppingCartRow';
 import ShoppingCartTotal from '../component/shoppingCart/ShoppingCartTotal';
+import { useCartContext } from '../context/CartContext';
 import { shoppingCartList } from '../mocks/shoppingCartList';
 
 export default function ShoppingCart() {
+  const {
+    state: { carts },
+  } = useCartContext();
+
+  console.log(carts);
   return (
     <>
       <div className='d-flex justify-content-evenly ms-5'>
@@ -14,13 +20,14 @@ export default function ShoppingCart() {
             <h5 className='col'>Price</h5>
             <h5 className='col'>Total</h5>
           </div>
-          {shoppingCartList.map((item) => (
+          {carts.map((item) => (
             <ShoppingCartRow
               key={item.id}
               imageUrl={item.imageUrl}
               name={item.name}
               price={item.price}
               color={item.colorName}
+              quantity={item.quality}
             />
           ))}
         </div>
