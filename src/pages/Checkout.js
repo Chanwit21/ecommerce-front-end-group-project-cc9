@@ -17,6 +17,7 @@ import {
   validateSubDistrict,
 } from '../service/validateForm';
 import Modal from '../component/Modal';
+import { useCartContext } from '../context/CartContext';
 
 function Checkout() {
   const [customerAddress, setCustomerAddress] = useState([]);
@@ -61,6 +62,10 @@ function Checkout() {
   const {
     state: { user },
   } = useAuthContext();
+  const {
+    state: { carts },
+    dispatch,
+  } = useCartContext();
 
   const Omise = window.Omise;
   Omise.setPublicKey('pkey_test_5pdoxhl4p3erc27pgew');
@@ -161,10 +166,8 @@ function Checkout() {
                 addressCreate: { ...addressFrom },
                 creditCardToken: response.id,
                 amount: subTotal - shipping,
-                orders: [
-                  { id: '1', quality: 2 },
-                  { id: '2', quality: 2 },
-                ],
+                orders: carts,
+                cartId: carts[0].cartId,
               });
               console.log(res.data);
               if (res.data.charge.status === 'failed') {
@@ -176,6 +179,7 @@ function Checkout() {
                   reload: true,
                 });
               } else {
+                dispatch({ type: 'INIT_CART' });
                 setModal({ active: true, message: 'Payment SuccessFull!!', header: 'Payment Status!!', redirect: '/' });
               }
             } catch (err) {
@@ -205,10 +209,8 @@ function Checkout() {
                 addressId: selectAddress,
                 creditCardToken: response.id,
                 amount: subTotal - shipping,
-                orders: [
-                  { id: '1', quality: 2 },
-                  { id: '2', quality: 2 },
-                ],
+                orders: carts,
+                cartId: carts[0].cartId,
               });
               console.log(res.data);
               if (res.data.charge.status === 'failed') {
@@ -220,6 +222,7 @@ function Checkout() {
                   reload: true,
                 });
               } else {
+                dispatch({ type: 'INIT_CART' });
                 setModal({ active: true, message: 'Payment SuccessFull!!', header: 'Payment Status!!', redirect: '/' });
               }
             } catch (err) {
@@ -244,10 +247,8 @@ function Checkout() {
               addressCreate: { ...addressFrom },
               creditCardId: selectedCard,
               amount: subTotal - shipping,
-              orders: [
-                { id: '1', quality: 2 },
-                { id: '2', quality: 2 },
-              ],
+              orders: carts,
+              cartId: carts[0].cartId,
             });
             console.log(res.data);
             if (res.data.charge.status === 'failed') {
@@ -259,6 +260,7 @@ function Checkout() {
                 reload: true,
               });
             } else {
+              dispatch({ type: 'INIT_CART' });
               setModal({ active: true, message: 'Payment SuccessFull!!', header: 'Payment Status!!', redirect: '/' });
             }
           } catch (err) {
@@ -271,10 +273,8 @@ function Checkout() {
             addressId: selectAddress,
             creditCardId: selectedCard,
             amount: subTotal - shipping,
-            orders: [
-              { id: '1', quality: 2 },
-              { id: '2', quality: 2 },
-            ],
+            orders: carts,
+            cartId: carts[0].cartId,
           });
           console.log(res.data);
           if (res.data.charge.status === 'failed') {
@@ -286,6 +286,7 @@ function Checkout() {
               reload: true,
             });
           } else {
+            dispatch({ type: 'INIT_CART' });
             setModal({ active: true, message: 'Payment SuccessFull!!', header: 'Payment Status!!', redirect: '/' });
           }
         } catch (err) {
@@ -326,7 +327,7 @@ function Checkout() {
         </div>
         <div className='col-1'></div>
         <div className='col-4'>
-          <OrderSummary orderItems={orderItems} subTotal={subTotal} shipping={shipping} />
+          <OrderSummary orderItems={carts} subTotal={subTotal} shipping={shipping} />
         </div>
         <div className='col-6'>
           <div className='d-flex justify-content-center mt-5' style={{ width: '90%' }}>

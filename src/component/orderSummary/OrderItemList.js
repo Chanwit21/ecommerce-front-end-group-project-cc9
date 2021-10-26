@@ -7,7 +7,12 @@ function OrderItemList({ imageUrl, name, color, quality, totalPrice }) {
       className='d-flex align-items-center justify-content-between'
       style={{ height: '7.29166666666667vw', borderBottom: '1px dashed #0005' }}
     >
-      <img src={imageUrl} alt='product_pic' style={{ height: '4.6875vw', width: '4.6875vw' }} className='rounded' />
+      <img
+        src={imageUrl}
+        alt='product_pic'
+        style={{ height: '4.6875vw', width: '4.6875vw', objectFit: 'cover' }}
+        className='rounded'
+      />
       <div className='d-flex flex-column' style={{ width: '75%', height: '4.6875vw' }}>
         <h5 className='m-0 p-0'>{name}</h5>
         <p className='m-0 p-0 opacity-50'>{color}</p>
