@@ -1,10 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useCartContext } from '../../context/CartContext';
 
 function ProductDetail({ product, IsFavorite, productImage }) {
   const [numberOfProduct, setNumberOfProduct] = useState(1);
   const [checkFavorite, setCheckFavorite] = useState(IsFavorite); //IsFavorite from database
   const [selectedColor, setSelectedColor] = useState(product?.[0]?.color);
+  const {
+    state: { carts },
+    dispatch,
+  } = useCartContext();
+  console.log(carts);
 
   useEffect(() => {
     setSelectedColor(product?.[0]?.color);
@@ -31,8 +37,14 @@ function ProductDetail({ product, IsFavorite, productImage }) {
   };
 
   const handleAddToCart = async () => {
-    await axios.post('/product/cart', { quality: numberOfProduct, productId: product[idx].id });
-    alert('add to cart successful');
+    const cartItemIdx = carts.findIndex((item) => item.productId === product[idx].id);
+    if (cartItemIdx === -1) {
+      await axios.post('/product/cart', { quality: numberOfProduct, productId: product[idx].id });
+      alert('add to cart successful');
+    } else {
+      const cartItemUpdate = { ...carts[cartItemIdx], quality: carts[cartItemIdx].quality + numberOfProduct };
+      dispatch({ type: 'UPDATE_CART', payload: { product: cartItemUpdate, productId: product[idx].id } });
+    }
   };
 
   return (
@@ -49,7 +61,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
               {productImage.map((item, index) => (
                 <img
                   className={`mb-2 ${index === idx ? 'border border-dark' : ''}`}
-                  style={{ width: '4vw', height: '4vw' }}
+                  style={{ width: '4vw', height: '4vw', objectFit: 'cover' }}
                   src={item?.imageUrl}
                   alt=''
                   onClick={() => {
@@ -61,7 +73,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
             <div className='col-5'>
               <img
                 className='border'
-                style={{ width: '33.6vw', height: '33.6vw' }}
+                style={{ width: '33.6vw', height: '33.6vw', objectFit: 'cover' }}
                 src={productImage?.[idx]?.imageUrl}
                 alt=''
               />
