@@ -51,12 +51,11 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                 <div className='mb-2'>
                   <img
                     className={`${index === imageIdx ? 'border border-dark' : ''}`}
-                    style={{ width: '10vw', height: '10vw' }}
+                    style={{ width: '4vw', height: '4vw' }}
                     src={item?.imageUrl}
                     alt=''
                     onClick={() => {
                       setSelectedImg(item.id);
-                      console.log('click', index)
                     }}
                   />
                 </div>
