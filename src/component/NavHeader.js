@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../context/CartContext';
 import Logo from '../pic/icons/mmg-logo.svg';
 
 function NavHeader() {
+  const {
+    state: { countCart },
+  } = useCartContext();
   return (
     <>
       <div className='container-fluid text-center p-1' style={{ backgroundColor: '#FFD6DC' }}>
@@ -26,39 +30,34 @@ function NavHeader() {
           </button>
           <div className='collapse navbar-collapse flex-grow-0' id='navbarNavDropdown'>
             <ul className='navbar-nav'>
-              <li className='nav-item'>
-                <Link className='nav-link active' to='/allProduct/new'>
-                  NEW
+              <li className='nav-item mx-1'>
+                <Link className='nav-link active' to='/allProduct/All Product'>
+                  ALL
                 </Link>
               </li>
-              <li className='nav-item'>
+              <li className='nav-item mx-1'>
                 <Link className='nav-link active' to='/allProduct/face'>
                   FACE
                 </Link>
               </li>
-              <li className='nav-item'>
-                <Link className='nav-link active' to='/allProduct/cheek'>
-                  CHEEK
+              <li className='nav-item mx-1'>
+                <Link className='nav-link active' to='/allProduct/sheek'>
+                  SHEEK
                 </Link>
               </li>
-              <li className='nav-item'>
+              <li className='nav-item mx-1'>
                 <Link className='nav-link active' to='/allProduct/lips'>
                   LIPS
                 </Link>
               </li>
-              <li className='nav-item'>
+              <li className='nav-item mx-1'>
                 <Link className='nav-link active' to='/allProduct/eyes'>
                   EYES
                 </Link>
               </li>
-              <li className='nav-item'>
+              <li className='nav-item mx-1'>
                 <Link className='nav-link active' to='/allProduct/body'>
                   BODY
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link className='nav-link active' to='/allProduct/body'>
-                  SALE
                 </Link>
               </li>
             </ul>
@@ -99,7 +98,8 @@ function NavHeader() {
                       className='position-absolute translate-middle badge rounded-pill bg-danger'
                       style={{ left: '85%', top: '30%' }}
                     >
-                      0<span className='visually-hidden'>Cart Count</span>
+                      {countCart}
+                      <span className='visually-hidden'>Cart Count</span>
                     </span>
                   </Link>
                 </button>
