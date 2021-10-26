@@ -42,9 +42,9 @@ function ProductDetail({ product, IsFavorite, productImage }) {
 
   const handleAddToCart = async () => {
     try {
+      setNumberOfProduct(1);
       const cartItemIdx = carts.findIndex((item) => item.productId === productImage[imageIdx].Product.id);
       if (cartItemIdx === -1) {
-        // เวลา Add อาจจะต้องสร้างใหม่น้าาา
         const res = await axios.post('/carts', {
           quality: numberOfProduct,
           productId: productImage[imageIdx].Product.id,
@@ -92,7 +92,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
             <div className='col-5'>
               <img
                 className='border'
-                style={{ width: '33.6vw', height: '33.6vw', objectFit: 'cover' }}
+                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'cover' }}
                 src={productImage?.[imageIdx]?.imageUrl}
                 alt=''
               />

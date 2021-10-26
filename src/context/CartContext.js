@@ -8,8 +8,6 @@ const INIT_STATE = {
   carts: [],
   countCart: 0,
 };
-// dispatch({ type: 'ADD_CART', payload: { product: {} } });
-// dispatch({ type: 'UPDATE_CART', payload: { product: {}, productId: '' } });
 
 const REDUCER_FN = (state, action) => {
   switch (action.type) {
@@ -36,8 +34,14 @@ const REDUCER_FN = (state, action) => {
     }
     case 'DELETE_CART': {
       const productId = action.payload.productId;
-      const newCarts = JSON.parse(JSON.stringify(state.carts)).filter((item) => item.id !== productId);
-      return { carts: newCarts, countCart: newCarts.lenght };
+      const newCarts = JSON.parse(JSON.stringify(state.carts)).filter((item) => item.productId !== productId);
+      return { carts: newCarts, countCart: newCarts.length };
+    }
+    case 'INIT_CART': {
+      return {
+        carts: [],
+        countCart: 0,
+      };
     }
     default:
       return state;
