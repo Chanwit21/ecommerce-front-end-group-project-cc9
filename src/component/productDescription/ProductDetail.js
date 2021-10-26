@@ -92,11 +92,15 @@ function ProductDetail({ product, IsFavorite, productImage }) {
             <div className='col-5' style={{ overflow: 'hidden' }}>
               <img
                 className='border'
+<<<<<<< HEAD
                 style={{
                   width: '33.6vw',
                   height: '33.6vw',
                   objectFit: 'cover',
                 }}
+=======
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+>>>>>>> 707ad5914408bbc5cc6ecec33bf054a9136ff249
                 src={productImage?.[imageIdx]?.imageUrl}
                 alt=''
               />
@@ -111,11 +115,10 @@ function ProductDetail({ product, IsFavorite, productImage }) {
               {/*price*/}
               <p style={{ fontSize: '18px' }}>{productImage?.[imageIdx]?.Product?.colorName}</p> {/*colorName*/}
               <div className='d-flex'>
-                {product.map((item, index) => (
+                {product.map((item) => (
                   <div
-                    className={`me-2 ${
-                      item.color === productImage[imageIdx]?.Product?.color ? 'border border-dark border-2' : ''
-                    }`}
+                    className={`me-2 ${item.color === productImage[imageIdx]?.Product?.color ? 'border border-dark border-2' : ''
+                      }`}
                     onClick={() => setSelectedImg(productImage.find((itemP) => itemP.Product.color === item.color).id)}
                     style={{
                       width: '40px',
@@ -132,7 +135,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                   </button>
                   <span>{numberOfProduct}</span>
                   <button
-                    onClick={() => setNumberOfProduct((cur) => (cur < product[0].countStock ? cur + 1 : cur))}
+                    onClick={() => setNumberOfProduct((cur) => (cur < productImage[imageIdx].Product.countStock ? cur + 1 : cur))}
                     className='btn'
                   >
                     +
