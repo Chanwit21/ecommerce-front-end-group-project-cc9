@@ -16,9 +16,13 @@ import UserPayment from '../pages/UserPayment';
 import UserAddCard from '../pages/UserAddCard';
 import AllProduct from '../pages/AllProduct';
 import EditMyProfile from '../pages/EditMyProfile';
-import ProductSummary from '../pages/ProductSymmary';
+import ProductSummary from '../pages/ProductSummary';
 import AdminInbox from '../pages/AdminInbox';
 import AdminProfile from '../pages/AdminProfile';
+import UserOrderSummary from '../pages/UserOrderSummary';
+import AdminOrderSummary from '../pages/AdminOrderSummary';
+import MyProfileOrder from '../pages/MyProfileOrder';
+import AdminOrder from '../pages/AdminOrder';
 import EditAdminProfile from '../pages/EditAdminProfile';
 
 const routesAll = {
@@ -36,19 +40,17 @@ const routesAll = {
       { path: '/editMyProFile', component: EditMyProfile },
       { path: '/myAddress', component: MyAddress },
       { path: '/addNewAddress', component: AddNewAddress },
+      { path: '/myProfileOrder', component: MyProfileOrder },
       { path: '/termCondition', component: TermCondition },
       { path: '/favorite', component: Favorite },
-      {
-        path: '/productDescription/:productName',
-        component: ProductDescription,
-      },
+      { path: '/productDescription/:productName', component: ProductDescription },
       { path: '/transaction', component: Transaction },
       { path: '/product_summary', component: ProductSummary },
       { path: '/user_payment', component: UserPayment },
       { path: '/user_add_card', component: UserAddCard },
       { path: '/admin_inbox', component: AdminInbox },
       { path: '/admin_profile', component: AdminProfile },
-      { path: '/admin_profile_edit', component: EditAdminProfile },
+      { path: '/admin_order', component: AdminOrder },
     ],
     redirect: '/',
   },
@@ -63,7 +65,10 @@ const routesAll = {
       { path: '/user_payment', component: UserPayment },
       { path: '/product_summary', component: ProductSummary },
       { path: '/user_add_card', component: UserAddCard },
+      { path: '/myAddress', component: MyAddress },
+      { path: '/addNewAddress', component: AddNewAddress },
       { path: '/allProduct/:category', component: AllProduct },
+      { path: '/userOrderSummary', component: UserOrderSummary },
     ],
     redirect: '/',
   },
@@ -78,8 +83,10 @@ const routesAll = {
       { path: '/create_product', component: CreateProduct },
       { path: '/admin_inbox', component: AdminInbox },
       { path: '/admin_profile', component: AdminProfile },
+      { path: '/myAddress', component: MyAddress },
+      { path: '/addNewAddress', component: AddNewAddress },
+      { path: '/adminOrderSummary', component: AdminOrderSummary },
       { path: '/admin_profile_edit', component: EditAdminProfile },
-      { path: '/allProduct/:category', component: AllProduct },
     ],
     redirect: '/',
   },
