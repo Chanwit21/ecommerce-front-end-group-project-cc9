@@ -1,43 +1,25 @@
 import React from 'react';
-import test1 from '../pic/mocks/pexels-karolina-grabowska-4202325.jpg';
-import test2 from '../pic/mocks/pexels-karolina-grabowska-4239013.jpg';
-import test3 from '../pic/mocks/pexels-michelle-leman-6798761.jpg';
+import image_slide_1 from '../pic/carousel/image-slide-nont-1.jpeg';
+import image_slide_2 from '../pic/carousel/image-slide-nont-2.jpeg';
+import image_slide_3 from '../pic/carousel/image-slide-nont-3.jpeg';
 
 function Carousel() {
-  // const [imagesPromo, setImagesPromo] = useState([
-  //   {
-  //     image: test1,
-  //     header: 'First slide label',
-  //     title: 'Some representative placeholder content for the first slide.',
-  //   },
-  //   {
-  //     image: test2,
-  //     header: 'Second slide label',
-  //     title: 'Some representative placeholder content for the second slide.',
-  //   },
-  //   {
-  //     image: test3,
-  //     header: 'Third slide label',
-  //     title: 'Some representative placeholder content for the third slide.',
-  //   },
-  // ]);
-
   const imagesPromo = [
     {
       id: '1',
-      image: test1,
-      header: 'First slide label',
-      title: 'Some representative placeholder content for the first slide.',
+      image: image_slide_1,
+      header: 'STICK BLUSH',
+      title: 'AN ULTRA-LIGHT CREAM BLUSH THAT MELTS INTO SKIN AND CREATE RADIANT, NATURAL-LOOKING COLOR',
     },
     {
       id: '2',
-      image: test2,
+      image: image_slide_2,
       header: 'Second slide label',
       title: 'Some representative placeholder content for the second slide.',
     },
     {
       id: '3',
-      image: test3,
+      image: image_slide_3,
       header: 'Third slide label',
       title: 'Some representative placeholder content for the third slide.',
     },
@@ -60,7 +42,12 @@ function Carousel() {
   const imagesCarousel = imagesPromo.map((item, index) => {
     return (
       <div key={item.id} className={`carousel-item${index === 0 ? ' active' : ''}`}>
-        <img src={item.image} className='d-block w-100' alt='...' style={{ height: '80vh', objectFit: 'cover' }} />
+        <img
+          src={item.image}
+          className='d-block w-100'
+          alt='...'
+          style={{ height: '80vh', objectFit: 'cover', objectPosition: 'center -1vw' }}
+        />
         <div className='carousel-caption d-none d-md-block' style={{ color: '#000' }}>
           <h5>{item.header}</h5>
           <p>{item.title}</p>

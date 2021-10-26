@@ -4,14 +4,14 @@ function ShoppingCartRow({ imageUrl, name, price, color }) {
   const [count, setCount] = useState(0);
   return (
     <>
-      <div className="row mt-2">
-        <div className="col-5 d-inline-flex m-2 ">
+      <div className="row ">
+        <div className="col-5 d-inline-flex  my-2">
           <img src={imageUrl} alt="" style={{ width: "150px", height: "150px" }} />
-          <h6 className="ms-2">{name}</h6>
-          <h6 className="ms-5 ">{color}</h6>
+          <h6 className="mx-3 my-5">{name}</h6>
+          <h6 className="mx-3 my-5">{color}</h6>
         </div>
-        <div className="col ms-5 ">
-          <div className="border border-dark rounded-3" style={{ width: "90px", height: "40px" }}>
+        <div className="col ms-2">
+          <div className="border border-dark rounded-3 mx-5 my-5" style={{ width: "90px", height: "40px" }}>
             <button
               className="btn"
               onClick={() => {
@@ -22,7 +22,7 @@ function ShoppingCartRow({ imageUrl, name, price, color }) {
             </button>
             <span>{count}</span>
             <button
-              className="btn"
+              className="btn "
               onClick={() => {
                 setCount(count + 1);
               }}
@@ -31,8 +31,11 @@ function ShoppingCartRow({ imageUrl, name, price, color }) {
             </button>
           </div>
         </div>
-        <h6 className="col">{price}</h6>
-        <h6 className="col">{count * price}</h6>
+        <h6 className="col mx-5 my-5">{price}</h6>
+        <div className="col d-flex justify-content-between">
+          <h6 className="me-5 my-5">{count * price}</h6>
+          <i class="bi bi-x-lg"></i>
+        </div>
         <hr className="align-self-center mt-0" />
       </div>
     </>

@@ -1,5 +1,4 @@
 import React from "react";
-import deleteIcon from "../../pic/icons/delete-icon.png";
 
 function InboxMessage() {
   return (
@@ -53,25 +52,22 @@ function InboxMessage() {
                   text ever since the 1500s, when an unknown printer took a
                   galley of type and scrambled it to make a type specimen book.
                   It has survived not only five centuries.
-                  <img
-                    src={deleteIcon}
-                    className="float-end pt-1"
-                    alt="delete-icon"
-                    style={{ height: "2.2vh" }}
-                  />
+                  <button className="btn btn-outline-danger btn-sm float-end pt-1">
+                    <i className="bi bi-trash"></i>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
           <div className="accordion-item">
-            <h2 className="accordion-header" id="headingOne">
+            <h2 className="accordion-header" id="headingTwo">
               <button
                 className="accordion-button"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#collapseOne"
+                data-bs-target="#collapseTwo"
                 aria-expanded="true"
-                aria-controls="collapseOne"
+                aria-controls="collapseTwo"
               >
                 <div className="d-flex bd-highlight">
                   <div
@@ -93,9 +89,9 @@ function InboxMessage() {
               </button>
             </h2>
             <div
-              id="collapseOne"
+              id="collapseTwo"
               class="accordion-collapse collapse"
-              aria-labelledby="headingOne"
+              aria-labelledby="headingTwo"
               data-bs-parent="#accordionExample"
             >
               <div className="accordion-body my-2 mx-2">
@@ -110,25 +106,22 @@ function InboxMessage() {
                   text ever since the 1500s, when an unknown printer took a
                   galley of type and scrambled it to make a type specimen book.
                   It has survived not only five centuries.
-                  <img
-                    src={deleteIcon}
-                    className="float-end pt-1"
-                    alt="delete-icon"
-                    style={{ height: "2.2vh" }}
-                  />
+                  <button className="btn btn-outline-danger btn-sm float-end pt-1">
+                    <i className="bi bi-trash"></i>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
           <div className="accordion-item">
-            <h2 className="accordion-header" id="headingOne">
+            <h2 className="accordion-header" id="headingThree">
               <button
                 className="accordion-button"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#collapseOne"
+                data-bs-target="#collapseThree"
                 aria-expanded="true"
-                aria-controls="collapseOne"
+                aria-controls="collapseThree"
               >
                 <div className="d-flex bd-highlight">
                   <div
@@ -150,9 +143,9 @@ function InboxMessage() {
               </button>
             </h2>
             <div
-              id="collapseOne"
+              id="collapseThree"
               class="accordion-collapse collapse"
-              aria-labelledby="headingOne"
+              aria-labelledby="headingThree"
               data-bs-parent="#accordionExample"
             >
               <div className="accordion-body my-2 mx-2">
@@ -167,25 +160,22 @@ function InboxMessage() {
                   text ever since the 1500s, when an unknown printer took a
                   galley of type and scrambled it to make a type specimen book.
                   It has survived not only five centuries.
-                  <img
-                    src={deleteIcon}
-                    className="float-end pt-1"
-                    alt="delete-icon"
-                    style={{ height: "2.2vh" }}
-                  />
+                  <button className="btn btn-outline-danger btn-sm float-end pt-1">
+                    <i className="bi bi-trash"></i>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
           <div className="accordion-item">
-            <h2 className="accordion-header" id="headingOne">
+            <h2 className="accordion-header" id="headingFour">
               <button
                 className="accordion-button"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#collapseOne"
+                data-bs-target="#collapseFour"
                 aria-expanded="true"
-                aria-controls="collapseOne"
+                aria-controls="collapseFour"
               >
                 <div className="d-flex bd-highlight">
                   <div
@@ -207,9 +197,9 @@ function InboxMessage() {
               </button>
             </h2>
             <div
-              id="collapseOne"
+              id="collapseFour"
               class="accordion-collapse collapse"
-              aria-labelledby="headingOne"
+              aria-labelledby="headingFour"
               data-bs-parent="#accordionExample"
             >
               <div className="accordion-body my-2 mx-2">
@@ -224,25 +214,22 @@ function InboxMessage() {
                   text ever since the 1500s, when an unknown printer took a
                   galley of type and scrambled it to make a type specimen book.
                   It has survived not only five centuries.
-                  <img
-                    src={deleteIcon}
-                    className="float-end pt-1"
-                    alt="delete-icon"
-                    style={{ height: "2.2vh" }}
-                  />
+                  <button className="btn btn-outline-danger btn-sm float-end pt-1">
+                    <i className="bi bi-trash"></i>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
           <div className="accordion-item">
-            <h2 className="accordion-header" id="headingOne">
+            <h2 className="accordion-header" id="headingFive">
               <button
                 className="accordion-button"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#collapseOne"
+                data-bs-target="#collapseFive"
                 aria-expanded="true"
-                aria-controls="collapseOne"
+                aria-controls="collapseFive"
               >
                 <div className="d-flex bd-highlight">
                   <div
@@ -264,9 +251,9 @@ function InboxMessage() {
               </button>
             </h2>
             <div
-              id="collapseOne"
+              id="collapseFive"
               class="accordion-collapse collapse"
-              aria-labelledby="headingOne"
+              aria-labelledby="headingFive"
               data-bs-parent="#accordionExample"
             >
               <div className="accordion-body my-2 mx-2">
@@ -281,12 +268,9 @@ function InboxMessage() {
                   text ever since the 1500s, when an unknown printer took a
                   galley of type and scrambled it to make a type specimen book.
                   It has survived not only five centuries.
-                  <img
-                    src={deleteIcon}
-                    className="float-end pt-1"
-                    alt="delete-icon"
-                    style={{ height: "2.2vh" }}
-                  />
+                  <button className="btn btn-outline-danger btn-sm float-end pt-1">
+                    <i className="bi bi-trash"></i>
+                  </button>
                 </div>
               </div>
             </div>
