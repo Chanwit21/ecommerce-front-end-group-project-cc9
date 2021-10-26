@@ -44,7 +44,8 @@ function ProductDetail({ product, IsFavorite, productImage }) {
     try {
       const cartItemIdx = carts.findIndex((item) => item.productId === productImage[imageIdx].Product.id);
       if (cartItemIdx === -1) {
-        const res = await axios.post('/product/cart', {
+        // เวลา Add อาจจะต้องสร้างใหม่น้าาา
+        const res = await axios.post('/carts', {
           quality: numberOfProduct,
           productId: productImage[imageIdx].Product.id,
         });
