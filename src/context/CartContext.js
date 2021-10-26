@@ -28,7 +28,7 @@ const REDUCER_FN = (state, action) => {
       const product = action.payload.product;
       const productId = action.payload.productId;
       const newCarts = JSON.parse(JSON.stringify(state.carts));
-      const idx = newCarts.findIndex((item) => item.id === productId);
+      const idx = newCarts.findIndex((item) => item.productId === productId);
       if (idx !== -1) {
         newCarts[idx] = product;
       }

@@ -1,2 +1,2 @@
 export const formatePrice = (price) =>
-  new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB', currencyDisplay: 'narrowSymbol' }).format(price);
+  new Intl.NumberFormat('us-Us', { style: 'currency', currency: 'USD', currencyDisplay: 'narrowSymbol' }).format(price);
