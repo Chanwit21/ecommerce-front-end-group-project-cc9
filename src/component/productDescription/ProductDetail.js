@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useCartContext } from '../../context/CartContext';
+import '../../css/scrollBar.css';
 
 function ProductDetail({ product, IsFavorite, productImage }) {
   const [numberOfProduct, setNumberOfProduct] = useState(1);
@@ -74,7 +75,12 @@ function ProductDetail({ product, IsFavorite, productImage }) {
       >
         <div className='container'>
           <div className='row my-5'>
-            <div className='col-1 overflow-auto' style={{ maxHeight: '33.6vw' }}>
+            <div
+              className='col-1 overflow-auto scroll-bar'
+              style={{
+                maxHeight: '33.6vw',
+              }}
+            >
               {productImage.map((item, index) => (
                 <div className='mb-2'>
                   <img

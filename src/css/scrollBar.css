@@ -4,3 +4,19 @@
   overflow: hidden;
   overflow-y: scroll;
 }
+
+.scroll-bar::-webkit-scrollbar {
+  width: 0.5vw;
+  background-color: #ffd6dc;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+  height: 1px;
+  background-color: #000;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb {
+  height: 1px;
+  background-color: #000;
+  border-radius: 5vw;
+}
