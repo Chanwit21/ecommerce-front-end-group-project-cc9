@@ -231,3 +231,11 @@ export const validateImageFile = (imagesFile) => {
 
   return '';
 };
+
+export const validateMessage = (message) => {
+  if (!message) {
+    return 'Message is require!!';
+  }
+
+  return '';
+};
