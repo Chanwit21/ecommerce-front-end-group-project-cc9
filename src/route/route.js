@@ -20,7 +20,6 @@ import ProductSummary from '../pages/ProductSummary';
 import AdminInbox from '../pages/AdminInbox';
 import AdminProfile from '../pages/AdminProfile';
 import UserOrderSummary from '../pages/UserOrderSummary';
-import AdminOrderSummary from '../pages/AdminOrderSummary';
 import MyProfileOrder from '../pages/MyProfileOrder';
 import AdminOrder from '../pages/AdminOrder';
 import EditAdminProfile from '../pages/EditAdminProfile';
@@ -68,7 +67,7 @@ const routesAll = {
       { path: '/myAddress', component: MyAddress },
       { path: '/addNewAddress', component: AddNewAddress },
       { path: '/allProduct/:category', component: AllProduct },
-      { path: '/userOrderSummary', component: UserOrderSummary },
+      { path: '/userOrderSummary/:orderId', component: UserOrderSummary },
     ],
     redirect: '/',
   },
@@ -84,8 +83,8 @@ const routesAll = {
       { path: '/admin_inbox', component: AdminInbox },
       { path: '/admin_profile', component: AdminProfile },
       { path: '/myAddress', component: MyAddress },
-      { path: '/addNewAddress', component: AddNewAddress },
-      { path: '/adminOrderSummary', component: AdminOrderSummary },
+      { path: '/addNewAddress/:orderId', component: AddNewAddress },
+      { path: '/adminOrderSummary/:orderId', component: UserOrderSummary },
       { path: '/admin_profile_edit', component: EditAdminProfile },
     ],
     redirect: '/',
