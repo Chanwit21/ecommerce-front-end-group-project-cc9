@@ -150,6 +150,7 @@ function CreateProduct() {
   });
 
   const handleClickSave = async () => {
+    setShowSpinner(true);
     const errorProductName = validateProductName(productData.productName);
     const errorPrice = validatePrice(productData.price);
     const errorQuantity = validateQuantity(productData.quantity);
@@ -201,13 +202,11 @@ function CreateProduct() {
         formData.append('imageUrl', item);
       }
     });
-    try {
-      await axios.post('/product', formData);
-      alert('Create is Successful');
-      history.push('/product_summary');
-    } catch (err) {
-      console.dir(err);
-    }
+
+    await axios.post('/product', formData);
+    setShowSpinner(false);
+    alert('Create is Successful');
+    history.push('/product_summary');
   };
 
   const inputOnChange = (e) => {

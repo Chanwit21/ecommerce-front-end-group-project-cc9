@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function AdminHeader() {
   return (
@@ -25,7 +26,15 @@ function AdminHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">MY PROFILE</span>
+              <span className="fw-bold">
+                <Link
+                  className="nav-link "
+                  to="/admin_profile"
+                  style={{ color: "inherit" }}
+                >
+                  MY PROFILE
+                </Link>
+              </span>
             </button>
             <button
               className="btn me-3"
@@ -35,7 +44,15 @@ function AdminHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">DASHBOARD</span>
+              <span className="fw-bold">
+                <Link
+                  className="nav-link "
+                  to="/transaction"
+                  style={{ color: "inherit" }}
+                >
+                  DASHBOARD
+                </Link>
+              </span>
             </button>
             <button
               className="btn me-3"
@@ -45,7 +62,11 @@ function AdminHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">PRODUCTS</span>
+              <span className="fw-bold">
+                <Link className="nav-link " to="#" style={{ color: "inherit" }}>
+                  PRODUCTS
+                </Link>
+              </span>
             </button>
             <button
               className="btn me-3"
@@ -55,7 +76,15 @@ function AdminHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">SHIPPING</span>
+              <span className="fw-bold">
+                <Link
+                  className="nav-link "
+                  to="/admin_order"
+                  style={{ color: "inherit" }}
+                >
+                  SHIPPING
+                </Link>
+              </span>
             </button>
             <button
               className="btn me-3"
@@ -65,7 +94,15 @@ function AdminHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">INBOX</span>
+              <span className="fw-bold">
+                <Link
+                  className="nav-link"
+                  to="/admin_inbox"
+                  style={{ color: "inherit" }}
+                >
+                  INBOX
+                </Link>
+              </span>
             </button>
           </div>
         </div>
