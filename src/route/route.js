@@ -20,7 +20,6 @@ import ProductSummary from '../pages/ProductSummary';
 import AdminInbox from '../pages/AdminInbox';
 import AdminProfile from '../pages/AdminProfile';
 import UserOrderSummary from '../pages/UserOrderSummary';
-import AdminOrderSummary from '../pages/AdminOrderSummary';
 import MyProfileOrder from '../pages/MyProfileOrder';
 import AdminOrder from '../pages/AdminOrder';
 import EditAdminProfile from '../pages/EditAdminProfile';
@@ -28,38 +27,41 @@ import EditAdminProfile from '../pages/EditAdminProfile';
 const routesAll = {
   GUEST: {
     routes: [
-      { path: '/', component: Home },
-      { path: '/login', component: Login },
-      { path: '/sign_up', component: SignUp },
-      { path: '/checkout', component: Checkout },
-      { path: '/shoppingCart', component: ShoppingCart },
-      { path: '/create_product', component: CreateProduct },
-      { path: '/contact_us', component: ContactUs },
-      { path: '/allProduct/:category', component: AllProduct },
-      { path: '/myProFile', component: MyProfile },
-      { path: '/editMyProFile', component: EditMyProfile },
-      { path: '/myAddress', component: MyAddress },
-      { path: '/addNewAddress', component: AddNewAddress },
-      { path: '/myProfileOrder', component: MyProfileOrder },
-      { path: '/termCondition', component: TermCondition },
-      { path: '/favorite', component: Favorite },
-      { path: '/productDescription/:productName', component: ProductDescription },
-      { path: '/transaction', component: Transaction },
-      { path: '/product_summary', component: ProductSummary },
-      { path: '/user_payment', component: UserPayment },
-      { path: '/user_add_card', component: UserAddCard },
-      { path: '/admin_inbox', component: AdminInbox },
-      { path: '/admin_profile', component: AdminProfile },
-      { path: '/admin_order', component: AdminOrder },
+      { path: "/", component: Home },
+      { path: "/login", component: Login },
+      { path: "/sign_up", component: SignUp },
+      { path: "/checkout", component: Checkout },
+      { path: "/shoppingCart", component: ShoppingCart },
+      { path: "/create_product", component: CreateProduct },
+      { path: "/contact_us", component: ContactUs },
+      { path: "/allProduct/:category", component: AllProduct },
+      { path: "/myProFile", component: MyProfile },
+      { path: "/editMyProFile", component: EditMyProfile },
+      { path: "/myAddress", component: MyAddress },
+      { path: "/addNewAddress", component: AddNewAddress },
+      { path: "/myProfileOrder", component: MyProfileOrder },
+      { path: "/termCondition", component: TermCondition },
+      { path: "/favorite", component: Favorite },
+      {
+        path: "/productDescription/:productName",
+        component: ProductDescription,
+      },
+      { path: "/transaction", component: Transaction },
+      { path: "/product_summary", component: ProductSummary },
+      { path: "/user_payment", component: UserPayment },
+      { path: "/user_add_card", component: UserAddCard },
+      { path: "/admin_inbox", component: AdminInbox },
+      { path: "/admin_profile", component: AdminProfile },
+      { path: "/admin_order", component: AdminOrder },
     ],
-    redirect: '/',
+    redirect: "/",
   },
   CUSTOMER: {
     routes: [
-      { path: '/', component: Home },
-      { path: '/checkout', component: Checkout },
+      { path: "/", component: Home },
+      { path: "/checkout", component: Checkout },
       {
-        path: '/productDescription/:productName',
+        path: "/productDescription/:productName",
         component: ProductDescription,
       },
       { path: '/user_payment', component: UserPayment },
@@ -68,17 +70,17 @@ const routesAll = {
       { path: '/myAddress', component: MyAddress },
       { path: '/addNewAddress', component: AddNewAddress },
       { path: '/allProduct/:category', component: AllProduct },
-      { path: '/userOrderSummary', component: UserOrderSummary },
       { path: '/favorite', component: Favorite },
       { path: '/shoppingCart', component: ShoppingCart },
+      { path: '/userOrderSummary/:orderId', component: UserOrderSummary },
     ],
-    redirect: '/',
+    redirect: "/",
   },
   ADMIN: {
     routes: [
-      { path: '/', component: Home },
+      { path: "/", component: Home },
       {
-        path: '/productDescription/:productName',
+        path: "/productDescription/:productName",
         component: ProductDescription,
       },
       { path: '/product_summary', component: ProductSummary },
@@ -86,12 +88,12 @@ const routesAll = {
       { path: '/admin_inbox', component: AdminInbox },
       { path: '/admin_profile', component: AdminProfile },
       { path: '/myAddress', component: MyAddress },
-      { path: '/addNewAddress', component: AddNewAddress },
-      { path: '/adminOrderSummary', component: AdminOrderSummary },
+      { path: '/addNewAddress/:orderId', component: AddNewAddress },
+      { path: '/adminOrderSummary/:orderId', component: UserOrderSummary },
       { path: '/admin_profile_edit', component: EditAdminProfile },
       { path: '/allProduct/:category', component: AllProduct },
     ],
-    redirect: '/',
+    redirect: "/",
   },
 };
 

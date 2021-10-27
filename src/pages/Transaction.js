@@ -2,7 +2,7 @@ import axios from '../config/axios';
 import React, { useEffect, useState } from 'react';
 import RevenueChart from '../component/transaction/RevenueChart';
 import moment from 'moment';
-import AccountHeader from '../component/AccountHeader';
+import AdminHeader from '../component/AdminHeader';
 
 function Transaction() {
   const [selectedTime, setSelectedTime] = useState('day');
@@ -138,7 +138,7 @@ function Transaction() {
 
   return (
     <div className='transactionPage'>
-      <AccountHeader />
+      <AdminHeader />
       <div className='container' style={{ width: '80vw' }}>
         {' '}
         {/*revenue*/}
@@ -275,7 +275,11 @@ function Transaction() {
                   <div className='d-flex align-items-center m-5'>
                     <img
                       className='mx-4'
-                      style={{ width: '5vw', height: '5vw', borderRadius: '50%' }}
+                      style={{
+                        width: '5vw',
+                        height: '5vw',
+                        borderRadius: '50%',
+                      }}
                       src={categoryImg[item?.[0]]}
                       alt=''
                     />
