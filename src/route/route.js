@@ -89,6 +89,7 @@ const routesAll = {
       { path: '/addNewAddress', component: AddNewAddress },
       { path: '/adminOrderSummary', component: AdminOrderSummary },
       { path: '/admin_profile_edit', component: EditAdminProfile },
+      { path: '/allProduct/:category', component: AllProduct },
     ],
     redirect: '/',
   },

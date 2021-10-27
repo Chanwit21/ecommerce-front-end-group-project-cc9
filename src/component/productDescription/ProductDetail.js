@@ -74,7 +74,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
       >
         <div className='container'>
           <div className='row my-5'>
-            <div className='col-1'>
+            <div className='col-1 overflow-auto' style={{ maxHeight: '33.6vw' }}>
               {productImage.map((item, index) => (
                 <div className='mb-2'>
                   <img
@@ -92,7 +92,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
             <div className='col-5' style={{ overflow: 'hidden' }}>
               <img
                 className='border'
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', objectFit: 'cover' }}
                 src={productImage?.[imageIdx]?.imageUrl}
                 alt=''
               />
