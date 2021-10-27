@@ -53,6 +53,7 @@ const routesAll = {
       { path: "/admin_inbox", component: AdminInbox },
       { path: "/admin_profile", component: AdminProfile },
       { path: "/admin_order", component: AdminOrder },
+
     ],
     redirect: "/",
   },
@@ -74,6 +75,7 @@ const routesAll = {
       { path: '/shoppingCart', component: ShoppingCart },
       { path: '/userOrderSummary/:orderId', component: UserOrderSummary },
       { path: "/contact_us", component: ContactUs },
+      { path: "/editMyProFile", component: EditMyProfile },
     ],
     redirect: "/",
   },
