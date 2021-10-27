@@ -24,7 +24,7 @@ function Favorite() {
       <AccountHeader />
       <div className='container' style={{ width: '65%' }}>
         <h4 className=' fw-bold d-flex justify-content-center mt-5 '>FAVORITE</h4>
-        <div className='d-flex row flex-wrap mt-5 mb-5'>
+        <div className='d-flex row flex-wrap mt-5 mb-5' style={{ minHeight: '20vw' }}>
           {productItems.map((item) => (
             <div className='col-4'>
               <ProductCardList
