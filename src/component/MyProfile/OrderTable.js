@@ -35,6 +35,7 @@ function OrderTable({ isAdminPage }) {
               customerName={item.customerName}
               date={item.date}
               amount={item.amount}
+              status={item.status}
               trackingNumber={item.trackingNumber}
             />
           ))}

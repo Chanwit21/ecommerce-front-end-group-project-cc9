@@ -4,6 +4,7 @@ export const orderData = [
     customerName: "Kim",
     date: "23 Oct 2021",
     amount: "$175",
+    status: "To ship",
     trackingNumber: "RT123451TH",
   },
   {
@@ -11,6 +12,7 @@ export const orderData = [
     customerName: "Kyley",
     date: "24 Sep 2021",
     amount: "$225",
+    status: "Delivery",
     trackingNumber: "RT123452TH",
   },
   {
@@ -18,6 +20,7 @@ export const orderData = [
     customerName: "Kris",
     date: "25 Nov 2021",
     amount: "$355",
+    status: "Delivery",
     trackingNumber: "RT123453TH",
   },
   {
@@ -25,6 +28,7 @@ export const orderData = [
     customerName: "Kendall",
     date: "26 Dec 2021",
     amount: "$250",
+    status: "To ship",
     trackingNumber: "RT123454TH",
   },
   {
@@ -32,6 +36,7 @@ export const orderData = [
     customerName: "Khloe",
     date: "26 Jan 2021",
     amount: "$100",
+    status: "Delivery",
     trackingNumber: "RT123455TH",
   },
   {
@@ -39,6 +44,7 @@ export const orderData = [
     customerName: "Kevin",
     date: "27 Feb 2021",
     amount: "$500",
+    status: "To ship",
     trackingNumber: "RT123456TH",
   },
 ];

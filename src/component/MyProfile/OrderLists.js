@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import editButton from "../../pic/icons/edit.png";
 import saveButton from "../../pic/icons/save.png";
 
-function OrderLists({ isAdminPage, id, customerName, date, amount, trackingNumber }) {
+function OrderLists({ isAdminPage, id, customerName, date, amount, status, trackingNumber }) {
   const [save, setSave] = useState(false);
-  const [isReadOnly, setIsReadOnly] = useState(true);
+  const [edit, setEdit] = useState(false);
   const [editTrackingNumber, setEditTrackingNumber] = useState("");
   const handleEdit = () => {
-    setIsReadOnly(false);
     setSave(true);
+    setEdit(true);
   };
   const handleEditTracking = (e) => {
-    setIsReadOnly(false);
     setEditTrackingNumber(e.target.value);
   };
+
+  const handleSave = () => {
+    setEdit(false);
+    setSave(false);
+  };
+
   return (
     <>
       <div className="row ">
@@ -30,26 +35,56 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, trackingNumbe
           <h6 className="fs-bold">{amount}</h6>
         </div>
         <div className="col-2">
-          <select style={{ backgroundColor: "#F4F4F4", color: "#000000", border: "none" }}>
-            <option style={{ backgroundColor: "#F4F4F4", color: "#000000", border: "none" }}>To ship</option>
-            <option>Delivery</option>
-          </select>
+          {isAdminPage ? (
+            <>
+              <select style={{ backgroundColor: "#F4F4F4", color: "#000000", border: "none" }}>
+                <option className="fw-bold rounded-3 " style={{ backgroundColor: "#E5F7EA", color: "#05B535" }}>
+                  To ship
+                </option>
+                <option className="fw-bold rounded-3" style={{ backgroundColor: "#FDF6E9", color: "#EDB543" }}>
+                  Delivery
+                </option>
+              </select>
+            </>
+          ) : (
+            <>
+              <span
+                className="fw-bold rounded-3"
+                style={{
+                  width: "70px",
+                  height: "30px",
+                  backgroundColor: `${status === "To ship" ? "#E5F7EA" : "#FDF6E9"}`,
+                  color: `${status === "To ship" ? "#05B535" : "#EDB543"}`,
+                  border: "none",
+                }}
+              >
+                {status}
+              </span>
+            </>
+          )}
         </div>
         <div className="col-2 d-flex justify-content-between">
-          <input
-            type="text"
-            className="fs-bold"
-            defaultValue={trackingNumber}
-            value={isAdminPage ? editTrackingNumber : trackingNumber}
-            style={{ width: "100px", height: "30px", border: "none" }}
-            onChange={handleEditTracking}
-          />
+          {isAdminPage ? (
+            edit ? (
+              <input
+                type="text"
+                className="fs-bold"
+                value={editTrackingNumber}
+                style={{ width: "100px", height: "30px", border: "none" }}
+                onChange={handleEditTracking}
+              />
+            ) : (
+              <span style={{ width: "100px", height: "30px", border: "none" }}>{editTrackingNumber}</span>
+            )
+          ) : (
+            <span style={{ width: "100px", height: "30px", border: "none" }}>{trackingNumber}</span>
+          )}
           {isAdminPage ? (
             <>
               {!save ? (
                 <img className="pt-0" src={editButton} alt="" onClick={handleEdit} />
               ) : (
-                <img className="pt-0" src={saveButton} alt="" />
+                <img className="pt-0" src={saveButton} alt="" onClick={handleSave} />
               )}
             </>
           ) : (
