@@ -1,13 +1,13 @@
 import React from "react";
-import AccountHeader from "../component/AccountHeader";
 import OrderTable from "../component/MyProfile/OrderTable";
 import ToShip from "../pic/icons/ToShip.png";
 import Deliver from "../pic/icons/deliver.png";
+import AdminHeader from "../component/AdminHeader";
 
 function AdminOrder() {
   return (
     <>
-      <AccountHeader />
+      <AdminHeader />
       <h5 className="container fw-bolder my-4">ORDERS</h5>
       <div className="container d-flex  justify-content-between">
         <div className="d-flex justify-content-between ">
@@ -21,7 +21,12 @@ function AdminOrder() {
                 To ship
               </h6>
             </div>
-            <img src={ToShip} alt="" style={{ width: "60px", height: "60px" }} className="mt-2" />
+            <img
+              src={ToShip}
+              alt=""
+              style={{ width: "60px", height: "60px" }}
+              className="mt-2"
+            />
           </div>
           <div
             className="me-2 border rounded-3 d-flex justify-content-around"
@@ -33,7 +38,12 @@ function AdminOrder() {
                 Delivery
               </h6>
             </div>
-            <img src={Deliver} alt="" style={{ width: "60px", height: "60px" }} className="mt-2" />
+            <img
+              src={Deliver}
+              alt=""
+              style={{ width: "60px", height: "60px" }}
+              className="mt-2"
+            />
           </div>
         </div>
         <div className="me-5 mt-5  ">

@@ -8,7 +8,10 @@ function Profile({ button }) {
         <div className="row my-5 mx-1 p-0">
           <div className="col-5" style={{ width: "175px", height: "175px" }}>
             <img src={Avartar} alt="avartar" className="rounded-circle ms-1" />
-            <h6 className="ms-4 my-3" style={{ width: "120px", cursor: "pointer" }}>
+            <h6
+              className="ms-4 my-3"
+              style={{ width: "120px", cursor: "pointer" }}
+            >
               Change picture
             </h6>
           </div>
@@ -17,45 +20,78 @@ function Profile({ button }) {
               <label className="col fw-bold">FISRTNAME</label>
               <input
                 className="col rounded"
-                style={{ backgroundColor: "#FEF3F5", border: "1px solid #FFD6DC", width: "500px", height: "35px" }}
+                style={{
+                  backgroundColor: "#FEF3F5",
+                  border: "1px solid #FFD6DC",
+                  width: "500px",
+                  height: "35px",
+                }}
               />
             </div>
             <div className="row mb-3">
               <label className="col fw-bold">LASTNAME</label>
               <input
                 className="col rounded"
-                style={{ backgroundColor: "#FEF3F5", border: "1px solid #FFD6DC", width: "500px", height: "35px" }}
+                style={{
+                  backgroundColor: "#FEF3F5",
+                  border: "1px solid #FFD6DC",
+                  width: "500px",
+                  height: "35px",
+                }}
               />
             </div>
             <div className="row mb-3">
               <label className="col fw-bold">PHONE</label>
               <input
                 className="col rounded"
-                style={{ backgroundColor: "#FEF3F5", border: "1px solid #FFD6DC", width: "500px", height: "35px" }}
+                style={{
+                  backgroundColor: "#FEF3F5",
+                  border: "1px solid #FFD6DC",
+                  width: "500px",
+                  height: "35px",
+                }}
               />
             </div>
             <div className="row mb-3">
               <label className="col fw-bold">EMAIL</label>
               <input
                 className="col rounded"
-                style={{ backgroundColor: "#FEF3F5", border: "1px solid #FFD6DC", width: "500px", height: "35px" }}
+                style={{
+                  backgroundColor: "#FEF3F5",
+                  border: "1px solid #FFD6DC",
+                  width: "500px",
+                  height: "35px",
+                }}
               />
             </div>
             <div className="row mb-3 ">
               <label className="col fw-bold">BIRTHDATE</label>
               <input
                 className="col rounded"
-                style={{ backgroundColor: "#FEF3F5", border: "1px solid #FFD6DC", width: "500px", height: "35px" }}
+                style={{
+                  backgroundColor: "#FEF3F5",
+                  border: "1px solid #FFD6DC",
+                  width: "500px",
+                  height: "35px",
+                }}
               />
             </div>
             <div className="row mb-3">
               <label className="col fw-bold">GENDER</label>
               <input
                 className="col rounded"
-                style={{ backgroundColor: "#FEF3F5", border: "1px solid #FFD6DC", width: "500px", height: "35px" }}
+                style={{
+                  backgroundColor: "#FEF3F5",
+                  border: "1px solid #FFD6DC",
+                  width: "500px",
+                  height: "35px",
+                }}
               />
             </div>
-            <button className="btn btn-dark d-flex justify-content-center mt-5" style={{ cursor: "pointer" }}>
+            <button
+              className="btn btn-dark d-flex justify-content-center mt-5"
+              style={{ cursor: "pointer" }}
+            >
               {button}
             </button>
           </div>

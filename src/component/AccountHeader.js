@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function AccountHeader() {
   return (
@@ -15,7 +16,7 @@ function AccountHeader() {
           }}
           className=" container d-flex flex-column justify-content-between "
         >
-          <h3 className="fw-bold mt-5">MY PROFILE</h3>
+          <h3 className="fw-bold mt-5">MY ACCOUNT</h3>
           <div className=" ">
             <button
               className="btn me-3"
@@ -25,7 +26,15 @@ function AccountHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">MY ACCOUNT</span>
+              <span className="fw-bold">
+                <Link
+                  className="nav-link"
+                  to="/myProFile"
+                  style={{ color: "inherit" }}
+                >
+                  MY PROFILE
+                </Link>
+              </span>
             </button>
             <button
               className="btn me-3"
@@ -35,7 +44,11 @@ function AccountHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">MY ORDERS</span>
+              <span className="fw-bold">
+                <Link className="nav-link" to="#" style={{ color: "inherit" }}>
+                  MY ORDERS
+                </Link>
+              </span>
             </button>
             <button
               className="btn me-3"
@@ -45,7 +58,15 @@ function AccountHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">MY ADDRESS</span>
+              <span className="fw-bold">
+                <Link
+                  className="nav-link"
+                  to="/myAddress"
+                  style={{ color: "inherit" }}
+                >
+                  MY ADDRESS
+                </Link>
+              </span>
             </button>
             <button
               className="btn me-3"
@@ -55,7 +76,15 @@ function AccountHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">PAYMENT</span>
+              <span className="fw-bold">
+                <Link
+                  className="nav-link"
+                  to="/user_payment"
+                  style={{ color: "inherit" }}
+                >
+                  PAYMENT
+                </Link>
+              </span>
             </button>
             <button
               className="btn me-3"
@@ -65,7 +94,15 @@ function AccountHeader() {
                 backgroundColor: "#FFD6DC",
               }}
             >
-              <span className="fw-bold">FAVORITE ITEMS</span>
+              <span className="fw-bold">
+                <Link
+                  className="nav-link"
+                  to="/favorite"
+                  style={{ color: "inherit" }}
+                >
+                  FAVORITE
+                </Link>
+              </span>
             </button>
           </div>
         </div>
