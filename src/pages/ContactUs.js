@@ -1,9 +1,54 @@
-import React, { useEffect } from 'react';
+import axios from '../config/axios';
+import React, { useEffect, useState } from 'react';
+import { useAuthContext } from '../context/AuthContext';
+import { validateEmail, validateFirstName, validateLastName, validateMessage } from '../service/validateForm';
+import { useHistory } from 'react-router';
 
 function ContactUs() {
+  const { state: { user } } = useAuthContext()
+  const history = useHistory();
+  const [contactData, setContactData] = useState({
+    firstName: user ? user.firstName : '',
+    lastName: user ? user.lastName : '',
+    email: user ? user.email : '',
+    message: '',
+  })
+  const [error, setError] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    message: '',
+  })
+  console.log(`user`, user)
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const onChangeData = e => {
+    setContactData(cur => ({ ...cur, [e.target.id]: e.target.value }))
+  }
+
+  const handleClickSend = async () => {
+    const errorFirstName = validateFirstName(contactData.firstName);
+    const errorLastName = validateLastName(contactData.lastName);
+    const errorEmail = validateEmail(contactData.email);
+    const errorMessage = validateMessage(contactData.message);
+
+    setError({
+      ...error,
+      firstName: errorFirstName,
+      lastName: errorLastName,
+      email: errorEmail,
+      message: errorMessage,
+    });
+
+    if (errorFirstName || errorLastName || errorEmail || errorMessage) {
+      return;
+    }
+    await axios.post('/contactUs', contactData)
+    alert('Sending Message Successful')
+    history.push('/')
+  }
 
   return (
     <div
@@ -33,33 +78,39 @@ function ContactUs() {
             <label htmlFor='firstName' className='mb-1'>
               First Name
             </label>
-            <input type='text' className={`form-control`} id='firstName' placeholder='First Name' />
+            <input onChange={onChangeData} value={contactData.firstName} type='text' className={`form-control ${error.firstName ? ' is-invalid' : ''}`} id='firstName' placeholder='First Name' />
+            {error.firstName ? <div className='invalid-feedback'>{error.firstName}</div> : null}
           </div>
           <div className='col-6 mb-4'>
             <label htmlFor='lastName' className='mb-1'>
               Last Name
             </label>
-            <input type='text' className={`form-control`} id='lastName' placeholder='Last Name' />
+            <input onChange={onChangeData} value={contactData.lastName} type='text' className={`form-control ${error.lastName ? ' is-invalid' : ''}`} id='lastName' placeholder='Last Name' />
+            {error.lastName ? <div className='invalid-feedback'>{error.lastName}</div> : null}
           </div>
           <div className='col-12 mb-4'>
             <label htmlFor='email' className='mb-1'>
               Email Adress
             </label>
-            <input type='text' className={`form-control`} id='email' placeholder='Email Adress' />
+            <input onChange={onChangeData} value={contactData.email} type='text' className={`form-control ${error.email ? ' is-invalid' : ''}`} id='email' placeholder='Email Adress' />
+            {error.email ? <div className='invalid-feedback'>{error.email}</div> : null}
           </div>
           <div className='col-12 mb-4'>
             <label htmlFor='message' className='mb-1'>
               Your message
             </label>
             <textarea
-              className='form-control'
+              className={`form-control ${error.message ? ' is-invalid' : ''}`}
               id='message'
               style={{ height: '5.520833333333333vw' }}
               placeholder='Message here...'
+              onChange={onChangeData}
+              value={contactData.message}
             ></textarea>
+            {error.message ? <div className='invalid-feedback'>{error.message}</div> : null}
           </div>
           <div className='col-12 mb-4'>
-            <button className='btn btn-dark' style={{ width: '100%' }}>
+            <button className='btn btn-dark' style={{ width: '100%' }} onClick={handleClickSend}>
               SEND MESSAGE
             </button>
           </div>
