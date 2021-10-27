@@ -79,7 +79,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                 <div className='mb-2'>
                   <img
                     className={`${index === imageIdx ? 'border border-dark' : ''}`}
-                    style={{ width: '4vw', height: '4vw' }}
+                    style={{ width: '4vw', height: '4vw', objectFit: 'cover' }}
                     src={item?.imageUrl}
                     alt=''
                     onClick={() => {
@@ -89,7 +89,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                 </div>
               ))}
             </div>
-            <div className='col-5'>
+            <div className='col-5' style={{ overflow: 'hidden' }}>
               <img
                 className='border'
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -109,8 +109,9 @@ function ProductDetail({ product, IsFavorite, productImage }) {
               <div className='d-flex'>
                 {product.map((item) => (
                   <div
-                    className={`me-2 ${item.color === productImage[imageIdx]?.Product?.color ? 'border border-dark border-2' : ''
-                      }`}
+                    className={`me-2 ${
+                      item.color === productImage[imageIdx]?.Product?.color ? 'border border-dark border-2' : ''
+                    }`}
                     onClick={() => setSelectedImg(productImage.find((itemP) => itemP.Product.color === item.color).id)}
                     style={{
                       width: '40px',
@@ -127,7 +128,9 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                   </button>
                   <span>{numberOfProduct}</span>
                   <button
-                    onClick={() => setNumberOfProduct((cur) => (cur < productImage[imageIdx].Product.countStock ? cur + 1 : cur))}
+                    onClick={() =>
+                      setNumberOfProduct((cur) => (cur < productImage[imageIdx].Product.countStock ? cur + 1 : cur))
+                    }
                     className='btn'
                   >
                     +
