@@ -5,6 +5,20 @@ import ProductCardList from '../component/ProductCard/ProductCardList';
 import axios from '../config/axios';
 import Pagination from '../component/Pagination';
 
+const genObjectToFilter = (filterValue) => {
+  const obj = {};
+  for (let key in filterValue) {
+    const result = [];
+    for (let key1 in filterValue[key]) {
+      if (filterValue[key][key1]) {
+        result.push(key1);
+      }
+    }
+    obj[key] = result;
+  }
+  return obj;
+};
+
 function AllProduct() {
   const [product, setProduct] = useState([]);
   const [filterValue, setFilterValue] = useState({ FACE: {}, SHEEK: {}, LIPS: {}, EYES: {}, BODY: {} });
@@ -17,7 +31,9 @@ function AllProduct() {
     const fetchProductByCategory = async () => {
       try {
         const res = await axios.get(
-          `/product/all_product/products?category=${params.category}&offset=${9 * (onPage - 1)}`
+          `/product/all_product/products?category=${params.category}&offset=${9 * (onPage - 1)}&filter=${JSON.stringify(
+            { FACE: {}, SHEEK: {}, LIPS: {}, EYES: {}, BODY: {} }
+          )}`
         );
         setProduct(res.data.products);
         setCountProduct(res.data.count);
@@ -30,12 +46,31 @@ function AllProduct() {
         ? ['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY']
         : ['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY'].filter((item) => item.toLowerCase() === params.category)
     );
+
     fetchProductByCategory();
-  }, [params, onPage]);
+  }, [params]);
 
   useEffect(() => {
     setOnPage(1);
+    setFilterValue({ FACE: {}, SHEEK: {}, LIPS: {}, EYES: {}, BODY: {} });
   }, [params]);
+
+  useEffect(() => {
+    const fetchProductByCategoryFilter = async () => {
+      try {
+        const res = await axios.get(
+          `/product/all_product/products?category=${params.category}&offset=${9 * (onPage - 1)}&filter=${JSON.stringify(
+            genObjectToFilter(filterValue)
+          )}`
+        );
+        setProduct(res.data.products);
+        setCountProduct(res.data.count);
+      } catch (err) {
+        console.dir(err);
+      }
+    };
+    fetchProductByCategoryFilter();
+  }, [filterValue, onPage]);
 
   return (
     <>
