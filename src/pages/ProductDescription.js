@@ -7,14 +7,18 @@ import '../css/productDescription.css';
 
 function ProductDescription() {
   const { productName } = useParams();
-  const { state: { user } } = useAuthContext()
+  const {
+    state: { user },
+  } = useAuthContext();
   const [product, setProduct] = useState([]);
   const [IsFavorite, setIsFavorite] = useState(false);
   const [productImage, setProductImage] = useState([]);
 
   useEffect(() => {
     const run = async () => {
-      const { data: { product, productImage } } = await axios.get(`/product/byProductName/${productName}`)
+      const {
+        data: { product, productImage },
+      } = await axios.get(`/product/byProductName/${productName}`);
       if (user) {
         const {
           data: { IsFavorite },
