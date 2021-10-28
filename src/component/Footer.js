@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import visaIcon from '../pic/icons/294654_visa_icon.svg';
 import masterCardIcon from '../pic/icons/380809_card_master_mastercard_icon.svg';
 import facebookIcon from '../pic/icons/facebook.png';
@@ -30,14 +30,14 @@ function Footer() {
 
             <ul className='navbar-nav'>
               <li className='nav-item'>
-                <NavLink to='#' className='nav-link' style={{ color: '#FFFFFF' }}>
+                <Link to='/termCondition' className='nav-link' style={{ color: '#FFFFFF' }}>
                   Terms of Services
-                </NavLink>
+                </Link>
               </li>
               <li className='nav-item'>
-                <NavLink to='/contact_us' className='nav-link' style={{ color: '#FFFFFF' }}>
+                <Link to='/contact_us' className='nav-link' style={{ color: '#FFFFFF' }}>
                   Contact Us
-                </NavLink>
+                </Link>
               </li>
             </ul>
           </div>

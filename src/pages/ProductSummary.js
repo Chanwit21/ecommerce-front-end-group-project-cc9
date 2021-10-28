@@ -9,6 +9,7 @@ import AdminHeader from '../component/AdminHeader';
 
 function ProductSummary() {
   const [products, setProducts] = useState([]);
+  const [countProduct, setCountProduct] = useState(0);
   const [refresh, setRefresh] = useState(false);
   const [filterValue, setFilterValue] = useState({ FACE: {}, SHEEK: {}, LIPS: {}, EYES: {}, BODY: {} });
   const [allowFilter, setAllowFilter] = useState([]);
@@ -18,12 +19,12 @@ function ProductSummary() {
 
   useEffect(() => {
     const run = async () => {
-      const {
-        data: { products },
-      } = await axios.get(
+      const res = await axios.get(
         `/product?filter=${JSON.stringify(genObjectToFilter(filterValue))}&offset=${7 * (onPage - 1)}`
       );
-      setProducts(products);
+      console.log(res.data);
+      setCountProduct(res.data.count.countProduct);
+      setProducts(res.data.products);
     };
 
     if (isFirstRender.current) {
@@ -32,7 +33,11 @@ function ProductSummary() {
     }
 
     run();
-  }, [refresh]);
+  }, [refresh, filterValue, onPage]);
+
+  useEffect(() => {
+    setOnPage(1);
+  }, [filterValue]);
 
   const productsTableBody = products?.map((product) => {
     return <ProductSummaryList key={product.id} product={product} setRefresh={setRefresh} />;
@@ -50,6 +55,7 @@ function ProductSummary() {
             </Link>
           </button>
         </div>
+<<<<<<< HEAD
         <div className='row'>
           <div className='col-2'>
             <FilterProduct allowFilter={allowFilter} filterValue={filterValue} setFilterValue={setFilterValue} />
@@ -84,9 +90,42 @@ function ProductSummary() {
               <tbody>{productsTableBody}</tbody>
             </table>
           </div>
+=======
+        <div className='col-10' style={{ minHeight: '55vw' }}>
+          <table style={{ width: '100%' }}>
+            <thead>
+              <tr className='bg-dark border border-dark'>
+                <th className='text-white p-2 text-center' colSpan='1'>
+                  PRODUCT ID
+                </th>
+                <th className='text-white p-2 text-center' colSpan='2'>
+                  PRODUCT NAME
+                </th>
+                <th className='text-white p-2 text-center' colSpan='1'>
+                  COLOR
+                </th>
+                <th className='text-white p-2 text-center' colSpan='1'>
+                  CATEGORY
+                </th>
+                <th className='text-white p-2 text-center' colSpan='1'>
+                  STOCK
+                </th>
+                <th className='text-white p-2 text-center' colSpan='1'>
+                  READY TO SHIP
+                </th>
+                <th className='text-white p-2 text-center' colSpan='2'>
+                  ACTION
+                </th>
+              </tr>
+            </thead>
+            <tbody>{productsTableBody}</tbody>
+          </table>
+>>>>>>> feature_SearchInNav
         </div>
         <div className='col-12 mt-3 d-flex justify-content-end'>
-          <Pagination countPage={4} onPage={onPage} setOnPage={setOnPage} />
+          {countProduct !== 0 ? (
+            <Pagination countPage={Math.ceil(countProduct / 7)} onPage={onPage} setOnPage={setOnPage} />
+          ) : null}
         </div>
       </div>
     </>
