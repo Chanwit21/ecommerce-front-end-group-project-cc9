@@ -32,13 +32,13 @@ function Pagination({ countPage, onPage, setOnPage }) {
       <ul className='pagination'>
         <li className={`page-item${onPage === 1 ? ' disabled' : ''}`}>
           <Link to='#' className='page-link' onClick={handleDecreasePage}>
-            Previous
+            <span aria-hidden='true'>&laquo;</span>
           </Link>
         </li>
         {pagination}
         <li className={`page-item${onPage === countPage ? ' disabled' : ''}`}>
           <Link to='#' className='page-link' onClick={handleIncreasePage}>
-            Next
+            <span aria-hidden='true'>&raquo;</span>
           </Link>
         </li>
       </ul>
