@@ -1,8 +1,31 @@
-import React, { useState } from "react";
-import { orderData } from "../../mocks/orderData";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import OrderLists from "./OrderLists";
 
 function OrderTable({ isAdminPage }) {
+  const [orderData, setOrderData] = useState([]);
+  useEffect(() => {
+    const fetchOrderItem = async () => {
+      try {
+        const res = await axios.get("/orders/");
+        setOrderData(res.data.orderItems);
+        // console.log(res);
+        // console.log(res.data.orderItems);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchOrderItem();
+  }, []);
+  console.log(orderData);
+
+  // amount: "150.00"
+  // date: "2021-10-26T00:00:00.000Z"
+  // firstname: "Nat"
+  // ordertId: "1"
+  // shippingStatus: "To Ship"
+  // shippingTrackingId: "-"
+
   return (
     <>
       <div className={`container mb-5 ${isAdminPage ? "" : "mt-5"}`}>
@@ -30,13 +53,16 @@ function OrderTable({ isAdminPage }) {
           {orderData.map((item) => (
             <OrderLists
               isAdminPage={isAdminPage}
-              key={item.id}
-              id={item.id}
-              customerName={item.customerName}
-              date={item.date}
-              amount={item.amount}
-              status={item.status}
-              trackingNumber={item.trackingNumber}
+              key={item.orderId}
+              id={item.orderId}
+              customerName={item.firstname}
+              date={new Date(item.date).toLocaleDateString("en-US")}
+              amount={new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+              }).format(item.amount)}
+              status={item.shippingStatus}
+              trackingNumber={item.shippingTrackingId}
             />
           ))}
         </div>

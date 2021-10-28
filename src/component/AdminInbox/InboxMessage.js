@@ -16,7 +16,7 @@ function InboxMessage({ message, setOnPage, setRefresh }) {
           <div className="accordion-item">
             <h2 className="accordion-header" id="headingOne">
               <button
-                className="accordion-button"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target={`#ss${message.id}`}

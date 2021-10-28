@@ -78,7 +78,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
             <div
               className='col-1 overflow-auto scroll-bar'
               style={{
-                maxHeight: '33.6vw',
+                maxHeight: '30.6vw',
               }}
             >
               {productImage.map((item, index) => (

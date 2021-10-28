@@ -7,16 +7,12 @@
 
 .scroll-bar::-webkit-scrollbar {
   width: 0.5vw;
+  border-radius: 15vw;
   background-color: #ffd6dc;
 }
 
 .scroll-bar::-webkit-scrollbar-thumb {
   height: 1px;
-  background-color: #000;
-}
-
-.scroll-bar::-webkit-scrollbar-thumb {
-  height: 1px;
-  background-color: #000;
-  border-radius: 5vw;
+  background-color: #adadadad;
+  border-radius: 15vw;
 }
