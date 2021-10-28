@@ -16,12 +16,19 @@ function Pagination({ countPage, onPage, setOnPage }) {
     e.preventDefault();
     setOnPage((cur) => cur - 1);
   };
+  const start = onPage === 1 ? onPage - 1 : onPage === countPage ? onPage - 3 : onPage - 2;
+  const end = onPage === 1 ? onPage + 2 : onPage + 1;
 
-  const pagination = new Array(countPage).fill(null).map((item, index) => {
+  const arrayOfPage = new Array(countPage)
+    .fill(null)
+    .map((item, index) => index + 1)
+    .slice(start, end);
+
+  const pagination = arrayOfPage.map((index) => {
     return (
-      <li className={`page-item${index + 1 === onPage ? ' active' : ''}`} key={index}>
-        <Link to='#' className='page-link' onClick={(e) => handleClickPage(index + 1, e)}>
-          {index + 1}
+      <li className={`page-item${index === onPage ? ' active' : ''}`} key={index}>
+        <Link to='#' className='page-link' onClick={(e) => handleClickPage(index, e)}>
+          {index}
         </Link>
       </li>
     );
