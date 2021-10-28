@@ -20,10 +20,10 @@ function OrderTable({ isAdminPage, orderData }) {
             <div className='col-2'>
               <h6 className='fs-bold'>Amount</h6>
             </div>
-            <div className='col-2'>
+            <div className='col-1'>
               <h6 className='fs-bold'>Status</h6>
             </div>
-            <div className='col-2'>
+            <div className='col-3'>
               <h6 className='fs-bold'>Tracking Number</h6>
             </div>
           </div>

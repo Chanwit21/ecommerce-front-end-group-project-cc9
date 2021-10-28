@@ -106,7 +106,7 @@ function NavHeader() {
                             src={user.image}
                             alt='user_profile'
                             className='rounded-circle m-0 p-0'
-                            style={{ width: '1.3vw' }}
+                            style={{ width: '1.3vw', height: '1.3vw', objectFit: 'cover' }}
                           />
                         ) : (
                           <i className='bi bi-person-circle'></i>

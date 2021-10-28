@@ -86,7 +86,7 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
         <div className='col-2'>
           <h6 className='fs-bold'>{amount}</h6>
         </div>
-        <div className='col-2'>
+        <div className='col-1'>
           {isAdminPage ? (
             edit ? (
               editStatus ? (
@@ -182,30 +182,35 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
                   type='text'
                   className='fs-bold'
                   value={editTrackingNumber}
-                  style={{ width: '100px', height: '30px', border: 'none' }}
+                  style={{ width: '80%', height: '30px', border: 'none' }}
                   onChange={handleEditTracking}
                 />
               ) : (
-                <span style={{ width: '100px', height: '30px', border: 'none' }}>{editTrackingNumber}</span>
+                <span style={{ height: '30px', border: 'none' }}>{editTrackingNumber}</span>
               )
             ) : (
-              <span style={{ width: '100px', height: '30px', border: 'none' }}>{editTrackingNumber}</span>
+              <span style={{ height: '30px', border: 'none' }}>{editTrackingNumber}</span>
             )
           ) : (
-            <span style={{ width: '100px', height: '30px', border: 'none' }}>{trackingNumber}</span>
-          )}
-          {isAdminPage ? (
-            <>
-              {!save ? (
-                <img className='pt-0' src={editButton} alt='' onClick={handleEdit} />
-              ) : (
-                <img className='pt-0' src={saveButton} alt='' onClick={handleSave} />
-              )}
-            </>
-          ) : (
-            ''
+            <span style={{ height: '30px', border: 'none' }}>{trackingNumber}</span>
           )}
         </div>
+        {isAdminPage ? (
+          <div className='col-1'>
+            {!save ? (
+              <button className='btn btn-outline-primary' onClick={handleEdit}>
+                <i className='bi bi-pencil-square'></i>
+              </button>
+            ) : (
+              <button className='btn btn-outline-success' onClick={handleSave}>
+                <i className='bi bi-save'></i>
+              </button>
+            )}
+          </div>
+        ) : (
+          ''
+        )}
+
         <hr className='mt-2' />
       </div>
     </>
