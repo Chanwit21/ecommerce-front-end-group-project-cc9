@@ -3,12 +3,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FilterProduct from '../component/FilterProduct';
 import ProductSummaryList from '../component/ProductSummary/ProductSummaryList';
+import Pagination from '../component/Pagination';
+import { genObjectToFilter } from '../service/genObjToFilter';
 
 function ProductSummary() {
   const [products, setProducts] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [filterValue, setFilterValue] = useState({ FACE: {}, SHEEK: {}, LIPS: {}, EYES: {}, BODY: {} });
   const [allowFilter, setAllowFilter] = useState([]);
+  const [onPage, setOnPage] = useState(1);
 
   const isFirstRender = useRef(true);
 
@@ -16,15 +19,17 @@ function ProductSummary() {
     const run = async () => {
       const {
         data: { products },
-      } = await axios.get('/product');
-      products.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
-      console.log(`products`, products);
+      } = await axios.get(
+        `/product?filter=${JSON.stringify(genObjectToFilter(filterValue))}&offset=${7 * (onPage - 1)}`
+      );
       setProducts(products);
     };
+
     if (isFirstRender.current) {
       setAllowFilter(['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY']);
       isFirstRender.current = false;
     }
+
     run();
   }, [refresh]);
 
@@ -75,6 +80,9 @@ function ProductSummary() {
             </thead>
             <tbody>{productsTableBody}</tbody>
           </table>
+        </div>
+        <div className='col-12 mt-3 d-flex justify-content-end'>
+          <Pagination countPage={4} onPage={onPage} setOnPage={setOnPage} />
         </div>
       </div>
     </div>
