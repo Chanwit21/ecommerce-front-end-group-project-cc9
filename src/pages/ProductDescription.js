@@ -7,22 +7,22 @@ import '../css/productDescription.css';
 
 function ProductDescription() {
   const { productName } = useParams();
-  const { state: { user } } = useAuthContext()
+  const {
+    state: { user },
+  } = useAuthContext();
   const [product, setProduct] = useState([]);
   const [IsFavorite, setIsFavorite] = useState(false);
   const [productImage, setProductImage] = useState([]);
-  console.log(`user`, user);
 
   useEffect(() => {
     const run = async () => {
-      const { data: { product, productImage } } = await axios.get(`/product/${productName}`)
-      console.log(`product`, product)
-      console.log(`productImage`, productImage)
+      const {
+        data: { product, productImage },
+      } = await axios.get(`/product/byProductName/${productName}`);
       if (user) {
         const {
           data: { IsFavorite },
-        } = await axios.post(`/product/checkFavorite`, { productName: product?.[0]?.name });
-        console.log(`IsFavorite`, IsFavorite);
+        } = await axios.post(`/product/checkFavorite`, { productName: productImage?.[0]?.Product?.name });
         setIsFavorite(IsFavorite);
       }
       setProduct(product);
@@ -37,7 +37,6 @@ function ProductDescription() {
       <div className='p-4' style={{ backgroundColor: '#FEF6F8' }}>
         <div className='accordion' id='accordionPanelsStayOpenExample'>
           <div className='container'>
-
             {/* product info*/}
             <div className='border-0'>
               <div className='accordion-item'>
@@ -59,14 +58,13 @@ function ProductDescription() {
                   aria-labelledby='panelsStayOpen-headingOne'
                 >
                   <div className='accordion-body'>
-                    <p>{product?.[0]?.description}</p>
+                    <p>{productImage?.[0]?.Product?.description}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className='container'>
-            {' '}
             {/* ingreduents*/}
             <div className=' my-4 '>
               <div className='accordion-item'>
@@ -88,14 +86,13 @@ function ProductDescription() {
                   aria-labelledby='panelsStayOpen-headingOne'
                 >
                   <div className='accordion-body'>
-                    <p>{product?.[0]?.description}</p>
+                    <p>{productImage?.[0]?.Product?.ingredient}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className='container'>
-            {' '}
             {/*delivery*/}
             <div className=' my-4 '>
               <div className='accordion-item'>
@@ -128,7 +125,6 @@ function ProductDescription() {
             </div>
           </div>
           <div className='container'>
-            {' '}
             {/* payment and security*/}
             <div className=' my-4'>
               <div className='accordion-item '>

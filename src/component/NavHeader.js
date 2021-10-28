@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../context/CartContext';
 import Logo from '../pic/icons/mmg-logo.svg';
+import { useHistory } from 'react-router-dom';
 
 function NavHeader() {
   const {
     state: { countCart },
   } = useCartContext();
+
+  const [search, setSearch] = useState('');
+  const buttonSearchRef = useRef();
+  const history = useHistory();
+
+  const handleChangeSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleSubmitSearch = (e) => {
+    e.preventDefault();
+    buttonSearchRef.current.click();
+    setSearch('');
+    history.push({ pathname: `/allProduct/search:${search}` });
+  };
+
   return (
     <>
       <div className='container-fluid text-center p-1' style={{ backgroundColor: '#FFD6DC' }}>
@@ -78,6 +95,7 @@ function NavHeader() {
                     className='btn px-0 position-relative'
                     data-bs-toggle='collapse'
                     data-bs-target='#collapseExample'
+                    ref={buttonSearchRef}
                   >
                     <i className='bi bi-search'></i>
                   </button>
@@ -85,14 +103,14 @@ function NavHeader() {
               </li>
               <li className='nav-item'>
                 <button type='button' className='btn px-0 position-relative'>
-                  <Link className='nav-link active' to='#'>
+                  <Link className='nav-link active' to='/favorite'>
                     <i className='bi bi-heart'></i>
                   </Link>
                 </button>
               </li>
               <li className='nav-item'>
                 <button type='button' className='btn px-0 position-relative'>
-                  <Link className='nav-link active' to='#'>
+                  <Link className='nav-link active' to='/shoppingCart'>
                     <i className='bi bi-handbag'></i>
                     <span
                       className='position-absolute translate-middle badge rounded-pill bg-danger'
@@ -109,7 +127,7 @@ function NavHeader() {
         </div>
       </nav>
       <div className='collapse container border-0' id='collapseExample'>
-        <form>
+        <form onSubmit={handleSubmitSearch}>
           <div className='d-flex flex-row'>
             <div className='input-group my-3'>
               <span className='input-group-text border-end-0' style={{ backgroundColor: '#FEF3F5' }}>
@@ -120,6 +138,8 @@ function NavHeader() {
                 className='form-control border-start-0 border-end-0'
                 placeholder='Search'
                 style={{ backgroundColor: '#FEF3F5' }}
+                value={search}
+                onChange={handleChangeSearch}
               />
               <span className='input-group-text' style={{ backgroundColor: '#FEF3F5', borderLeft: 'none' }}>
                 <button type='button' className='btn p-0' data-bs-toggle='collapse' data-bs-target='#collapseExample'>

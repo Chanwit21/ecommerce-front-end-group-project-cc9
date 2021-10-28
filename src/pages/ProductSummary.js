@@ -1,5 +1,5 @@
 import axios from '../config/axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FilterProduct from '../component/FilterProduct';
 import ProductSummaryList from '../component/ProductSummary/ProductSummaryList';
@@ -7,6 +7,10 @@ import ProductSummaryList from '../component/ProductSummary/ProductSummaryList';
 function ProductSummary() {
   const [products, setProducts] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [filterValue, setFilterValue] = useState({ FACE: {}, SHEEK: {}, LIPS: {}, EYES: {}, BODY: {} });
+  const [allowFilter, setAllowFilter] = useState([]);
+
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const run = async () => {
@@ -17,6 +21,10 @@ function ProductSummary() {
       console.log(`products`, products);
       setProducts(products);
     };
+    if (isFirstRender.current) {
+      setAllowFilter(['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY']);
+      isFirstRender.current = false;
+    }
     run();
   }, [refresh]);
 
@@ -36,7 +44,7 @@ function ProductSummary() {
       </div>
       <div className='row'>
         <div className='col-2'>
-          <FilterProduct />
+          <FilterProduct allowFilter={allowFilter} filterValue={filterValue} setFilterValue={setFilterValue} />
         </div>
         <div className='col-10'>
           <table style={{ width: '100%' }}>

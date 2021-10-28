@@ -16,7 +16,7 @@ function Home(filtered) {
   useEffect(() => {
     const run = async () => {
       try {
-        const { data: { product, productImage } } = await axios.get(`/product/newAvailable/newAvailable`) //input productName
+        const { data: { product, productImage } } = await axios.get(`/product/arrival`) //input productName
         console.log(`product`, product)
         if (user && product.length) {
           const { data: { IsFavorite } } = await axios.post(`/product/checkFavorite`, { productName: product?.[0]?.name });

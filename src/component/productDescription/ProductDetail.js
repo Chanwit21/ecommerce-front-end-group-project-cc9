@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useCartContext } from '../../context/CartContext';
+import '../../css/scrollBar.css';
 
 function ProductDetail({ product, IsFavorite, productImage }) {
   const [numberOfProduct, setNumberOfProduct] = useState(1);
@@ -10,7 +11,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
     state: { carts },
     dispatch,
   } = useCartContext();
-  console.log(carts);
+  // console.log(carts);
   const [selectedImg, setSelectedImg] = useState('');
 
   useEffect(() => {
@@ -41,16 +42,26 @@ function ProductDetail({ product, IsFavorite, productImage }) {
   };
 
   const handleAddToCart = async () => {
-    const cartItemIdx = carts.findIndex((item) => item.productId === productImage[imageIdx].Product.id);
-    if (cartItemIdx === -1) {
-      await axios.post('/product/cart', { quality: numberOfProduct, productId: productImage[imageIdx].Product.id });
-      alert('add to cart successful');
-    } else {
-      const cartItemUpdate = { ...carts[cartItemIdx], quality: carts[cartItemIdx].quality + numberOfProduct };
-      dispatch({
-        type: 'UPDATE_CART',
-        payload: { product: cartItemUpdate, productId: productImage[imageIdx].Product.id },
-      });
+    try {
+      setNumberOfProduct(1);
+      const cartItemIdx = carts.findIndex((item) => item.productId === productImage[imageIdx].Product.id);
+      if (cartItemIdx === -1) {
+        const res = await axios.post('/carts', {
+          quality: numberOfProduct,
+          productId: productImage[imageIdx].Product.id,
+        });
+        dispatch({ type: 'ADD_CART', payload: { product: res.data.cartItem } });
+        alert('add to cart successful');
+      } else {
+        const cartItemUpdate = { ...carts[cartItemIdx], quality: carts[cartItemIdx].quality + numberOfProduct };
+        await axios.post(`/carts/cart_item/${cartItemUpdate.id}`, { quality: cartItemUpdate.quality });
+        dispatch({
+          type: 'UPDATE_CART',
+          payload: { product: cartItemUpdate, productId: productImage[imageIdx].Product.id },
+        });
+      }
+    } catch (err) {
+      console.dir(err);
     }
   };
 
@@ -64,12 +75,17 @@ function ProductDetail({ product, IsFavorite, productImage }) {
       >
         <div className='container'>
           <div className='row my-5'>
-            <div className='col-1'>
+            <div
+              className='col-1 overflow-auto scroll-bar'
+              style={{
+                maxHeight: '30.6vw',
+              }}
+            >
               {productImage.map((item, index) => (
                 <div className='mb-2'>
                   <img
                     className={`${index === imageIdx ? 'border border-dark' : ''}`}
-                    style={{ width: '4vw', height: '4vw' }}
+                    style={{ width: '4vw', height: '4vw', objectFit: 'cover' }}
                     src={item?.imageUrl}
                     alt=''
                     onClick={() => {
@@ -79,10 +95,10 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                 </div>
               ))}
             </div>
-            <div className='col-5'>
+            <div className='col-5' style={{ overflow: 'hidden' }}>
               <img
                 className='border'
-                style={{ width: '33.6vw', height: '33.6vw', objectFit: 'cover' }}
+                style={{ width: '100%', objectFit: 'cover' }}
                 src={productImage?.[imageIdx]?.imageUrl}
                 alt=''
               />
@@ -97,7 +113,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
               {/*price*/}
               <p style={{ fontSize: '18px' }}>{productImage?.[imageIdx]?.Product?.colorName}</p> {/*colorName*/}
               <div className='d-flex'>
-                {product.map((item, index) => (
+                {product.map((item) => (
                   <div
                     className={`me-2 ${
                       item.color === productImage[imageIdx]?.Product?.color ? 'border border-dark border-2' : ''
@@ -118,7 +134,9 @@ function ProductDetail({ product, IsFavorite, productImage }) {
                   </button>
                   <span>{numberOfProduct}</span>
                   <button
-                    onClick={() => setNumberOfProduct((cur) => (cur < product[0].countStock ? cur + 1 : cur))}
+                    onClick={() =>
+                      setNumberOfProduct((cur) => (cur < productImage[imageIdx].Product.countStock ? cur + 1 : cur))
+                    }
                     className='btn'
                   >
                     +
