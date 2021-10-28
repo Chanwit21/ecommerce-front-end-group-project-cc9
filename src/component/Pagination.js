@@ -20,7 +20,7 @@ function Pagination({ countPage, onPage, setOnPage }) {
   const pagination = new Array(countPage).fill(null).map((item, index) => {
     return (
       <li className={`page-item${index + 1 === onPage ? ' active' : ''}`} key={index}>
-        <Link className='page-link' onClick={(e) => handleClickPage(index + 1, e)}>
+        <Link to='#' className='page-link' onClick={(e) => handleClickPage(index + 1, e)}>
           {index + 1}
         </Link>
       </li>
@@ -31,13 +31,13 @@ function Pagination({ countPage, onPage, setOnPage }) {
     <nav>
       <ul className='pagination'>
         <li className={`page-item${onPage === 1 ? ' disabled' : ''}`}>
-          <Link className='page-link' onClick={handleDecreasePage}>
+          <Link to='#' className='page-link' onClick={handleDecreasePage}>
             Previous
           </Link>
         </li>
         {pagination}
         <li className={`page-item${onPage === countPage ? ' disabled' : ''}`}>
-          <Link className='page-link' onClick={handleIncreasePage}>
+          <Link to='#' className='page-link' onClick={handleIncreasePage}>
             Next
           </Link>
         </li>

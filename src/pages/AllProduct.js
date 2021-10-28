@@ -81,9 +81,8 @@ function AllProduct() {
           </div>
           <div className='col-10 row my-3 mx-0'>
             {product.map((item) => (
-              <div className='col-4'>
+              <div className='col-4' key={item.id}>
                 <ProductCardList
-                  key={item.id}
                   name={item.name}
                   imageUrl={item.imageUrl}
                   price={item.price}

@@ -10,14 +10,19 @@ function AdminOrderSummary() {
   const [orderItem, setOrderItem] = useState([])
   const [address, setAddress] = useState({})
   useEffect(() => {
-    const run = async () => {
-      const { data: { orderItem, address } } = await axios.get(`/orders/getOrderItemById/${orderId}`)
-      console.log(`orderItem`, orderItem)
-      console.log(`address`, address)
-      setOrderItem(orderItem)
-      setAddress(address)
+    try {
+      const run = async () => {
+        const { data: { orderItem, address } } = await axios.get(`/orders/getOrderItemById/${orderId}`)
+        console.log(`orderItem`, orderItem)
+        console.log(`address`, address)
+        setOrderItem(orderItem)
+        setAddress(address)
+      }
+      run();
     }
-    run();
+    catch (err) {
+      console.log(err.message)
+    }
   }, [])
 
 

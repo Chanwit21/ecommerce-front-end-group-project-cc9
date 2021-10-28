@@ -55,7 +55,6 @@ function ProductSummary() {
             </Link>
           </button>
         </div>
-<<<<<<< HEAD
         <div className='row'>
           <div className='col-2'>
             <FilterProduct allowFilter={allowFilter} filterValue={filterValue} setFilterValue={setFilterValue} />
@@ -90,37 +89,6 @@ function ProductSummary() {
               <tbody>{productsTableBody}</tbody>
             </table>
           </div>
-=======
-        <div className='col-10' style={{ minHeight: '55vw' }}>
-          <table style={{ width: '100%' }}>
-            <thead>
-              <tr className='bg-dark border border-dark'>
-                <th className='text-white p-2 text-center' colSpan='1'>
-                  PRODUCT ID
-                </th>
-                <th className='text-white p-2 text-center' colSpan='2'>
-                  PRODUCT NAME
-                </th>
-                <th className='text-white p-2 text-center' colSpan='1'>
-                  COLOR
-                </th>
-                <th className='text-white p-2 text-center' colSpan='1'>
-                  CATEGORY
-                </th>
-                <th className='text-white p-2 text-center' colSpan='1'>
-                  STOCK
-                </th>
-                <th className='text-white p-2 text-center' colSpan='1'>
-                  READY TO SHIP
-                </th>
-                <th className='text-white p-2 text-center' colSpan='2'>
-                  ACTION
-                </th>
-              </tr>
-            </thead>
-            <tbody>{productsTableBody}</tbody>
-          </table>
->>>>>>> feature_SearchInNav
         </div>
         <div className='col-12 mt-3 d-flex justify-content-end'>
           {countProduct !== 0 ? (

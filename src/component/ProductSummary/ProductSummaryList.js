@@ -9,7 +9,6 @@ function ProductSummaryList({ product, setRefresh }) {
     try {
       const run = async () => {
         const { data: { numberOfReadytoSend } } = await axios.get(`/product/readyToShip/${product.id}`)
-        console.log(`numberOfReadytoSend`, numberOfReadytoSend)
         setNumberOfReadytoSend(numberOfReadytoSend)
       }
       run()

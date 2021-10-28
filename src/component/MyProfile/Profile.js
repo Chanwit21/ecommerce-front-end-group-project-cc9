@@ -11,25 +11,9 @@ function Profile({ button }) {
       user: { id: userId },
     },
   } = useAuthContext();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState('');
   const [showSpinner, setShowSpinner] = useState(false);
   const history = useHistory();
-  useEffect(() => {
-    const run = async () => {
-      const {
-        data: { user },
-      } = await axios.get(`/users/${userId}`);
-      setUser(user);
-      setProfileData((cur) => ({
-        ...cur,
-        firstName: user ? user.firstName : '',
-        lastName: user ? user.lastName : '',
-        email: user ? user.email : '',
-        phoneNumber: user?.phoneNumber ? user.phoneNumber : '',
-      }));
-    };
-    run();
-  }, []);
   const [profileData, setProfileData] = useState({
     firstName: user ? user.firstName : '',
     lastName: user ? user.lastName : '',
@@ -44,8 +28,28 @@ function Profile({ button }) {
     email: '',
     phoneNumber: '',
   });
-  console.log(`user`, user);
 
+  useEffect(() => {
+    const run = async () => {
+      try {
+        const {
+          data: { user },
+        } = await axios.get(`/users/${userId}`);
+        setUser(user);
+        setProfileData((cur) => ({
+          ...cur,
+          firstName: user ? user.firstName : '',
+          lastName: user ? user.lastName : '',
+          email: user ? user.email : '',
+          phoneNumber: user?.phoneNumber ? user.phoneNumber : '',
+        }));
+      }
+      catch (err) {
+        console.log(err.message)
+      }
+    };
+    run();
+  }, []);
   const handleOnchange = (e) => {
     if (e.target.id === 'imageUrl') {
       let fileReader = new FileReader();
@@ -58,34 +62,39 @@ function Profile({ button }) {
   };
 
   const handleClickSubmit = async () => {
-    setShowSpinner(true);
-    const errorFirstName = validateFirstName(profileData.firstName);
-    const errorLastName = validateLastName(profileData.lastName);
-    const errorEmail = validateEmail(profileData.email);
-    const errorPhoneNumber = profileData.phoneNumber ? validatePhoneNumber(profileData.phoneNumber) : '';
+    try {
+      setShowSpinner(true);
+      const errorFirstName = validateFirstName(profileData.firstName);
+      const errorLastName = validateLastName(profileData.lastName);
+      const errorEmail = validateEmail(profileData.email);
+      const errorPhoneNumber = profileData.phoneNumber ? validatePhoneNumber(profileData.phoneNumber) : '';
 
-    setError({
-      ...error,
-      firstName: errorFirstName,
-      lastName: errorLastName,
-      email: errorEmail,
-      phoneNumber: errorPhoneNumber,
-    });
+      setError({
+        ...error,
+        firstName: errorFirstName,
+        lastName: errorLastName,
+        email: errorEmail,
+        phoneNumber: errorPhoneNumber,
+      });
 
-    if (errorFirstName || errorLastName || errorEmail || errorPhoneNumber) {
-      return;
+      if (errorFirstName || errorLastName || errorEmail || errorPhoneNumber) {
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('firstName', profileData.firstName);
+      formData.append('lastName', profileData.lastName);
+      formData.append('email', profileData.email);
+      formData.append('phoneNumber', profileData.phoneNumber);
+      formData.append('imageUrl', profileData.imageUrl);
+      await axios.put('/users', formData);
+      setShowSpinner(false);
+      alert('Editing Profile Successful');
+      history.push('/myProFile');
     }
-
-    const formData = new FormData();
-    formData.append('firstName', profileData.firstName);
-    formData.append('lastName', profileData.lastName);
-    formData.append('email', profileData.email);
-    formData.append('phoneNumber', profileData.phoneNumber);
-    formData.append('imageUrl', profileData.imageUrl);
-    await axios.put('/users', formData);
-    setShowSpinner(false);
-    alert('Editing Profile Successful');
-    history.push('/myProFile');
+    catch (err) {
+      console.log(err.message)
+    }
   };
   return (
     <>
@@ -104,7 +113,7 @@ function Profile({ button }) {
                       alt='avartar'
                     />
                   ) : (
-                    <i style={{ fontSize: '40px' }} class='bi bi-plus-circle'></i>
+                    <i style={{ fontSize: '40px' }} className='bi bi-plus-circle'></i>
                   )}
                   {profileData?.imageShow || user?.imageUrl ? (
                     <p className='m-0 p-0 text-middle'>Change picture</p>
@@ -225,8 +234,8 @@ function Profile({ button }) {
               </div>
               <div className='col-4'>
                 {showSpinner && (
-                  <div class='spinner-border text-info ms-3' role='status'>
-                    <span class='visually-hidden'>Loading...</span>
+                  <div className='spinner-border text-info ms-3' role='status'>
+                    <span className='visually-hidden'>Loading...</span>
                   </div>
                 )}
               </div>
