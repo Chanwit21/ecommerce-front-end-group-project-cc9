@@ -8,7 +8,7 @@ import { validateEmail, validateFirstName, validateLastName, validatePhoneNumber
 function Profile({ button }) {
   const {
     state: {
-      user: { id: userId },
+      user: { id: userId, role },
     },
   } = useAuthContext();
   const [user, setUser] = useState('');
@@ -43,9 +43,8 @@ function Profile({ button }) {
           email: user ? user.email : '',
           phoneNumber: user?.phoneNumber ? user.phoneNumber : '',
         }));
-      }
-      catch (err) {
-        console.log(err.message)
+      } catch (err) {
+        console.log(err.message);
       }
     };
     run();
@@ -90,10 +89,10 @@ function Profile({ button }) {
       await axios.put('/users', formData);
       setShowSpinner(false);
       alert('Editing Profile Successful');
-      history.push('/myProFile');
-    }
-    catch (err) {
-      console.log(err.message)
+      const parth = role === 'ADMIN' ? '/admin_profile' : '/myProFile';
+      history.push(parth);
+    } catch (err) {
+      console.log(err.message);
     }
   };
   return (
@@ -220,9 +219,13 @@ function Profile({ button }) {
             <div className='d-flex  align-items-center mt-5'>
               <div className='col-4'></div>
               <div className='col-4 d-flex justify-content-center'>
-                {button === 'EDIT PROFILE' ? (
+                {button === 'EDIT MY PROFILE' ? (
                   <button className='btn btn-dark' style={{ cursor: 'pointer' }}>
-                    <Link to='/editMyProFile' className='nav-link p-0 m-0' style={{ color: 'inherit' }}>
+                    <Link
+                      to={role === 'ADMIN' ? '/admin_profile_edit' : '/editMyProFile'}
+                      className='nav-link p-0 m-0'
+                      style={{ color: 'inherit' }}
+                    >
                       {button}
                     </Link>
                   </button>

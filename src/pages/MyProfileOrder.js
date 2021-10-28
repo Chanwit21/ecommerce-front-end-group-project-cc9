@@ -13,8 +13,9 @@ function MyProfileOrder() {
     const fetchOrderItem = async () => {
       try {
         const res = await axios.get(`/orders?offset=${7 * (onPage - 1)}`);
-        setCountDelivery(res.data.count[0].count);
-        setCountToShip(res.data.count[1].count);
+        console.log(res.data);
+        setCountDelivery(res.data?.count[0]?.count || 0);
+        setCountToShip(res.data?.count[1]?.count || 0);
         setOrderData(res.data.orderItems);
       } catch (err) {
         console.dir(err);

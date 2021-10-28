@@ -23,9 +23,9 @@ function FilterProduct({ allowFilter, filterValue, setFilterValue }) {
 
   const filterArray = [
     { name: 'FACE', filterItem: ['Foundation', 'Powder', 'Concealer', 'Primer'] },
-    { name: 'SHEEK', filterItem: ['Blush', 'Bronzer', 'Hightlighter'] },
-    { name: 'LIPS', filterItem: ['Liquid Lipstick', 'Lipstick', 'Lip Liner', 'Lip Blam'] },
-    { name: 'EYES', filterItem: ['Eyeshadow', 'Eyebrows', 'Eyeliner', 'Mascrara'] },
+    { name: 'SHEEK', filterItem: ['Blush', 'Bronzer', 'Highlighter'] },
+    { name: 'LIPS', filterItem: ['Liquid Lipstick', 'Lipstick', 'Lip Liner', 'Lip Balm'] },
+    { name: 'EYES', filterItem: ['Eyeshadow', 'Eyebrows', 'Eyeliner', 'Mascara'] },
     { name: 'BODY', filterItem: ['Body Makeup'] },
   ];
 
