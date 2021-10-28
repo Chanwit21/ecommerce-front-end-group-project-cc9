@@ -107,7 +107,7 @@ function Profile({ button }) {
                   {profileData?.imageShow || user?.imageUrl ? (
                     <img
                       className='m-0 p-0 rounded-circle ms-1'
-                      style={{ width: '120px', height: '120px', cursor: 'pointer' }}
+                      style={{ width: '120px', height: '120px', cursor: 'pointer', objectFit: 'cover' }}
                       src={profileData.imageShow ? profileData.imageShow : user.imageUrl}
                       alt='avartar'
                     />
