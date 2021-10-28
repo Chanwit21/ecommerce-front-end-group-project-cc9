@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { orderData as orderMock } from '../../mocks/orderData';
 import OrderLists from './OrderLists';
 import { formatePrice } from '../../service/IntlFormatter';
-=======
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import OrderLists from "./OrderLists";
->>>>>>> e906f42cbf3ea5633584e61caba01e36d1a7c97f
 
 function OrderTable({ isAdminPage }) {
   const [orderData, setOrderData] = useState([]);
