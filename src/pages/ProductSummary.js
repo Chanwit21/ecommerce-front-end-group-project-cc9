@@ -8,6 +8,7 @@ import { genObjectToFilter } from '../service/genObjToFilter';
 
 function ProductSummary() {
   const [products, setProducts] = useState([]);
+  const [countProduct, setCountProduct] = useState(0);
   const [refresh, setRefresh] = useState(false);
   const [filterValue, setFilterValue] = useState({ FACE: {}, SHEEK: {}, LIPS: {}, EYES: {}, BODY: {} });
   const [allowFilter, setAllowFilter] = useState([]);
@@ -17,12 +18,12 @@ function ProductSummary() {
 
   useEffect(() => {
     const run = async () => {
-      const {
-        data: { products },
-      } = await axios.get(
+      const res = await axios.get(
         `/product?filter=${JSON.stringify(genObjectToFilter(filterValue))}&offset=${7 * (onPage - 1)}`
       );
-      setProducts(products);
+      console.log(res.data);
+      setCountProduct(res.data.count.countProduct);
+      setProducts(res.data.products);
     };
 
     if (isFirstRender.current) {
@@ -31,7 +32,11 @@ function ProductSummary() {
     }
 
     run();
-  }, [refresh]);
+  }, [refresh, filterValue, onPage]);
+
+  useEffect(() => {
+    setOnPage(1);
+  }, [filterValue]);
 
   const productsTableBody = products?.map((product) => {
     return <ProductSummaryList key={product.id} product={product} setRefresh={setRefresh} />;
@@ -51,7 +56,7 @@ function ProductSummary() {
         <div className='col-2'>
           <FilterProduct allowFilter={allowFilter} filterValue={filterValue} setFilterValue={setFilterValue} />
         </div>
-        <div className='col-10'>
+        <div className='col-10' style={{ minHeight: '55vw' }}>
           <table style={{ width: '100%' }}>
             <thead>
               <tr className='bg-dark border border-dark'>
@@ -82,7 +87,9 @@ function ProductSummary() {
           </table>
         </div>
         <div className='col-12 mt-3 d-flex justify-content-end'>
-          <Pagination countPage={4} onPage={onPage} setOnPage={setOnPage} />
+          {countProduct !== 0 ? (
+            <Pagination countPage={Math.ceil(countProduct / 7)} onPage={onPage} setOnPage={setOnPage} />
+          ) : null}
         </div>
       </div>
     </div>

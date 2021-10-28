@@ -3,11 +3,16 @@ import { Link } from 'react-router-dom';
 import { useCartContext } from '../context/CartContext';
 import Logo from '../pic/icons/mmg-logo.svg';
 import { useHistory } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthContext';
 
 function NavHeader() {
   const {
     state: { countCart },
   } = useCartContext();
+  const {
+    state: { user },
+  } = useAuthContext();
+  const role = user ? user.role : 'GUEST';
 
   const [search, setSearch] = useState('');
   const buttonSearchRef = useRef();
@@ -83,7 +88,11 @@ function NavHeader() {
             <ul className='navbar-nav'>
               <li className='nav-item'>
                 <button type='button' className=' btn px-0 position-relative'>
-                  <Link className='nav-link active active' to='/login' style={{ opacity: '100%' }}>
+                  <Link
+                    className='nav-link active active'
+                    to={`/login /admin_profile /myProfile`}
+                    style={{ opacity: '100%' }}
+                  >
                     <i className='bi bi-person-circle'></i>
                   </Link>
                 </button>
@@ -101,27 +110,31 @@ function NavHeader() {
                   </button>
                 </Link>
               </li>
-              <li className='nav-item'>
-                <button type='button' className='btn px-0 position-relative'>
-                  <Link className='nav-link active' to='/favorite'>
-                    <i className='bi bi-heart'></i>
-                  </Link>
-                </button>
-              </li>
-              <li className='nav-item'>
-                <button type='button' className='btn px-0 position-relative'>
-                  <Link className='nav-link active' to='/shoppingCart'>
-                    <i className='bi bi-handbag'></i>
-                    <span
-                      className='position-absolute translate-middle badge rounded-pill bg-danger'
-                      style={{ left: '85%', top: '30%' }}
-                    >
-                      {countCart}
-                      <span className='visually-hidden'>Cart Count</span>
-                    </span>
-                  </Link>
-                </button>
-              </li>
+              {role !== 'ADMIN' ? (
+                <>
+                  <li className='nav-item'>
+                    <button type='button' className='btn px-0 position-relative'>
+                      <Link className='nav-link active' to='/favorite'>
+                        <i className='bi bi-heart'></i>
+                      </Link>
+                    </button>
+                  </li>
+                  <li className='nav-item'>
+                    <button type='button' className='btn px-0 position-relative'>
+                      <Link className='nav-link active' to='/shoppingCart'>
+                        <i className='bi bi-handbag'></i>
+                        <span
+                          className='position-absolute translate-middle badge rounded-pill bg-danger'
+                          style={{ left: '85%', top: '30%' }}
+                        >
+                          {countCart}
+                          <span className='visually-hidden'>Cart Count</span>
+                        </span>
+                      </Link>
+                    </button>
+                  </li>
+                </>
+              ) : null}
             </ul>
           </div>
         </div>
