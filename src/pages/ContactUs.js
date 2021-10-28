@@ -5,28 +5,31 @@ import { validateEmail, validateFirstName, validateLastName, validateMessage } f
 import { useHistory } from 'react-router';
 
 function ContactUs() {
-  const { state: { user } } = useAuthContext()
+  const {
+    state: { user },
+  } = useAuthContext();
   const history = useHistory();
   const [contactData, setContactData] = useState({
     firstName: user ? user.firstName : '',
     lastName: user ? user.lastName : '',
     email: user ? user.email : '',
     message: '',
-  })
+  });
   const [error, setError] = useState({
     firstName: '',
     lastName: '',
     email: '',
     message: '',
-  })
-  console.log(`user`, user)
+  });
+  console.log(`user`, user);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const onChangeData = e => {
-    setContactData(cur => ({ ...cur, [e.target.id]: e.target.value }))
-  }
+  const onChangeData = (e) => {
+    setContactData((cur) => ({ ...cur, [e.target.id]: e.target.value }));
+    setError((cur) => ({ ...cur, [e.target.id]: '' }));
+  };
 
   const handleClickSend = async () => {
     try {
@@ -46,14 +49,13 @@ function ContactUs() {
       if (errorFirstName || errorLastName || errorEmail || errorMessage) {
         return;
       }
-      await axios.post('/contactUs', contactData)
-      alert('Sending Message Successful')
-      history.push('/')
+      await axios.post('/contactUs', contactData);
+      alert('Sending Message Successful');
+      history.push('/');
+    } catch (err) {
+      console.log(err.message);
     }
-    catch (err) {
-      console.log(err.message)
-    }
-  }
+  };
 
   return (
     <div
@@ -83,21 +85,42 @@ function ContactUs() {
             <label htmlFor='firstName' className='mb-1'>
               First Name
             </label>
-            <input onChange={onChangeData} value={contactData.firstName} type='text' className={`form-control ${error.firstName ? ' is-invalid' : ''}`} id='firstName' placeholder='First Name' />
+            <input
+              onChange={onChangeData}
+              value={contactData.firstName}
+              type='text'
+              className={`form-control ${error.firstName ? ' is-invalid' : ''}`}
+              id='firstName'
+              placeholder='First Name'
+            />
             {error.firstName ? <div className='invalid-feedback'>{error.firstName}</div> : null}
           </div>
           <div className='col-6 mb-4'>
             <label htmlFor='lastName' className='mb-1'>
               Last Name
             </label>
-            <input onChange={onChangeData} value={contactData.lastName} type='text' className={`form-control ${error.lastName ? ' is-invalid' : ''}`} id='lastName' placeholder='Last Name' />
+            <input
+              onChange={onChangeData}
+              value={contactData.lastName}
+              type='text'
+              className={`form-control ${error.lastName ? ' is-invalid' : ''}`}
+              id='lastName'
+              placeholder='Last Name'
+            />
             {error.lastName ? <div className='invalid-feedback'>{error.lastName}</div> : null}
           </div>
           <div className='col-12 mb-4'>
             <label htmlFor='email' className='mb-1'>
               Email Adress
             </label>
-            <input onChange={onChangeData} value={contactData.email} type='text' className={`form-control ${error.email ? ' is-invalid' : ''}`} id='email' placeholder='Email Adress' />
+            <input
+              onChange={onChangeData}
+              value={contactData.email}
+              type='text'
+              className={`form-control ${error.email ? ' is-invalid' : ''}`}
+              id='email'
+              placeholder='Email Adress'
+            />
             {error.email ? <div className='invalid-feedback'>{error.email}</div> : null}
           </div>
           <div className='col-12 mb-4'>
