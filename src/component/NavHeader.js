@@ -3,11 +3,17 @@ import { Link } from 'react-router-dom';
 import { useCartContext } from '../context/CartContext';
 import Logo from '../pic/icons/mmg-logo.svg';
 import { useHistory } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthContext';
 
 function NavHeader() {
   const {
     state: { countCart },
   } = useCartContext();
+  const {
+    state: { user },
+    dispatch: dpAuth,
+  } = useAuthContext();
+  const role = user ? user.role : 'GUEST';
 
   const [search, setSearch] = useState('');
   const buttonSearchRef = useRef();
@@ -22,6 +28,11 @@ function NavHeader() {
     buttonSearchRef.current.click();
     setSearch('');
     history.push({ pathname: `/allProduct/search:${search}` });
+  };
+
+  const handleClickSignOut = (e) => {
+    e.preventDefault();
+    dpAuth({ type: 'LOGOUT' });
   };
 
   return (
@@ -83,8 +94,30 @@ function NavHeader() {
             <ul className='navbar-nav'>
               <li className='nav-item'>
                 <button type='button' className=' btn px-0 position-relative'>
-                  <Link className='nav-link active active' to='/login' style={{ opacity: '100%' }}>
-                    <i className='bi bi-person-circle'></i>
+                  <Link
+                    className='nav-link active active'
+                    to={role === 'GUEST' ? '/login' : role === 'ADMIN' ? '/admin_profile' : '/myProfile'}
+                    style={{ opacity: '100%' }}
+                  >
+                    {user ? (
+                      <>
+                        {user.image ? (
+                          <img
+                            src={user.image}
+                            alt='user_profile'
+                            className='rounded-circle m-0 p-0'
+                            style={{ width: '1.3vw' }}
+                          />
+                        ) : (
+                          <i className='bi bi-person-circle'></i>
+                        )}
+                        <span className='ms-2' style={{ fontSize: '0.9vw' }}>
+                          {user.firstName}
+                        </span>
+                      </>
+                    ) : (
+                      <i className='bi bi-person-circle'></i>
+                    )}
                   </Link>
                 </button>
               </li>
@@ -101,27 +134,40 @@ function NavHeader() {
                   </button>
                 </Link>
               </li>
-              <li className='nav-item'>
-                <button type='button' className='btn px-0 position-relative'>
-                  <Link className='nav-link active' to='/favorite'>
-                    <i className='bi bi-heart'></i>
+              {role === 'CUSTOMER' ? (
+                <>
+                  <li className='nav-item'>
+                    <button type='button' className='btn px-0 position-relative'>
+                      <Link className='nav-link active' to='/favorite'>
+                        <i className='bi bi-heart'></i>
+                      </Link>
+                    </button>
+                  </li>
+                  <li className='nav-item'>
+                    <button type='button' className='btn px-0 position-relative'>
+                      <Link className='nav-link active' to='/shoppingCart'>
+                        <i className='bi bi-handbag'></i>
+                        <span
+                          className='position-absolute translate-middle badge rounded-pill bg-danger'
+                          style={{ left: '85%', top: '30%' }}
+                        >
+                          {countCart}
+                          <span className='visually-hidden'>Cart Count</span>
+                        </span>
+                      </Link>
+                    </button>
+                  </li>
+                </>
+              ) : null}
+              {role !== 'GUEST' ? (
+                <li className='nav-item'>
+                  <Link className='nav-link active' to='/'>
+                    <button type='button' className='btn px-0 position-relative' onClick={handleClickSignOut}>
+                      <i class='bi bi-box-arrow-right'></i>
+                    </button>
                   </Link>
-                </button>
-              </li>
-              <li className='nav-item'>
-                <button type='button' className='btn px-0 position-relative'>
-                  <Link className='nav-link active' to='/shoppingCart'>
-                    <i className='bi bi-handbag'></i>
-                    <span
-                      className='position-absolute translate-middle badge rounded-pill bg-danger'
-                      style={{ left: '85%', top: '30%' }}
-                    >
-                      {countCart}
-                      <span className='visually-hidden'>Cart Count</span>
-                    </span>
-                  </Link>
-                </button>
-              </li>
+                </li>
+              ) : null}
             </ul>
           </div>
         </div>

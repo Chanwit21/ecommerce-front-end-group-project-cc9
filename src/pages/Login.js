@@ -47,7 +47,7 @@ function Login() {
     }
   };
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
-  const [errorLoginFrom, setErrorLoginFrom] = useState({ email: '', password: '' });
+  const [errorLoginFrom, setErrorLoginFrom] = useState({ email: '', password: '', response: '' });
 
   const handleChangeInput = (field, e) => {
     setLoginForm((cur) => {
@@ -75,6 +75,13 @@ function Login() {
         dispatch({ type: 'LOGIN', payload: { token: res.data.token } });
       } catch (err) {
         console.dir(err);
+        if (
+          err.response &&
+          err.response.status === 400 &&
+          err.response.data.message === 'email or password is incorrect'
+        ) {
+          setErrorLoginFrom((cur) => ({ ...cur, response: 'email or password is incorrect' }));
+        }
       }
     }
   };
@@ -106,7 +113,7 @@ function Login() {
                 </label>
                 <input
                   type='text'
-                  className={`form-control${errorLoginFrom.email ? ' is-invalid' : ''}`}
+                  className={`form-control${errorLoginFrom.email || errorLoginFrom.response ? ' is-invalid' : ''}`}
                   id='email'
                   style={{ backgroundColor: '#FEF3F5' }}
                   value={loginForm.email}
@@ -120,13 +127,14 @@ function Login() {
                 </label>
                 <input
                   type='password'
-                  className={`form-control${errorLoginFrom.password ? ' is-invalid' : ''}`}
+                  className={`form-control${errorLoginFrom.password || errorLoginFrom.response ? ' is-invalid' : ''}`}
                   id='password'
                   style={{ backgroundColor: '#FEF3F5' }}
                   value={loginForm.password}
                   onChange={(e) => handleChangeInput('password', e)}
                 />
                 {errorLoginFrom.password ? <div className='invalid-feedback'>{errorLoginFrom.password}</div> : null}
+                {errorLoginFrom.response ? <div className='invalid-feedback'>{errorLoginFrom.response}</div> : null}
               </div>
               <div className='col-12 mb-2'>
                 <button

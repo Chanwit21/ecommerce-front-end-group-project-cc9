@@ -3,35 +3,41 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FilterProduct from '../component/FilterProduct';
 import ProductSummaryList from '../component/ProductSummary/ProductSummaryList';
+import Pagination from '../component/Pagination';
+import { genObjectToFilter } from '../service/genObjToFilter';
 import AdminHeader from '../component/AdminHeader';
 
 function ProductSummary() {
   const [products, setProducts] = useState([]);
+  const [countProduct, setCountProduct] = useState(0);
   const [refresh, setRefresh] = useState(false);
   const [filterValue, setFilterValue] = useState({ FACE: {}, SHEEK: {}, LIPS: {}, EYES: {}, BODY: {} });
   const [allowFilter, setAllowFilter] = useState([]);
+  const [onPage, setOnPage] = useState(1);
 
   const isFirstRender = useRef(true);
 
   useEffect(() => {
-    try {
-      const run = async () => {
-        const {
-          data: { products },
-        } = await axios.get('/product');
-        products.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
-        setProducts(products);
-      };
-      if (isFirstRender.current) {
-        setAllowFilter(['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY']);
-        isFirstRender.current = false;
-      }
-      run();
+    const run = async () => {
+      const res = await axios.get(
+        `/product?filter=${JSON.stringify(genObjectToFilter(filterValue))}&offset=${7 * (onPage - 1)}`
+      );
+      console.log(res.data);
+      setCountProduct(res.data.count.countProduct);
+      setProducts(res.data.products);
+    };
+
+    if (isFirstRender.current) {
+      setAllowFilter(['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY']);
+      isFirstRender.current = false;
     }
-    catch (err) {
-      console.log(err.message)
-    }
-  }, [refresh]);
+
+    run();
+  }, [refresh, filterValue, onPage]);
+
+  useEffect(() => {
+    setOnPage(1);
+  }, [filterValue]);
 
   const productsTableBody = products?.map((product) => {
     return <ProductSummaryList key={product.id} product={product} setRefresh={setRefresh} />;
@@ -83,6 +89,11 @@ function ProductSummary() {
               <tbody>{productsTableBody}</tbody>
             </table>
           </div>
+        </div>
+        <div className='col-12 mt-3 d-flex justify-content-end'>
+          {countProduct !== 0 ? (
+            <Pagination countPage={Math.ceil(countProduct / 7)} onPage={onPage} setOnPage={setOnPage} />
+          ) : null}
         </div>
       </div>
     </>

@@ -75,7 +75,7 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile, setDeleted
 
   const handleClickClear = () => {
     if (imagesShow[index].split(':')[0] === 'https') {
-      setDeletedImg(cur => [...cur, imagesShow[index]])
+      setDeletedImg((cur) => [...cur, imagesShow[index]]);
     }
     setImagesShow((cur) => {
       const clone = [...cur];

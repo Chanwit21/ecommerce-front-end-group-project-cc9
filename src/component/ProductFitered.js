@@ -1,34 +1,36 @@
-import React from "react";
-import { productItems } from "../mocks/productItems";
-import ProductCardList from "./ProductCard/ProductCardList";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ProductCardList from './ProductCard/ProductCardList';
 
-function ProductFiltered({ filtered }) {
-  const limitFeatured = productItems.filter((item) => item.id < 5);
-
+function ProductFiltered({ filtered, product }) {
   return (
     <>
-      <div className=" container  d-flex flex-column mt-5">
-        <div className="d-flex justify-content-between">
+      <div className=' container  d-flex flex-column mt-5'>
+        <div className='d-flex justify-content-between'>
           <h5>{filtered}</h5>
-          <h6>VIEW ALL</h6>
+          <button className='btn'>
+            <Link to='/allProduct/All Product' className='nav-link p-0 m-0' style={{ color: 'inherit' }}>
+              VIEW ALL
+            </Link>
+          </button>
         </div>
 
-        <hr className="align-self-center" />
+        <hr className='align-self-center' />
       </div>
       <div
-        style={{ width: "100%", height: "495px" }}
-        className="d-inline-flex justify-content-center align-items-center mb-5 "
+        style={{ width: '100%', height: '495px' }}
+        className='d-inline-flex justify-content-center align-items-center mb-5'
       >
-        {limitFeatured.map((item) => (
-          <div key={item.id}>
+        {product.map((item) => (
+          <>
             <ProductCardList
               name={item.name}
               imageUrl={item.imageUrl}
               price={item.price}
-              width="330px"
-              height="330px"
+              width='330px'
+              height='330px'
             />
-          </div>
+          </>
         ))}
       </div>
     </>

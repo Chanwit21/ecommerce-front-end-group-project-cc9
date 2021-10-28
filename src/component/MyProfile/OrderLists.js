@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import editButton from "../../pic/icons/edit.png";
-import saveButton from "../../pic/icons/save.png";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import editButton from '../../pic/icons/edit.png';
+import saveButton from '../../pic/icons/save.png';
+import axios from 'axios';
+import { useAuthContext } from '../../context/AuthContext';
 
 function OrderLists({ isAdminPage, id, customerName, date, amount, status, trackingNumber }) {
   const [save, setSave] = useState(false);
@@ -15,6 +16,10 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
   const [statusToBack, setStatusToBack] = useState();
   const [trackNoToBack, setTrackNoToBack] = useState();
   const history = useHistory();
+  const {
+    state: { user },
+  } = useAuthContext();
+  const role = user ? user.role : 'GUEST';
 
   const handleEdit = () => {
     setSave(true);
@@ -35,6 +40,7 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
     setSelectStatus(true);
     setEditInput(false);
     setSave(false);
+    window.location.reload();
   };
   // const moreOrderDetail = () => {
   //   history.push("/product_summary");
@@ -62,42 +68,45 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
   }, [statusToBack, trackNoToBack]);
   return (
     <>
-      <div className="row" >
-        <div className="col-2">
-          <Link style={{ textDecoration: 'none', color: 'black' }} to={`/adminOrderSummary/${id}`}>
-            <h6 className="fs-bold">{id}</h6>
+      <div className='row'>
+        <div className='col-2'>
+          <Link
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={role === 'ADMIN' ? `/adminOrderSummary/${id}` : `/userOrderSummary/${id}`}
+          >
+            <h6 className='fs-bold'>{id}</h6>
           </Link>
         </div>
-        <div className="col-2">
-          <h6 className="fs-bold">{customerName}</h6>
+        <div className='col-2'>
+          <h6 className='fs-bold'>{customerName}</h6>
         </div>
-        <div className="col-2">
-          <h6 className="fs-bold">{date}</h6>
+        <div className='col-2'>
+          <h6 className='fs-bold'>{date}</h6>
         </div>
-        <div className="col-2">
-          <h6 className="fs-bold">{amount}</h6>
+        <div className='col-2'>
+          <h6 className='fs-bold'>{amount}</h6>
         </div>
-        <div className="col-2">
+        <div className='col-2'>
           {isAdminPage ? (
             edit ? (
               editStatus ? (
                 <>
                   <select
                     value={shippingStatus}
-                    style={{ backgroundColor: "#F4F4F4", color: "#000000", border: "none" }}
+                    style={{ backgroundColor: '#F4F4F4', color: '#000000', border: 'none' }}
                     onChange={handleStatus}
                   >
                     <option
-                      className="fw-bold rounded-3 "
-                      style={{ backgroundColor: "#E5F7EA", color: "#05B535" }}
-                      value="To Ship"
+                      className='fw-bold rounded-3 '
+                      style={{ backgroundColor: '#E5F7EA', color: '#05B535' }}
+                      value='To Ship'
                     >
                       To ship
                     </option>
                     <option
-                      className="fw-bold rounded-3"
-                      style={{ backgroundColor: "#FDF6E9", color: "#EDB543" }}
-                      value="Delivery"
+                      className='fw-bold rounded-3'
+                      style={{ backgroundColor: '#FDF6E9', color: '#EDB543' }}
+                      value='Delivery'
                     >
                       Delivery
                     </option>
@@ -105,13 +114,13 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
                 </>
               ) : selectSatatus ? (
                 <span
-                  className="fw-bold rounded-3"
+                  className='fw-bold rounded-3'
                   style={{
-                    width: "70px",
-                    height: "30px",
-                    backgroundColor: `${shippingStatus === "To Ship" ? "#E5F7EA" : "#FDF6E9"}`,
-                    color: `${shippingStatus === "To Ship" ? "#05B535" : "#EDB543"}`,
-                    border: "none",
+                    width: '70px',
+                    height: '30px',
+                    backgroundColor: `${shippingStatus === 'To Ship' ? '#E5F7EA' : '#FDF6E9'}`,
+                    color: `${shippingStatus === 'To Ship' ? '#05B535' : '#EDB543'}`,
+                    border: 'none',
                   }}
                 >
                   {shippingStatus}
@@ -119,13 +128,13 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
               ) : (
                 <>
                   <span
-                    className="fw-bold rounded-3"
+                    className='fw-bold rounded-3'
                     style={{
-                      width: "70px",
-                      height: "30px",
-                      backgroundColor: `${shippingStatus === "To Ship" ? "#E5F7EA" : "#FDF6E9"}`,
-                      color: `${shippingStatus === "To Ship" ? "#05B535" : "#EDB543"}`,
-                      border: "none",
+                      width: '70px',
+                      height: '30px',
+                      backgroundColor: `${shippingStatus === 'To Ship' ? '#E5F7EA' : '#FDF6E9'}`,
+                      color: `${shippingStatus === 'To Ship' ? '#05B535' : '#EDB543'}`,
+                      border: 'none',
                     }}
                   >
                     {shippingStatus}
@@ -135,13 +144,13 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
             ) : (
               <>
                 <span
-                  className="fw-bold rounded-3"
+                  className='fw-bold rounded-3'
                   style={{
-                    width: "70px",
-                    height: "30px",
-                    backgroundColor: `${shippingStatus === "To Ship" ? "#E5F7EA" : "#FDF6E9"}`,
-                    color: `${shippingStatus === "To Ship" ? "#05B535" : "#EDB543"}`,
-                    border: "none",
+                    width: '70px',
+                    height: '30px',
+                    backgroundColor: `${shippingStatus === 'To Ship' ? '#E5F7EA' : '#FDF6E9'}`,
+                    color: `${shippingStatus === 'To Ship' ? '#05B535' : '#EDB543'}`,
+                    border: 'none',
                   }}
                 >
                   {shippingStatus}
@@ -151,13 +160,13 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
           ) : (
             <>
               <span
-                className="fw-bold rounded-3"
+                className='fw-bold rounded-3'
                 style={{
-                  width: "70px",
-                  height: "30px",
-                  backgroundColor: `${shippingStatus === "To Ship" ? "#E5F7EA" : "#FDF6E9"}`,
-                  color: `${shippingStatus === "To Ship" ? "#05B535" : "#EDB543"}`,
-                  border: "none",
+                  width: '70px',
+                  height: '30px',
+                  backgroundColor: `${shippingStatus === 'To Ship' ? '#E5F7EA' : '#FDF6E9'}`,
+                  color: `${shippingStatus === 'To Ship' ? '#05B535' : '#EDB543'}`,
+                  border: 'none',
                 }}
               >
                 {shippingStatus}
@@ -165,39 +174,39 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
             </>
           )}
         </div>
-        <div className="col-2 d-flex justify-content-between">
+        <div className='col-2 d-flex justify-content-between'>
           {isAdminPage ? (
             edit ? (
               editInput ? (
                 <input
-                  type="text"
-                  className="fs-bold"
+                  type='text'
+                  className='fs-bold'
                   value={editTrackingNumber}
-                  style={{ width: "100px", height: "30px", border: "none" }}
+                  style={{ width: '100px', height: '30px', border: 'none' }}
                   onChange={handleEditTracking}
                 />
               ) : (
-                <span style={{ width: "100px", height: "30px", border: "none" }}>{editTrackingNumber}</span>
+                <span style={{ width: '100px', height: '30px', border: 'none' }}>{editTrackingNumber}</span>
               )
             ) : (
-              <span style={{ width: "100px", height: "30px", border: "none" }}>{editTrackingNumber}</span>
+              <span style={{ width: '100px', height: '30px', border: 'none' }}>{editTrackingNumber}</span>
             )
           ) : (
-            <span style={{ width: "100px", height: "30px", border: "none" }}>{trackingNumber}</span>
+            <span style={{ width: '100px', height: '30px', border: 'none' }}>{trackingNumber}</span>
           )}
           {isAdminPage ? (
             <>
               {!save ? (
-                <img className="pt-0" src={editButton} alt="" onClick={handleEdit} />
+                <img className='pt-0' src={editButton} alt='' onClick={handleEdit} />
               ) : (
-                <img className="pt-0" src={saveButton} alt="" onClick={handleSave} />
+                <img className='pt-0' src={saveButton} alt='' onClick={handleSave} />
               )}
             </>
           ) : (
-            ""
+            ''
           )}
         </div>
-        <hr className="mt-2" />
+        <hr className='mt-2' />
       </div>
     </>
   );
