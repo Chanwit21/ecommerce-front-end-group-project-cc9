@@ -5,12 +5,17 @@ import masterCardIcon from '../pic/icons/380809_card_master_mastercard_icon.svg'
 import facebookIcon from '../pic/icons/facebook.png';
 import twitterIcon from '../pic/icons/twitter.png';
 import pinterestIcon from '../pic/icons/pinterest.png';
+import { useAuthContext } from '../context/AuthContext';
 
 const style = {
   footerContainer: { width: '70%', height: '100%' },
 };
 
 function Footer() {
+  const {
+    state: { user },
+  } = useAuthContext();
+  const role = user ? user.role : 'GUEST';
   return (
     <div className='flex-grow-0 bg-dark text-light p-3'>
       <div className='container ' style={style.footerContainer}>
@@ -26,20 +31,24 @@ function Footer() {
           </div>
           <div className='col-1'></div>
           <div className='col-3'>
-            <h4>Help</h4>
+            {role === 'ADMIN' ? null : (
+              <>
+                <h4>Help</h4>
 
-            <ul className='navbar-nav'>
-              <li className='nav-item'>
-                <Link to='/termCondition' className='nav-link' style={{ color: '#FFFFFF' }}>
-                  Terms of Services
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link to='/contact_us' className='nav-link' style={{ color: '#FFFFFF' }}>
-                  Contact Us
-                </Link>
-              </li>
-            </ul>
+                <ul className='navbar-nav'>
+                  <li className='nav-item'>
+                    <Link to='/termCondition' className='nav-link' style={{ color: '#FFFFFF' }}>
+                      Terms of Services
+                    </Link>
+                  </li>
+                  <li className='nav-item'>
+                    <Link to='/contact_us' className='nav-link' style={{ color: '#FFFFFF' }}>
+                      Contact Us
+                    </Link>
+                  </li>
+                </ul>
+              </>
+            )}
           </div>
           <div className='col-3'>
             <h4>We Accept</h4>
