@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import editButton from "../../pic/icons/edit.png";
 import saveButton from "../../pic/icons/save.png";
 import axios from "axios";
@@ -52,7 +52,7 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
           shippingTrackingId: trackNoToBack,
         });
 
-        console.log(trackNoToBack);
+        // console.log(trackNoToBack);
         // alert("Shipping information has been updated.");
       };
       updateShippingInfo();
@@ -62,9 +62,11 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
   }, [statusToBack, trackNoToBack]);
   return (
     <>
-      <div className="row" style={{ cursor: "pointer" }}>
+      <div className="row" >
         <div className="col-2">
-          <h6 className="fs-bold">{id}</h6>
+          <Link style={{ textDecoration: 'none', color: 'black' }} to={`/adminOrderSummary/${id}`}>
+            <h6 className="fs-bold">{id}</h6>
+          </Link>
         </div>
         <div className="col-2">
           <h6 className="fs-bold">{customerName}</h6>

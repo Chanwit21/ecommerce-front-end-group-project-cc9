@@ -72,61 +72,71 @@ function AddNewAddress() {
   }
 
   const handleUpdate = async () => {
-    const errorFirstName = validateFirstName(addressData.firstName);
-    const errorLastName = validateLastName(addressData.lastName);
-    const errorAddress1 = validateAddress1(addressData.address1);
-    const errorProvince = validateProvince(addressData.province);
-    const errorDistrict = validateDistrict(addressData.district);
-    const errorSubDistrict = validateSubDistrict(addressData.subDistrict);
-    const errorPhoneNumber = validatePhoneNumber(addressData.phoneNumber);
+    try {
+      const errorFirstName = validateFirstName(addressData.firstName);
+      const errorLastName = validateLastName(addressData.lastName);
+      const errorAddress1 = validateAddress1(addressData.address1);
+      const errorProvince = validateProvince(addressData.province);
+      const errorDistrict = validateDistrict(addressData.district);
+      const errorSubDistrict = validateSubDistrict(addressData.subDistrict);
+      const errorPhoneNumber = validatePhoneNumber(addressData.phoneNumber);
 
-    setError({
-      ...error,
-      firstName: errorFirstName,
-      lastName: errorLastName,
-      address1: errorAddress1,
-      province: errorProvince,
-      district: errorDistrict,
-      subDistrict: errorSubDistrict,
-      phoneNumber: errorPhoneNumber,
-    });
+      setError({
+        ...error,
+        firstName: errorFirstName,
+        lastName: errorLastName,
+        address1: errorAddress1,
+        province: errorProvince,
+        district: errorDistrict,
+        subDistrict: errorSubDistrict,
+        phoneNumber: errorPhoneNumber,
+      });
 
-    if (errorFirstName || errorLastName || errorAddress1 || errorProvince || errorDistrict || errorSubDistrict || errorPhoneNumber) {
-      return;
+      if (errorFirstName || errorLastName || errorAddress1 || errorProvince || errorDistrict || errorSubDistrict || errorPhoneNumber) {
+        return;
+      }
+
+      await axios.put(`/address/${location.state.id}`, addressData)
+      alert('Editing Address is Successful')
+      history.push('/myAddress')
     }
-
-    await axios.put(`/address/${location.state.id}`, addressData)
-    alert('Editing Address is Successful')
-    history.push('/myAddress')
+    catch (err) {
+      console.log(err.message)
+    }
   }
 
   const handleAddAddress = async () => {
-    const errorFirstName = validateFirstName(addressData.firstName);
-    const errorLastName = validateLastName(addressData.lastName);
-    const errorAddress1 = validateAddress1(addressData.address1);
-    const errorProvince = validateProvince(addressData.province);
-    const errorDistrict = validateDistrict(addressData.district);
-    const errorSubDistrict = validateSubDistrict(addressData.subDistrict);
-    const errorPhoneNumber = validatePhoneNumber(addressData.phoneNumber);
+    try {
+      const errorFirstName = validateFirstName(addressData.firstName);
+      const errorLastName = validateLastName(addressData.lastName);
+      const errorAddress1 = validateAddress1(addressData.address1);
+      const errorProvince = validateProvince(addressData.province);
+      const errorDistrict = validateDistrict(addressData.district);
+      const errorSubDistrict = validateSubDistrict(addressData.subDistrict);
+      const errorPhoneNumber = validatePhoneNumber(addressData.phoneNumber);
 
-    setError({
-      ...error,
-      firstName: errorFirstName,
-      lastName: errorLastName,
-      address1: errorAddress1,
-      province: errorProvince,
-      district: errorDistrict,
-      subDistrict: errorSubDistrict,
-      phoneNumber: errorPhoneNumber,
-    });
+      setError({
+        ...error,
+        firstName: errorFirstName,
+        lastName: errorLastName,
+        address1: errorAddress1,
+        province: errorProvince,
+        district: errorDistrict,
+        subDistrict: errorSubDistrict,
+        phoneNumber: errorPhoneNumber,
+      });
 
-    if (errorFirstName || errorLastName || errorAddress1 || errorProvince || errorDistrict || errorSubDistrict || errorPhoneNumber) {
-      return;
+      if (errorFirstName || errorLastName || errorAddress1 || errorProvince || errorDistrict || errorSubDistrict || errorPhoneNumber) {
+        return;
+      }
+
+      await axios.post('/address', { ...addressData })
+      alert('Adding Address is Successful')
+      history.push('/myAddress')
     }
-
-    await axios.post('/address', { ...addressData })
-    alert('Adding Address is Successful')
-    history.push('/myAddress')
+    catch (err) {
+      console.log(err.message)
+    }
   }
 
   const handleChangeProvince = async (e) => {
@@ -256,14 +266,14 @@ function AddNewAddress() {
         </div>
         <div className="d-flex col-12 mb-3">
           <div className='w-50 me-3'>
-            <select value={addressData.province} onChange={e => handleChangeProvince(e)} id='province' class={`form-select ${error.province ? ' is-invalid' : 'border-dark'}`}>
+            <select value={addressData.province} onChange={e => handleChangeProvince(e)} id='province' className={`form-select ${error.province ? ' is-invalid' : 'border-dark'}`}>
               <option value='' >Province*</option>
               {provinceShow}
             </select>
             {error.province ? <div className='invalid-feedback'>{error.province}</div> : null}
           </div>
           <div className='w-50'>
-            <select value={addressData.district} onChange={e => handleChangeDistrict(e)} id='district' class={`form-select ${error.district ? ' is-invalid' : 'border-dark'}`} aria-label="Default select example">
+            <select value={addressData.district} onChange={e => handleChangeDistrict(e)} id='district' className={`form-select ${error.district ? ' is-invalid' : 'border-dark'}`} aria-label="Default select example">
               <option value=''>District*</option>
               {districtShow}
             </select>
@@ -272,7 +282,7 @@ function AddNewAddress() {
         </div>
         <div className="d-flex col-12 mb-3">
           <div className='w-50 me-3'>
-            <select value={addressData.subDistrict} onChange={e => handleChangeSubDistrict(e)} id='subDistrict' class={`form-select ${error.subDistrict ? ' is-invalid' : 'border-dark'}`} aria-label="Default select example">
+            <select value={addressData.subDistrict} onChange={e => handleChangeSubDistrict(e)} id='subDistrict' className={`form-select ${error.subDistrict ? ' is-invalid' : 'border-dark'}`} aria-label="Default select example">
               <option value='' >Sub District*</option>
               {subDistrictShow}
             </select>

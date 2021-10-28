@@ -38,7 +38,14 @@ function Home(filtered) {
       <Carousel />
       <ProductFiltered filtered='FEATURED PRODUCT' />
       <HomeQuote />
-      {product.length && <ProductDetail product={product} IsFavorite={IsFavorite} productImage={productImage} />}
+      {product.length &&
+        <>
+          <div className="w-100" style={{ backgroundColor: '#FEF3F5' }}>
+            <h5 className='container mb-0 '>NEW ARRIVAL</h5>
+          </div>
+          <ProductDetail product={product} IsFavorite={IsFavorite} productImage={productImage} />
+        </>
+      }
       <HomeQuote />
       <ProductFiltered filtered='BEST SELLERS' />
     </div>

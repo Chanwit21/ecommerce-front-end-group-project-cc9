@@ -5,7 +5,7 @@ function TermCondition() {
   return (
     <>
       <div style={{ backgroundColor: "#FEF3F5" }}>
-        <div className=" container" style={{ backgroundColor: "#FFFFFF", width: "57vw", height: "55vh" }}>
+        <div className=" container" style={{ backgroundColor: "#FFFFFF", width: "57vw" }}>
           <h5 className=" d-flex justify-content-center pt-5 pb-3">TERM AND CONDITION</h5>
           <div className="container mb-5 scroll-div">
             <h6 className="mb-5">

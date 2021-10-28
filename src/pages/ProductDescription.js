@@ -15,20 +15,26 @@ function ProductDescription() {
   const [productImage, setProductImage] = useState([]);
 
   useEffect(() => {
-    const run = async () => {
-      const {
-        data: { product, productImage },
-      } = await axios.get(`/product/byProductName/${productName}`);
-      if (user) {
+    try {
+      window.scrollTo(0, 0);
+      const run = async () => {
         const {
-          data: { IsFavorite },
-        } = await axios.post(`/product/checkFavorite`, { productName: productImage?.[0]?.Product?.name });
-        setIsFavorite(IsFavorite);
-      }
-      setProduct(product);
-      setProductImage(productImage);
-    };
-    run();
+          data: { product, productImage },
+        } = await axios.get(`/product/byProductName/${productName}`);
+        if (user) {
+          const {
+            data: { IsFavorite },
+          } = await axios.post(`/product/checkFavorite`, { productName: productImage?.[0]?.Product?.name });
+          setIsFavorite(IsFavorite);
+        }
+        setProduct(product);
+        setProductImage(productImage);
+      };
+      run();
+    }
+    catch (err) {
+      console.log(err.message)
+    }
   }, []);
 
   return (

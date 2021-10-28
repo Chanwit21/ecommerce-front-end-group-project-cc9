@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { orderData as orderMock } from "../../mocks/orderData";
 import OrderLists from "./OrderLists";
 
 function OrderTable({ isAdminPage }) {
@@ -18,7 +17,7 @@ function OrderTable({ isAdminPage }) {
     };
     fetchOrderItem();
   }, []);
-  console.log(orderData);
+  // console.log(orderData);
 
   // amount: "150.00"
   // date: "2021-10-26T00:00:00.000Z"

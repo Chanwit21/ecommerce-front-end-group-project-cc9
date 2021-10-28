@@ -18,122 +18,121 @@ function Transaction() {
   }, [selectedTime]);
 
   useEffect(() => {
-    const run = async () => {
-      //* making startTime and endTime for getting data
-      let startTime = {};
-      let endTime = {};
-      const date = new Date();
-      const thisDate = date.getDate();
-      const thisMonth = date.getMonth() + 1;
-      const thisYear = date.getFullYear();
-      const daysInMonth = new Date(thisYear, thisMonth, 0).getDate(); //number type
+    try {
+      const run = async () => {
+        //* making startTime and endTime for getting data
+        let startTime = {};
+        let endTime = {};
+        const date = new Date();
+        const thisDate = date.getDate();
+        const thisMonth = date.getMonth() + 1;
+        const thisYear = date.getFullYear();
+        const daysInMonth = new Date(thisYear, thisMonth, 0).getDate(); //number type
 
-      //* day
-      if (selectedTime === 'day') {
-        startTime = new Date();
-        startTime.setHours(0, 0, 0, 0);
-        startTime.setDate(thisDate + selectWeek);
-        endTime = new Date();
-        endTime.setDate(thisDate + selectWeek);
-      }
-      //* week
-      if (selectedTime === 'week') {
-        startTime = moment()
-          .day(0 + 7 * selectWeek)
-          .hour(0)
-          .minute(0)
-          .second(0)
-          .format()
-          .split('+')[0];
-        endTime = moment()
-          .day(7 + 7 * selectWeek)
-          .hour(0)
-          .minute(0)
-          .second(0)
-          .format()
-          .split('+')[0];
-      }
+        //* day
+        if (selectedTime === 'day') {
+          startTime = new Date();
+          startTime.setHours(0, 0, 0, 0);
+          startTime.setDate(thisDate + selectWeek);
+          endTime = new Date();
+          endTime.setDate(thisDate + selectWeek);
+        }
+        //* week
+        if (selectedTime === 'week') {
+          startTime = moment()
+            .day(0 + 7 * selectWeek)
+            .hour(0)
+            .minute(0)
+            .second(0)
+            .format()
+            .split('+')[0];
+          endTime = moment()
+            .day(7 + 7 * selectWeek)
+            .hour(0)
+            .minute(0)
+            .second(0)
+            .format()
+            .split('+')[0];
+        }
 
-      //* month
-      if (selectedTime === 'month') {
-        const firstDay = new Date(thisYear, thisMonth - 1 + selectWeek, 1).getDay(); //which day
-        const daysInMonth = new Date(thisYear, thisMonth + selectWeek, 0).getDate();
-        const weeksInMonth = Math.ceil((daysInMonth + firstDay - 7) / 7) + 1;
-        const weeksInYear = moment(`${thisYear}-${thisMonth + selectWeek}-1`).week();
-        startTime = moment().week(weeksInYear).day(0).hour(0).minute(0).second(0).format().split('+')[0];
-        endTime = moment()
-          .week(weeksInYear)
-          .day(7 * (weeksInMonth - 1))
-          .hour(0)
-          .minute(0)
-          .second(0)
-          .format()
-          .split('+')[0];
-      }
+        //* month
+        if (selectedTime === 'month') {
+          const firstDay = new Date(thisYear, thisMonth - 1 + selectWeek, 1).getDay(); //which day
+          const daysInMonth = new Date(thisYear, thisMonth + selectWeek, 0).getDate();
+          const weeksInMonth = Math.ceil((daysInMonth + firstDay - 7) / 7) + 1;
+          const weeksInYear = moment(`${thisYear}-${thisMonth + selectWeek}-1`).week();
+          startTime = moment().week(weeksInYear).day(0).hour(0).minute(0).second(0).format().split('+')[0];
+          endTime = moment()
+            .week(weeksInYear)
+            .day(7 * (weeksInMonth - 1))
+            .hour(0)
+            .minute(0)
+            .second(0)
+            .format()
+            .split('+')[0];
+        }
 
-      //* year
-      if (selectedTime === 'year') {
-        startTime = moment()
-          .year(thisYear + selectWeek)
-          .month(0)
-          .date(1)
-          .hour(0)
-          .minute(0)
-          .second(0)
-          .format()
-          .split('+')[0];
-        endTime = moment()
-          .year(thisYear + selectWeek)
-          .month(12)
-          .date(0)
-          .hour(0)
-          .minute(0)
-          .second(0)
-          .format()
-          .split('+')[0];
-      }
-      console.log(`startTime`, startTime);
-      console.log(`endTime`, endTime);
+        //* year
+        if (selectedTime === 'year') {
+          startTime = moment()
+            .year(thisYear + selectWeek)
+            .month(0)
+            .date(1)
+            .hour(0)
+            .minute(0)
+            .second(0)
+            .format()
+            .split('+')[0];
+          endTime = moment()
+            .year(thisYear + selectWeek)
+            .month(12)
+            .date(0)
+            .hour(0)
+            .minute(0)
+            .second(0)
+            .format()
+            .split('+')[0];
+        }
+        const {
+          data: { order, percent, sortCategoryResult },
+        } = await axios.get(`/transaction?startTime=${startTime}&endTime=${endTime}&selectedTime=${selectedTime}`);
+        setOrder(order);
+        setPercent(percent);
+        setSortCategoryResult(sortCategoryResult);
 
-      const {
-        data: { order, percent, sortCategoryResult },
-      } = await axios.get(`/transaction?startTime=${startTime}&endTime=${endTime}&selectedTime=${selectedTime}`);
-      console.log(`order`, order);
-      console.log(`percent`, percent);
-      console.log(`sortCategoryResult`, sortCategoryResult);
-      setOrder(order);
-      setPercent(percent);
-      setSortCategoryResult(sortCategoryResult);
+        //* set showtime
+        selectedTime === 'day' ||
+          setShowTime([startTime.split('T')[0].split('-').join('/'), endTime.split('T')[0].split('-').join('/')]);
+        selectedTime === 'day' && setShowTime([startTime.toDateString(), endTime.toDateString()]);
 
-      //* set showtime
-      selectedTime === 'day' ||
-        setShowTime([startTime.split('T')[0].split('-').join('/'), endTime.split('T')[0].split('-').join('/')]);
-      selectedTime === 'day' && setShowTime([startTime.toDateString(), endTime.toDateString()]);
-
-      //* set income
-      setShowSumIncome(order.reduce((acc, item) => acc + +item.amount, 0).toFixed(2));
-    };
-    run();
+        //* set income
+        setShowSumIncome(order.reduce((acc, item) => acc + +item.amount, 0).toFixed(2));
+      };
+      run();
+    }
+    catch (err) {
+      console.log(err.message)
+    }
   }, [selectWeek, selectedTime]);
 
   const topFiveColor = ['#DF316E', '#40C9BA', '#98C6FF', '#9F7DE1', '#FEDF9A'];
   const categoryImg = {
-    foundation: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Foundation_phqyge.jpg',
-    power: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Balm_jck6hf.png',
-    concealer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Concealer_aocfpl.png',
-    primer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Primer_fkjcm3.jpg',
-    blush: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998899/Blush_kv89pz.jpg',
-    bronzer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Bronzer_ngvzby.jpg',
-    highlighter: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Highlighter_mc29py.jpg',
-    liquidLipstick: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Liquid_Lip_ipjiux.png',
-    lipstick: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Libstick_dt5dbz.png',
-    lipLiner: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Liner_vuizz8.png',
-    lipBlam: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Balm_jck6hf.png',
-    eyeShadow: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Eyeshadow_bdtaa7.png',
-    eyeBrows: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Eyebrows_jfxtxf.png',
-    eyeLiner: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Eyeliner_np6msk.png',
-    mascara: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Mascara_oyfzhv.png',
-    bodyMakeup: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998903/Body_cd2xfp.png',
+    Foundation: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Foundation_phqyge.jpg',
+    Concealer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Concealer_aocfpl.png',
+    Powder: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Balm_jck6hf.png',
+    Primer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Primer_fkjcm3.jpg',
+    'Eye Brows': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Eyebrows_jfxtxf.png',
+    'Eye Liner': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Eyeliner_np6msk.png',
+    'Eye Shadow': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Eyeshadow_bdtaa7.png',
+    Mascara: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Mascara_oyfzhv.png',
+    'Lip Blam': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Balm_jck6hf.png',
+    'Lip Liner': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Liner_vuizz8.png',
+    'Lip Stick': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Libstick_dt5dbz.png',
+    'Liquid Lipstick': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Liquid_Lip_ipjiux.png',
+    Blush: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998899/Blush_kv89pz.jpg',
+    Bronzer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Bronzer_ngvzby.jpg',
+    Highlighter: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Highlighter_mc29py.jpg',
+    BodyMakeup: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998903/Body_cd2xfp.png',
   };
 
   return (
@@ -158,7 +157,7 @@ function Transaction() {
                   style={{ width: '10vw', textAlign: 'center' }}
                   className='form-select'
                 >
-                  <option selected value='day'>
+                  <option value='day'>
                     Day
                   </option>
                   <option value='week'>Week</option>
@@ -175,9 +174,8 @@ function Transaction() {
                     <div className='d-flex align-items-center col-4'>
                       <h6 className='m-0' style={{ fontSize: '24px' }}>{`$${showSumIncome}`}</h6>
                       <i
-                        className={`ms-2 text-${percent >= 0 ? 'success' : 'danger'} fs-3 bi bi-caret-${
-                          percent >= 0 ? 'up' : 'down'
-                        }-fill`}
+                        className={`ms-2 text-${percent >= 0 ? 'success' : 'danger'} fs-3 bi bi-caret-${percent >= 0 ? 'up' : 'down'
+                          }-fill`}
                       ></i>
                       <p
                         className={`m-0 text-${percent >= 0 ? 'success' : 'danger'}`}
@@ -220,6 +218,7 @@ function Transaction() {
                     <div
                       className='ms-5 d-flex justify-content-start align-items-center'
                       style={{ width: '150px', height: '70px' }}
+                      key={index}
                     >
                       {' '}
                       {/*bs item*/}
@@ -262,10 +261,10 @@ function Transaction() {
               </span>
             </div>
           </div>
-          {sortCategoryResult.map((item) => {
+          {sortCategoryResult.map((item, index) => {
             if (!item[1]) return;
             return (
-              <div className='card border-0 my-4'>
+              <div className='card border-0 my-4' key={index}>
                 {' '}
                 {/*trans item*/}
                 <div

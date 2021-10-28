@@ -1,11 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import AccountHeader from '../component/AccountHeader'
+import AdminHeader from '../component/AdminHeader'
 import OrderSummary from '../component/OrderSummary'
 import '../css/userOrderSummary.css'
 
-function UserOrderSummary() {
+function AdminOrderSummary() {
   const { orderId } = useParams();
   const [orderItem, setOrderItem] = useState([])
   const [address, setAddress] = useState({})
@@ -28,7 +28,7 @@ function UserOrderSummary() {
 
   return (
     <div className='userOrderSummary'>
-      <AccountHeader />
+      <AdminHeader />
       <div className="container" style={{ marginTop: '50px', width: '70vw' }}>
         <h5>{orderItem?.[0]?.orderId}</h5>
         <div className="container" style={{ margin: '50px 0px ' }}>
@@ -62,4 +62,4 @@ function UserOrderSummary() {
   )
 }
 
-export default UserOrderSummary
+export default AdminOrderSummary
