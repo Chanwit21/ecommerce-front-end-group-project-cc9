@@ -99,7 +99,25 @@ function NavHeader() {
                     to={role === 'GUEST' ? '/login' : role === 'ADMIN' ? '/admin_profile' : '/myProfile'}
                     style={{ opacity: '100%' }}
                   >
-                    <i className='bi bi-person-circle'></i>
+                    {user ? (
+                      <>
+                        {user.image ? (
+                          <img
+                            src={user.image}
+                            alt='user_profile'
+                            className='rounded-circle m-0 p-0'
+                            style={{ width: '1.3vw' }}
+                          />
+                        ) : (
+                          <i className='bi bi-person-circle'></i>
+                        )}
+                        <span className='ms-2' style={{ fontSize: '0.9vw' }}>
+                          {user.firstName}
+                        </span>
+                      </>
+                    ) : (
+                      <i className='bi bi-person-circle'></i>
+                    )}
                   </Link>
                 </button>
               </li>
@@ -143,11 +161,11 @@ function NavHeader() {
               ) : null}
               {role !== 'GUEST' ? (
                 <li className='nav-item'>
-                  <button type='button' className='btn px-0 position-relative' onClick={handleClickSignOut}>
-                    <Link className='nav-link active' to='#'>
+                  <Link className='nav-link active' to='/'>
+                    <button type='button' className='btn px-0 position-relative' onClick={handleClickSignOut}>
                       <i class='bi bi-box-arrow-right'></i>
-                    </Link>
-                  </button>
+                    </button>
+                  </Link>
                 </li>
               ) : null}
             </ul>
