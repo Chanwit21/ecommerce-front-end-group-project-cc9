@@ -20,13 +20,6 @@ function AdminInbox() {
 
   useEffect(() => {
     try {
-      setModal({
-        active: true,
-        header: 'sss',
-        message: 'ssss',
-        reload: false,
-        redirect: '/'
-      })
       const run = async () => {
         const { data: { contactUs, numberOfPage } } = await axios.get(`/contactUs?offset=${7 * (onPage - 1)}`)
         console.log(`contactUs`, contactUs)
