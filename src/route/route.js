@@ -41,7 +41,7 @@ const routesAll = {
       { path: '/addNewAddress', component: AddNewAddress },
       { path: '/myProfileOrder', component: MyProfileOrder },
       { path: '/termCondition', component: TermCondition },
-      { path: '/favorite', component: Favorite },
+
       {
         path: '/productDescription/:productName',
         component: ProductDescription,

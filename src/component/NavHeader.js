@@ -90,7 +90,7 @@ function NavHeader() {
                 <button type='button' className=' btn px-0 position-relative'>
                   <Link
                     className='nav-link active active'
-                    to={`/login /admin_profile /myProfile`}
+                    to={role === 'GUEST' ? '/login' : role === 'ADMIN' ? '/admin_profile' : '/myProfile'}
                     style={{ opacity: '100%' }}
                   >
                     <i className='bi bi-person-circle'></i>
