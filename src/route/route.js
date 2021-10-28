@@ -58,6 +58,7 @@ const routesAll = {
       { path: '/editMyProFile', component: EditMyProfile },
       { path: '/myProFile', component: MyProfile },
       { path: '/myProfileOrder', component: MyProfileOrder },
+      { path: '/termCondition', component: TermCondition },
     ],
     redirect: '/',
   },
