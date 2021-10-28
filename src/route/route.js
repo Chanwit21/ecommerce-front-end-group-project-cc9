@@ -76,6 +76,9 @@ const routesAll = {
       { path: '/userOrderSummary/:orderId', component: UserOrderSummary },
       { path: "/contact_us", component: ContactUs },
       { path: "/editMyProFile", component: EditMyProfile },
+      { path: '/admin_inbox', component: AdminInbox },
+      { path: "/admin_order", component: AdminOrder },
+
     ],
     redirect: "/",
   },
@@ -96,6 +99,7 @@ const routesAll = {
       { path: '/admin_profile_edit', component: EditAdminProfile },
       { path: "/contact_us", component: ContactUs },
       { path: '/allProduct/:category', component: AllProduct },
+      { path: "/admin_order", component: AdminOrder },
     ],
     redirect: "/",
   },
