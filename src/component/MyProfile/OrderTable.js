@@ -1,33 +1,8 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { orderData as orderMock } from '../../mocks/orderData';
+import React from 'react';
 import OrderLists from './OrderLists';
 import { formatePrice } from '../../service/IntlFormatter';
 
-function OrderTable({ isAdminPage }) {
-  const [orderData, setOrderData] = useState([]);
-  useEffect(() => {
-    const fetchOrderItem = async () => {
-      try {
-        const res = await axios.get('/orders/');
-        setOrderData(res.data.orderItems);
-        // console.log(res);
-        // console.log(res.data.orderItems);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchOrderItem();
-  }, []);
-  // console.log(orderData);
-
-  // amount: "150.00"
-  // date: "2021-10-26T00:00:00.000Z"
-  // firstname: "Nat"
-  // ordertId: "1"
-  // shippingStatus: "To Ship"
-  // shippingTrackingId: "-"
-
+function OrderTable({ isAdminPage, orderData }) {
   return (
     <>
       <div className={`container mb-5 ${isAdminPage ? '' : 'mt-5'}`}>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AccountHeader from '../component/AccountHeader';
 import ProductCardList from '../component/ProductCard/ProductCardList';
-import { productItems as pt } from '../mocks/productItems';
 import axios from '../config/axios';
 
 function Favorite() {

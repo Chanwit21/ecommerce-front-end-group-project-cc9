@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import FilterProduct from '../component/FilterProduct';
 import ProductCardList from '../component/ProductCard/ProductCardList';
 import axios from '../config/axios';
@@ -13,34 +13,26 @@ function AllProduct() {
   const [countProduct, setCountProduct] = useState(0);
   const [onPage, setOnPage] = useState(1);
   const params = useParams();
+  const history = useHistory();
 
   useEffect(() => {
-    const fetchProductByCategory = async () => {
-      try {
-        const res = await axios.get(
-          `/product/all_product/products?category=${params.category}&offset=${9 * (onPage - 1)}&filter=${JSON.stringify(
-            { FACE: {}, SHEEK: {}, LIPS: {}, EYES: {}, BODY: {} }
-          )}`
-        );
-        setProduct(res.data.products);
-        setCountProduct(res.data.count);
-      } catch (err) {
-        console.dir(err);
-      }
-    };
     setAllowFilter(
       params.category === 'All Product' ||
         !['ALL PRODUCT', 'FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY'].includes(params.category.toUpperCase())
         ? ['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY']
         : ['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY'].filter((item) => item.toLowerCase() === params.category)
     );
-
-    fetchProductByCategory();
   }, [params]);
 
   useEffect(() => {
     setOnPage(1);
     setFilterValue({ FACE: {}, SHEEK: {}, LIPS: {}, EYES: {}, BODY: {} });
+    if (
+      !['ALL PRODUCT', 'FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY'].includes(params.category.toUpperCase()) &&
+      !params.category.startsWith('search:')
+    ) {
+      history.push('/');
+    }
   }, [params]);
 
   useEffect(() => {
@@ -58,7 +50,7 @@ function AllProduct() {
       }
     };
     fetchProductByCategoryFilter();
-  }, [filterValue, onPage]);
+  }, [filterValue, onPage, params]);
 
   const headerName = ['ALL PRODUCT', 'FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY'].includes(params.category.toUpperCase())
     ? params.category.toUpperCase()

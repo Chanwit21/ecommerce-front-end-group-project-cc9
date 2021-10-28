@@ -11,6 +11,7 @@ function NavHeader() {
   } = useCartContext();
   const {
     state: { user },
+    dispatch: dpAuth,
   } = useAuthContext();
   const role = user ? user.role : 'GUEST';
 
@@ -27,6 +28,11 @@ function NavHeader() {
     buttonSearchRef.current.click();
     setSearch('');
     history.push({ pathname: `/allProduct/search:${search}` });
+  };
+
+  const handleClickSignOut = (e) => {
+    e.preventDefault();
+    dpAuth({ type: 'LOGOUT' });
   };
 
   return (
@@ -110,7 +116,7 @@ function NavHeader() {
                   </button>
                 </Link>
               </li>
-              {role !== 'ADMIN' ? (
+              {role === 'CUSTOMER' ? (
                 <>
                   <li className='nav-item'>
                     <button type='button' className='btn px-0 position-relative'>
@@ -134,6 +140,15 @@ function NavHeader() {
                     </button>
                   </li>
                 </>
+              ) : null}
+              {role !== 'GUEST' ? (
+                <li className='nav-item'>
+                  <button type='button' className='btn px-0 position-relative' onClick={handleClickSignOut}>
+                    <Link className='nav-link active' to='#'>
+                      <i class='bi bi-box-arrow-right'></i>
+                    </Link>
+                  </button>
+                </li>
               ) : null}
             </ul>
           </div>
