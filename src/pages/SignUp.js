@@ -158,7 +158,7 @@ function SignUp() {
                 />
               </div>
               <div className='col-12 mb-3'>
-                <div id='passwordHelpBlock' class='form-text'>
+                <div id='passwordHelpBlock' className='form-text'>
                   Your password must be 8-20 characters long, contain letters, numbers and special characters.
                 </div>
               </div>

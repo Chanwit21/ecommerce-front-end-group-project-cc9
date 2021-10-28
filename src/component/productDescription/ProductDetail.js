@@ -28,16 +28,21 @@ function ProductDetail({ product, IsFavorite, productImage }) {
   if (imageIdx === -1) imageIdx = 0;
 
   const handleClickFavorite = async () => {
-    if (!checkFavorite) {
-      setCheckFavorite(true);
-      await axios.post('/product/favorite', {
-        productId: productImage[imageIdx].Product.id,
-        productName: productImage[imageIdx].Product.name,
-      });
+    try {
+      if (!checkFavorite) {
+        setCheckFavorite(true);
+        await axios.post('/product/favorite', {
+          productId: productImage[imageIdx].Product.id,
+          productName: productImage[imageIdx].Product.name,
+        });
+      }
+      if (checkFavorite) {
+        await axios.delete(`/product/favorite/${product[0].id}`);
+        setCheckFavorite(false);
+      }
     }
-    if (checkFavorite) {
-      await axios.delete(`/product/favorite/${product[0].id}`);
-      setCheckFavorite(false);
+    catch (err) {
+      console.log(err.message)
     }
   };
 
@@ -82,7 +87,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
               }}
             >
               {productImage.map((item, index) => (
-                <div className='mb-2'>
+                <div className='mb-2' key={index}>
                   <img
                     className={`${index === imageIdx ? 'border border-dark' : ''}`}
                     style={{ width: '4vw', height: '4vw', objectFit: 'cover' }}
@@ -113,17 +118,17 @@ function ProductDetail({ product, IsFavorite, productImage }) {
               {/*price*/}
               <p style={{ fontSize: '18px' }}>{productImage?.[imageIdx]?.Product?.colorName}</p> {/*colorName*/}
               <div className='d-flex'>
-                {product.map((item) => (
+                {product.map((item, index) => (
                   <div
-                    className={`me-2 ${
-                      item.color === productImage[imageIdx]?.Product?.color ? 'border border-dark border-2' : ''
-                    }`}
+                    className={`me-2 ${item.color === productImage[imageIdx]?.Product?.color ? 'border border-dark border-2' : ''
+                      }`}
                     onClick={() => setSelectedImg(productImage.find((itemP) => itemP.Product.color === item.color).id)}
                     style={{
                       width: '40px',
                       height: '40px',
                       backgroundColor: item?.color,
                     }}
+                    key={index}
                   ></div>
                 ))}
               </div>

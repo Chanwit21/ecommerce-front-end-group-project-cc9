@@ -17,7 +17,7 @@ function OrderTable({ isAdminPage }) {
     };
     fetchOrderItem();
   }, []);
-  console.log(orderData);
+  // console.log(orderData);
 
   // amount: "150.00"
   // date: "2021-10-26T00:00:00.000Z"

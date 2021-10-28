@@ -29,25 +29,30 @@ function ContactUs() {
   }
 
   const handleClickSend = async () => {
-    const errorFirstName = validateFirstName(contactData.firstName);
-    const errorLastName = validateLastName(contactData.lastName);
-    const errorEmail = validateEmail(contactData.email);
-    const errorMessage = validateMessage(contactData.message);
+    try {
+      const errorFirstName = validateFirstName(contactData.firstName);
+      const errorLastName = validateLastName(contactData.lastName);
+      const errorEmail = validateEmail(contactData.email);
+      const errorMessage = validateMessage(contactData.message);
 
-    setError({
-      ...error,
-      firstName: errorFirstName,
-      lastName: errorLastName,
-      email: errorEmail,
-      message: errorMessage,
-    });
+      setError({
+        ...error,
+        firstName: errorFirstName,
+        lastName: errorLastName,
+        email: errorEmail,
+        message: errorMessage,
+      });
 
-    if (errorFirstName || errorLastName || errorEmail || errorMessage) {
-      return;
+      if (errorFirstName || errorLastName || errorEmail || errorMessage) {
+        return;
+      }
+      await axios.post('/contactUs', contactData)
+      alert('Sending Message Successful')
+      history.push('/')
     }
-    await axios.post('/contactUs', contactData)
-    alert('Sending Message Successful')
-    history.push('/')
+    catch (err) {
+      console.log(err.message)
+    }
   }
 
   return (

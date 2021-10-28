@@ -90,40 +90,43 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile, setDeleted
   };
 
   return (
-    <div className='DragAndDrop col-lg-4 col-md-6 col-sm-12 p-2'>
-      <div
-        onClick={handleClickAddImage}
-        onDrop={handleDropFile}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        className={`border text-center rounded-3${isDragOver ? ' onDragOver' : ''}`}
-        id='click_drag_and_drop'
-        style={{
-          fontSize: '120px',
-          opacity: imageUrl ? '' : '50%',
-          backgroundImage: `url(${imageUrl})`,
-          backgroundSize: 'cover',
-          minHeight: '14vw',
-          minWidth: '14vw',
-        }}
-      >
-        {imageUrl ? (
-          <div className='d-flex justify-content-end'>
-            <button className='btn' type='button' onClick={handleClickClear}>
-              <i className='bi bi-x text-white' style={{ fontSize: '1.5625vw', fontWeight: '900' }}></i>
-            </button>
-          </div>
-        ) : (
-          <>
-            <i className='bi bi-images'></i>
-            <p className='p-1' style={{ fontSize: '0.625vw' }}>
-              Click here or drag and drop to add images
-            </p>
-          </>
-        )}
+    <>
+      <Modal modal={modal} setModal={setModal} />
+      <div className='DragAndDrop col-lg-4 col-md-6 col-sm-12 p-2'>
+        <div
+          onClick={handleClickAddImage}
+          onDrop={handleDropFile}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          className={`border text-center rounded-3${isDragOver ? ' onDragOver' : ''}`}
+          id='click_drag_and_drop'
+          style={{
+            fontSize: '120px',
+            opacity: imageUrl ? '' : '50%',
+            backgroundImage: `url(${imageUrl})`,
+            backgroundSize: 'cover',
+            minHeight: '14vw',
+            minWidth: '14vw',
+          }}
+        >
+          {imageUrl ? (
+            <div className='d-flex justify-content-end'>
+              <button className='btn' type='button' onClick={handleClickClear}>
+                <i className='bi bi-x text-white' style={{ fontSize: '1.5625vw', fontWeight: '900' }}></i>
+              </button>
+            </div>
+          ) : (
+            <>
+              <i className='bi bi-images'></i>
+              <p className='p-1' style={{ fontSize: '0.625vw' }}>
+                Click here or drag and drop to add images
+              </p>
+            </>
+          )}
+        </div>
+        <input type='file' ref={inputRef} hidden onChange={handleChangeInput} />
       </div>
-      <input type='file' ref={inputRef} hidden onChange={handleChangeInput} />
-    </div>
+    </>
   );
 }
 

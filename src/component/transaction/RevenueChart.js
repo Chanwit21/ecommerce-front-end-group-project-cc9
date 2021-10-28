@@ -31,7 +31,6 @@ const RevenueChart = ({ order, selectedTime, selectWeek }) => {
     for (let i = 0; i <= 24; i += 2) {
       filterDay.push(moment.utc().add(selectWeek, 'days').hour(i).minute(0).second(0).format());
     }
-    console.log(`filterDay`, filterDay);
     //* making revenue for day
     order.forEach((item) => {
       for (let i = 0; i < 12; i++) {
@@ -120,7 +119,6 @@ const RevenueChart = ({ order, selectedTime, selectWeek }) => {
     labels = months;
   }
 
-  console.log(`revenue`, revenue);
   const data = {
     labels: labels,
     datasets: [

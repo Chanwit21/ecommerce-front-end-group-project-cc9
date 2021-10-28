@@ -14,19 +14,23 @@ function ProductSummary() {
   const isFirstRender = useRef(true);
 
   useEffect(() => {
-    const run = async () => {
-      const {
-        data: { products },
-      } = await axios.get('/product');
-      products.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
-      console.log(`products`, products);
-      setProducts(products);
-    };
-    if (isFirstRender.current) {
-      setAllowFilter(['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY']);
-      isFirstRender.current = false;
+    try {
+      const run = async () => {
+        const {
+          data: { products },
+        } = await axios.get('/product');
+        products.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+        setProducts(products);
+      };
+      if (isFirstRender.current) {
+        setAllowFilter(['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY']);
+        isFirstRender.current = false;
+      }
+      run();
     }
-    run();
+    catch (err) {
+      console.log(err.message)
+    }
   }, [refresh]);
 
   const productsTableBody = products?.map((product) => {

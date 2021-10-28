@@ -48,37 +48,42 @@ function UserAddCard() {
   Omise.setPublicKey('pkey_test_5pdoxhl4p3erc27pgew');
 
   const handleSubmitAddCreditCard = (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    const errorName = validateCraditCardName(cardContent.name);
-    const errorNumber = validateCraditCardNumber(cardContent.number);
-    const errorExp = validateCraditCardExp(cardContent.expiration);
-    const errorSecureCode = validateCraditCardSecurityCode(cardContent.securityCode);
+      const errorName = validateCraditCardName(cardContent.name);
+      const errorNumber = validateCraditCardNumber(cardContent.number);
+      const errorExp = validateCraditCardExp(cardContent.expiration);
+      const errorSecureCode = validateCraditCardSecurityCode(cardContent.securityCode);
 
-    if (errorName || errorNumber || errorExp || errorSecureCode) {
-      setCardContentError({
-        number: errorNumber,
-        name: errorName,
-        expiration: errorExp,
-        securityCode: errorSecureCode,
-      });
-    } else {
-      const tokenParameters = {
-        expiration_month: cardContent.expiration.split('-')[1],
-        expiration_year: cardContent.expiration.split('-')[0],
-        name: cardContent.name,
-        number: cardContent.number,
-        security_code: 123,
-      };
+      if (errorName || errorNumber || errorExp || errorSecureCode) {
+        setCardContentError({
+          number: errorNumber,
+          name: errorName,
+          expiration: errorExp,
+          securityCode: errorSecureCode,
+        });
+      } else {
+        const tokenParameters = {
+          expiration_month: cardContent.expiration.split('-')[1],
+          expiration_year: cardContent.expiration.split('-')[0],
+          name: cardContent.name,
+          number: cardContent.number,
+          security_code: 123,
+        };
 
-      Omise.createToken('card', tokenParameters, async function (statusCode, response) {
-        try {
-          await axios.post('/credit_cards', { token: response.id });
-          history.push({ pathname: '/user_payment' });
-        } catch (err) {
-          console.dir(err);
-        }
-      });
+        Omise.createToken('card', tokenParameters, async function (statusCode, response) {
+          try {
+            await axios.post('/credit_cards', { token: response.id });
+            history.push({ pathname: '/user_payment' });
+          } catch (err) {
+            console.dir(err);
+          }
+        });
+      }
+    }
+    catch (err) {
+      console.log(err.message)
     }
   };
 

@@ -52,7 +52,7 @@ function OrderLists({ isAdminPage, id, customerName, date, amount, status, track
           shippingTrackingId: trackNoToBack,
         });
 
-        console.log(trackNoToBack);
+        // console.log(trackNoToBack);
         // alert("Shipping information has been updated.");
       };
       updateShippingInfo();

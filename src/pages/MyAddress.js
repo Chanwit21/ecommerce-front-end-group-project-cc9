@@ -11,19 +11,29 @@ function MyAddress() {
 
 
   useEffect(() => {
-    const run = async () => {
-      const { data: { allAddress, count } } = await axios.get('/address')
-      console.log(`allAddress`, allAddress)
-      console.log(`count`, count)
-      setAllAddresses(allAddress)
-      setCount(count)
+    try {
+      const run = async () => {
+        const { data: { allAddress, count } } = await axios.get('/address')
+        console.log(`allAddress`, allAddress)
+        console.log(`count`, count)
+        setAllAddresses(allAddress)
+        setCount(count)
+      }
+      run();
     }
-    run();
+    catch (err) {
+      console.log(err.message)
+    }
   }, [refresh])
 
   const handleDelete = async (id) => {
-    await axios.delete(`/address/${id}`)
-    setRefresh(cur => !cur)
+    try {
+      await axios.delete(`/address/${id}`)
+      setRefresh(cur => !cur)
+    }
+    catch (err) {
+      console.log(err.message)
+    }
   }
   const handleEdit = () => {
 
@@ -54,7 +64,6 @@ function MyAddress() {
             </div>
             <div className="flex-end d-flex">
               <button
-                clasName="me-5 border-end-0"
                 style={{
                   backgroundColor: "#FFD6DC",
                   border: "1px solid #000000",
@@ -67,17 +76,16 @@ function MyAddress() {
                   state: item
                 }}>
                   <i
-                    class="bi bi-pencil-square fs-4"
+                    className="bi bi-pencil-square fs-4"
                     style={{ cursor: "pointer" }}
                   ></i>
                 </Link>
               </button>
               <button
-                clasName="align-items-center d-flex"
                 style={{ backgroundColor: "#FFD6DC", border: "1px solid #000000", width: "50px" }}
                 onClick={() => handleDelete(item.id)}
               >
-                <i class="bi bi-trash fs-4" style={{ cursor: "pointer" }}></i>
+                <i className="bi bi-trash fs-4" style={{ cursor: "pointer" }}></i>
               </button>
             </div>
           </div>

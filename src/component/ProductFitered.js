@@ -20,16 +20,15 @@ function ProductFiltered({ filtered }) {
         className="d-inline-flex justify-content-center align-items-center mb-5 "
       >
         {limitFeatured.map((item) => (
-          <>
+          <div key={item.id}>
             <ProductCardList
-              key={item.id}
               name={item.name}
               imageUrl={item.imageUrl}
               price={item.price}
               width="330px"
               height="330px"
             />
-          </>
+          </div>
         ))}
       </div>
     </>

@@ -69,9 +69,9 @@ function FilterProduct({ allowFilter, filterValue, setFilterValue }) {
             aria-labelledby='face'
           >
             <div className='accordion-body'>
-              {filter.filterItem.map((item) => {
+              {filter.filterItem.map((item, index) => {
                 return (
-                  <div className='d-flex justify-content-between mb-2'>
+                  <div className='d-flex justify-content-between mb-2' key={index}>
                     <label className='form-check-label' htmlFor={tocamelCase(item)}>
                       {item}
                     </label>

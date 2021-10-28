@@ -5,9 +5,14 @@ function InboxMessage({ message, setOnPage, setRefresh }) {
   const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
   const handleDelete = async () => {
-    await axios.delete(`/contactUs/${message.id}`)
-    setOnPage(1)
-    setRefresh(cur => !cur)
+    try {
+      await axios.delete(`/contactUs/${message.id}`)
+      setOnPage(1)
+      setRefresh(cur => !cur)
+    }
+    catch (err) {
+      console.log(err.message)
+    }
   }
   return (
     <div>
@@ -25,7 +30,7 @@ function InboxMessage({ message, setOnPage, setRefresh }) {
               >
                 <div className="d-flex bd-highlight">
                   <div
-                    class="p-2 flex-fill bd-highlight"
+                    className="p-2 flex-fill bd-highlight"
                     style={{ minWidth: "25vw " }}
                   >
                     {message.firstName} {message.lastName}
@@ -44,7 +49,7 @@ function InboxMessage({ message, setOnPage, setRefresh }) {
             </h2>
             <div
               id={`ss${message.id}`}
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
               aria-labelledby="headingOne"
               data-bs-parent="#accordionExample"
             >

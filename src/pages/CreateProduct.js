@@ -150,63 +150,68 @@ function CreateProduct() {
   });
 
   const handleClickSave = async () => {
-    setShowSpinner(true);
-    const errorProductName = validateProductName(productData.productName);
-    const errorPrice = validatePrice(productData.price);
-    const errorQuantity = validateQuantity(productData.quantity);
-    const errorCategory = validateCategory(productData.category);
-    const errorColorName = validateColorName(productData.colorName);
-    const errorColorCode = validateColorCode(productData.colorCode);
-    const errorDescription = validateDescription(productData.description);
-    const errorIngredients = validateIngredients(productData.ingredients);
-    const errorImageFile = validateImageFile(imagesFile);
+    try {
+      setShowSpinner(true);
+      const errorProductName = validateProductName(productData.productName);
+      const errorPrice = validatePrice(productData.price);
+      const errorQuantity = validateQuantity(productData.quantity);
+      const errorCategory = validateCategory(productData.category);
+      const errorColorName = validateColorName(productData.colorName);
+      const errorColorCode = validateColorCode(productData.colorCode);
+      const errorDescription = validateDescription(productData.description);
+      const errorIngredients = validateIngredients(productData.ingredients);
+      const errorImageFile = validateImageFile(imagesFile);
 
-    setError({
-      ...error,
-      productName: errorProductName,
-      price: errorPrice,
-      quantity: errorQuantity,
-      category: errorCategory,
-      colorName: errorColorName,
-      colorCode: errorColorCode,
-      description: errorDescription,
-      ingredients: errorIngredients,
-      images: errorImageFile,
-    });
+      setError({
+        ...error,
+        productName: errorProductName,
+        price: errorPrice,
+        quantity: errorQuantity,
+        category: errorCategory,
+        colorName: errorColorName,
+        colorCode: errorColorCode,
+        description: errorDescription,
+        ingredients: errorIngredients,
+        images: errorImageFile,
+      });
 
-    if (
-      errorProductName ||
-      errorPrice ||
-      errorQuantity ||
-      errorCategory ||
-      errorColorName ||
-      errorColorCode ||
-      errorDescription ||
-      errorIngredients ||
-      errorImageFile
-    ) {
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('name', productData.productName);
-    formData.append('description', productData.description);
-    formData.append('price', productData.price);
-    formData.append('cetagory', productData.category);
-    formData.append('colorName', productData.colorName);
-    formData.append('color', productData.colorCode);
-    formData.append('countStock', productData.quantity);
-    formData.append('ingredient', productData.ingredients);
-    imagesFile.forEach((item) => {
-      if (item) {
-        formData.append('imageUrl', item);
+      if (
+        errorProductName ||
+        errorPrice ||
+        errorQuantity ||
+        errorCategory ||
+        errorColorName ||
+        errorColorCode ||
+        errorDescription ||
+        errorIngredients ||
+        errorImageFile
+      ) {
+        return;
       }
-    });
 
-    await axios.post('/product', formData);
-    setShowSpinner(false);
-    alert('Create is Successful');
-    history.push('/product_summary');
+      const formData = new FormData();
+      formData.append('name', productData.productName);
+      formData.append('description', productData.description);
+      formData.append('price', productData.price);
+      formData.append('cetagory', productData.category);
+      formData.append('colorName', productData.colorName);
+      formData.append('color', productData.colorCode);
+      formData.append('countStock', productData.quantity);
+      formData.append('ingredient', productData.ingredients);
+      imagesFile.forEach((item) => {
+        if (item) {
+          formData.append('imageUrl', item);
+        }
+      });
+
+      await axios.post('/product', formData);
+      setShowSpinner(false);
+      alert('Create is Successful');
+      history.push('/product_summary');
+    }
+    catch (err) {
+      console.log(err.message)
+    }
   };
 
   const inputOnChange = (e) => {
@@ -238,9 +243,8 @@ function CreateProduct() {
         <div style={{ width: '70%' }}>
           <div className='row mt-5 mb-5'>
             <div className='col-12 mb-5'>
-              <h3 style={{ textAlign: 'center' }}>{`${
-                location?.state?.edit ? 'EDIT PRODUCT' : 'CREATE NEW PRODUCT'
-              }`}</h3>
+              <h3 style={{ textAlign: 'center' }}>{`${location?.state?.edit ? 'EDIT PRODUCT' : 'CREATE NEW PRODUCT'
+                }`}</h3>
             </div>
             <div className='col-12 mb-2'>
               <label htmlFor='productName' className='form-label'>
@@ -290,7 +294,7 @@ function CreateProduct() {
                 className={`form-select ${error.category ? ' is-invalid' : ''}`}
                 id='category'
               >
-                <option value='' selected>
+                <option defaultValue='' >
                   select category...
                 </option>
                 <option value='FACE'>FACE</option>
