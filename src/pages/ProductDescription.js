@@ -31,9 +31,8 @@ function ProductDescription() {
         setProductImage(productImage);
       };
       run();
-    }
-    catch (err) {
-      console.log(err.message)
+    } catch (err) {
+      console.log(err.message);
     }
   }, []);
 
