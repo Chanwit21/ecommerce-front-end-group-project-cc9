@@ -45,7 +45,7 @@ function AccountHeader() {
               }}
             >
               <span className="fw-bold">
-                <Link className="nav-link" to="#" style={{ color: "inherit" }}>
+                <Link className="nav-link" to="/myProfileOrder" style={{ color: "inherit" }}>
                   MY ORDERS
                 </Link>
               </span>
