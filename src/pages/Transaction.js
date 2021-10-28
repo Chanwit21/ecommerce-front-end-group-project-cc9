@@ -118,22 +118,22 @@ function Transaction() {
 
   const topFiveColor = ['#DF316E', '#40C9BA', '#98C6FF', '#9F7DE1', '#FEDF9A'];
   const categoryImg = {
-    foundation: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Foundation_phqyge.jpg',
-    power: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Balm_jck6hf.png',
-    concealer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Concealer_aocfpl.png',
-    primer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Primer_fkjcm3.jpg',
-    blush: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998899/Blush_kv89pz.jpg',
-    bronzer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Bronzer_ngvzby.jpg',
-    highlighter: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Highlighter_mc29py.jpg',
-    liquidLipstick: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Liquid_Lip_ipjiux.png',
-    lipstick: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Libstick_dt5dbz.png',
-    lipLiner: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Liner_vuizz8.png',
-    lipBlam: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Balm_jck6hf.png',
-    eyeShadow: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Eyeshadow_bdtaa7.png',
-    eyeBrows: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Eyebrows_jfxtxf.png',
-    eyeLiner: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Eyeliner_np6msk.png',
-    mascara: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Mascara_oyfzhv.png',
-    bodyMakeup: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998903/Body_cd2xfp.png',
+    Foundation: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Foundation_phqyge.jpg',
+    Concealer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Concealer_aocfpl.png',
+    Powder: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Balm_jck6hf.png',
+    Primer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Primer_fkjcm3.jpg',
+    'Eye Brows': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Eyebrows_jfxtxf.png',
+    'Eye Liner': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Eyeliner_np6msk.png',
+    'Eye Shadow': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Eyeshadow_bdtaa7.png',
+    Mascara: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Mascara_oyfzhv.png',
+    'Lip Blam': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Balm_jck6hf.png',
+    'Lip Liner': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Lip_Liner_vuizz8.png',
+    'Lip Stick': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Libstick_dt5dbz.png',
+    'Liquid Lipstick': 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Liquid_Lip_ipjiux.png',
+    Blush: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998899/Blush_kv89pz.jpg',
+    Bronzer: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998904/Bronzer_ngvzby.jpg',
+    Highlighter: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998905/Highlighter_mc29py.jpg',
+    BodyMakeup: 'https://res.cloudinary.com/dtwk9plkp/image/upload/v1634998903/Body_cd2xfp.png',
   };
 
   return (
@@ -175,9 +175,8 @@ function Transaction() {
                     <div className='d-flex align-items-center col-4'>
                       <h6 className='m-0' style={{ fontSize: '24px' }}>{`$${showSumIncome}`}</h6>
                       <i
-                        className={`ms-2 text-${percent >= 0 ? 'success' : 'danger'} fs-3 bi bi-caret-${
-                          percent >= 0 ? 'up' : 'down'
-                        }-fill`}
+                        className={`ms-2 text-${percent >= 0 ? 'success' : 'danger'} fs-3 bi bi-caret-${percent >= 0 ? 'up' : 'down'
+                          }-fill`}
                       ></i>
                       <p
                         className={`m-0 text-${percent >= 0 ? 'success' : 'danger'}`}

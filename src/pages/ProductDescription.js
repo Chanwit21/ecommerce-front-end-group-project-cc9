@@ -15,6 +15,7 @@ function ProductDescription() {
   const [productImage, setProductImage] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const run = async () => {
       const {
         data: { product, productImage },

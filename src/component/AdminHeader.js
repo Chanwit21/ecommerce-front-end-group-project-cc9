@@ -63,7 +63,7 @@ function AdminHeader() {
               }}
             >
               <span className="fw-bold">
-                <Link className="nav-link " to="#" style={{ color: "inherit" }}>
+                <Link className="nav-link " to="/product_summary" style={{ color: "inherit" }}>
                   PRODUCTS
                 </Link>
               </span>
