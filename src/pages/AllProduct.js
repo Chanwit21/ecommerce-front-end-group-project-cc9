@@ -42,7 +42,8 @@ function AllProduct() {
       }
     };
     setAllowFilter(
-      params.category === 'All Product'
+      params.category === 'All Product' ||
+        !['ALL PRODUCT', 'FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY'].includes(params.category.toUpperCase())
         ? ['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY']
         : ['FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY'].filter((item) => item.toLowerCase() === params.category)
     );
@@ -72,12 +73,16 @@ function AllProduct() {
     fetchProductByCategoryFilter();
   }, [filterValue, onPage]);
 
+  const headerName = ['ALL PRODUCT', 'FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY'].includes(params.category.toUpperCase())
+    ? params.category.toUpperCase()
+    : `Search : ${params.category.split(':')[1]}`;
+
   return (
     <>
       <div className='container'>
         <div className='row my-5'>
           <div className='col-9'>
-            <h4 className='fs-bold my-2 py-0 '>{params.category.toUpperCase()}</h4>
+            <h4 className='fs-bold my-2 py-0 '>{headerName}</h4>
           </div>
           <div className='col-3 d-flex justify-content-end'>
             {Math.ceil(countProduct / 9) === 0 ? null : (
