@@ -75,7 +75,7 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile, setDeleted
 
   const handleClickClear = () => {
     if (imagesShow[index].split(':')[0] === 'https') {
-      setDeletedImg(cur => [...cur, imagesShow[index]])
+      setDeletedImg((cur) => [...cur, imagesShow[index]]);
     }
     setImagesShow((cur) => {
       const clone = [...cur];
@@ -91,7 +91,6 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile, setDeleted
 
   return (
     <>
-      <Modal modal={modal} setModal={setModal} />
       <div className='DragAndDrop col-lg-4 col-md-6 col-sm-12 p-2'>
         <div
           onClick={handleClickAddImage}
