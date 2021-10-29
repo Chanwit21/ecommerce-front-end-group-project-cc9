@@ -55,7 +55,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
   const handleAddToCart = async () => {
     try {
       if (user.role === 'ADMIN') {
-        alert(`ADMIN DOESN'T HAVE FAVORITE`)
+        alert(`ADMIN DOESN'T HAVE CART`)
         return;
       }
       setNumberOfProduct(1);
