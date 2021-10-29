@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useAuthContext } from '../../context/AuthContext';
 import { useCartContext } from '../../context/CartContext';
 import '../../css/scrollBar.css';
 
 function ProductDetail({ product, IsFavorite, productImage }) {
+  const { state: { user } } = useAuthContext();
   const [numberOfProduct, setNumberOfProduct] = useState(1);
   const [checkFavorite, setCheckFavorite] = useState(IsFavorite); //IsFavorite from database
   const [selectedColor, setSelectedColor] = useState(product?.[0]?.color);
@@ -29,6 +31,10 @@ function ProductDetail({ product, IsFavorite, productImage }) {
 
   const handleClickFavorite = async () => {
     try {
+      if (user.role === 'ADMIN') {
+        alert(`ADMIN DOESN'T HAVE FAVORITE`)
+        return;
+      }
       if (!checkFavorite) {
         setCheckFavorite(true);
         await axios.post('/product/favorite', {
@@ -48,6 +54,10 @@ function ProductDetail({ product, IsFavorite, productImage }) {
 
   const handleAddToCart = async () => {
     try {
+      if (user.role === 'ADMIN') {
+        alert(`ADMIN DOESN'T HAVE FAVORITE`)
+        return;
+      }
       setNumberOfProduct(1);
       const cartItemIdx = carts.findIndex((item) => item.productId === productImage[imageIdx].Product.id);
       if (cartItemIdx === -1) {
