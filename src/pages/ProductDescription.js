@@ -20,7 +20,7 @@ function ProductDescription() {
       const run = async () => {
         const {
           data: { product, productImage },
-        } = await axios.get(`/product/byProductName/${productName}`);
+        } = await axios.post(`/product/byProductName?productName=${productName}`, { productName });
         if (user) {
           const {
             data: { IsFavorite },

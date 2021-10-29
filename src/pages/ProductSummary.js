@@ -18,6 +18,7 @@ function ProductSummary() {
   const isFirstRender = useRef(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     const run = async () => {
       const res = await axios.get(
         `/product?filter=${JSON.stringify(genObjectToFilter(filterValue))}&offset=${7 * (onPage - 1)}`
