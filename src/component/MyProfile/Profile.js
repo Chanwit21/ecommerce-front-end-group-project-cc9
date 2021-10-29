@@ -137,7 +137,7 @@ function Profile({ button }) {
                 value={profileData.firstName}
                 onChange={handleOnchange}
                 id='firstName'
-                readOnly={button === 'EDIT PROFILE'}
+                readOnly={button === 'EDIT MY PROFILE'}
               />
               {error.firstName ? <div className=' p-0 invalid-feedback text-end'>{error.firstName}</div> : null}
             </div>
@@ -154,7 +154,7 @@ function Profile({ button }) {
                 value={profileData.lastName}
                 onChange={handleOnchange}
                 id='lastName'
-                readOnly={button === 'EDIT PROFILE'}
+                readOnly={button === 'EDIT MY PROFILE'}
               />
               {error.lastName ? <div className='invalid-feedback text-end'>{error.lastName}</div> : null}
             </div>
@@ -171,7 +171,7 @@ function Profile({ button }) {
                 value={profileData.phoneNumber}
                 onChange={handleOnchange}
                 id='phoneNumber'
-                readOnly={button === 'EDIT PROFILE'}
+                readOnly={button === 'EDIT MY PROFILE'}
               />
               {error.phoneNumber ? <div className='invalid-feedback text-end'>{error.phoneNumber}</div> : null}
             </div>
@@ -188,7 +188,7 @@ function Profile({ button }) {
                 value={profileData.email}
                 onChange={handleOnchange}
                 id='email'
-                readOnly={button === 'EDIT PROFILE'}
+                readOnly={button === 'EDIT MY PROFILE'}
               />
               {error.email ? <div className='invalid-feedback text-end'>{error.email}</div> : null}
             </div>

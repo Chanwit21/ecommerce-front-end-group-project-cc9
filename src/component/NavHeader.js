@@ -161,11 +161,11 @@ function NavHeader() {
               ) : null}
               {role !== 'GUEST' ? (
                 <li className='nav-item'>
-                  <Link className='nav-link active' to='/'>
-                    <button type='button' className='btn px-0 position-relative' onClick={handleClickSignOut}>
+                  <button type='button' className='btn px-0 position-relative' onClick={handleClickSignOut}>
+                    <Link className='nav-link active' to='/'>
                       <i class='bi bi-box-arrow-right'></i>
-                    </button>
-                  </Link>
+                    </Link>
+                  </button>
                 </li>
               ) : null}
             </ul>
