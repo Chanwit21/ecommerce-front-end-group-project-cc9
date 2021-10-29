@@ -163,7 +163,7 @@ function NavHeader() {
                 <li className='nav-item'>
                   <button type='button' className='btn px-0 position-relative' onClick={handleClickSignOut}>
                     <Link className='nav-link active' to='/'>
-                      <i class='bi bi-box-arrow-right'></i>
+                      <i className='bi bi-box-arrow-right'></i>
                     </Link>
                   </button>
                 </li>
