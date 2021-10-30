@@ -31,7 +31,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
 
   const handleClickFavorite = async () => {
     try {
-      if (user.role === 'ADMIN') {
+      if (user?.role === 'ADMIN') {
         alert(`ADMIN DOESN'T HAVE FAVORITE`)
         return;
       }
@@ -54,7 +54,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
 
   const handleAddToCart = async () => {
     try {
-      if (user.role === 'ADMIN') {
+      if (user?.role === 'ADMIN') {
         alert(`ADMIN DOESN'T HAVE CART`)
         return;
       }
