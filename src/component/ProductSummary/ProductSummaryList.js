@@ -22,7 +22,6 @@ function ProductSummaryList({ product, setRefresh }) {
   const handleDelete = async () => {
     try {
       await axios.delete(`/product/${product.id}`)
-      console.log('test')
       setRefresh(cur => !cur)
     }
     catch (err) {

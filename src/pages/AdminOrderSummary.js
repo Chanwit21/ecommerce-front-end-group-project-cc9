@@ -13,8 +13,6 @@ function AdminOrderSummary() {
     try {
       const run = async () => {
         const { data: { orderItem, address } } = await axios.get(`/orders/getOrderItemById/${orderId}`)
-        console.log(`orderItem`, orderItem)
-        console.log(`address`, address)
         setOrderItem(orderItem)
         setAddress(address)
       }

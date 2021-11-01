@@ -22,15 +22,12 @@ function Home(filtered) {
         const {
           data: { product, productImage },
         } = await axios.get(`/product/arrival`); //input productName
-        console.log(`product`, product);
         if (user && product.length) {
           const {
             data: { IsFavorite },
           } = await axios.post(`/product/checkFavorite`, { productName: product?.[0]?.name });
-          console.log(`IsFavorite`, IsFavorite);
           setIsFavorite(IsFavorite);
         }
-        console.log(`productImage`, productImage);
         setProduct(product);
         setProductImage(productImage);
       } catch (err) {
