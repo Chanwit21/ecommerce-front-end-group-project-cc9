@@ -4,8 +4,10 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContext';
 import { validateEmail, validateFirstName, validateLastName, validatePhoneNumber } from '../../service/validateForm';
+import Modal from '../../component/Modal';
 
 function Profile({ button }) {
+  const [modal, setModal] = useState({ active: false, message: '', header: '', redirect: '/', reload: true });
   const {
     state: {
       user: { id: userId, role },
@@ -88,7 +90,8 @@ function Profile({ button }) {
       formData.append('imageUrl', profileData.imageUrl);
       await axios.put('/users', formData);
       setShowSpinner(false);
-      alert('Editing Profile Successful');
+      setModal({ active: true, message: 'Editing Profile Successful', header: 'STATUS', redirect: '' });
+      // alert('Editing Profile Successful');
       const parth = role === 'ADMIN' ? '/admin_profile' : '/myProFile';
       history.push(parth);
     } catch (err) {
@@ -97,6 +100,7 @@ function Profile({ button }) {
   };
   return (
     <>
+      <Modal modal={modal} setModal={setModal} />
       <div className='container'>
         <div className='row my-5 mx-1 p-0'>
           <div className='col-5' style={{ width: '175px', height: '175px' }}>

@@ -14,8 +14,10 @@ import {
   validateProductName,
   validateQuantity,
 } from '../service/validateForm';
+import Modal from '../component/Modal';
 
 function CreateProduct() {
+  const [modal, setModal] = useState({ active: false, message: '', header: '', redirect: '/', reload: true });
   const history = useHistory();
   const location = useLocation();
   const [imagesFile, setImagesFile] = useState(new Array(6).fill(null));
@@ -40,7 +42,6 @@ function CreateProduct() {
       const {
         state: { product },
       } = location;
-      console.log(`product`, product);
       setProductData({
         productName: product.name,
         price: product.price,
@@ -53,11 +54,9 @@ function CreateProduct() {
       });
       const run = async () => {
         try {
-          console.log(`product.id`, product.id);
           const {
             data: { productImage },
           } = await axios.get(`/product/productImage/${product.id}`);
-          console.log(`productImage`, productImage);
           const newImageShow = [...imagesShow];
           productImage.forEach((item, index) => {
             newImageShow[index] = item.imageUrl;
@@ -128,7 +127,8 @@ function CreateProduct() {
       });
       await axios.put(`/product/${location.state.product.id}`, formData);
       setShowSpinner(false);
-      alert('Update is Successful');
+      setModal({ active: true, message: 'Update is Successful', header: 'STATUS', redirect: '' });
+      // alert('Update is Successful');
       history.push('/product_summary');
     } catch (err) {
       console.log(err.message);
@@ -206,7 +206,8 @@ function CreateProduct() {
 
       await axios.post('/product', formData);
       setShowSpinner(false);
-      alert('Create is Successful');
+      setModal({ active: true, message: 'Create is Successful', header: 'STATUS', redirect: '' });
+      // alert('Create is Successful');
       history.push('/product_summary');
     }
     catch (err) {
@@ -239,6 +240,7 @@ function CreateProduct() {
         minHeight: '70vh',
       }}
     >
+      <Modal modal={modal} setModal={setModal} />
       <div className='container bg-white d-flex justify-content-center' style={{ minHeight: '100%', width: '76%' }}>
         <div style={{ width: '70%' }}>
           <div className='row mt-5 mb-5'>

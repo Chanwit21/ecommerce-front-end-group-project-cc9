@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import { validateEmail, validateFirstName, validateLastName, validateMessage } from '../service/validateForm';
 import { useHistory } from 'react-router';
+import Modal from '../component/Modal';
 
 function ContactUs() {
+  const [modal, setModal] = useState({ active: false, message: '', header: '', redirect: '/', reload: true });
   const {
     state: { user },
   } = useAuthContext();
@@ -21,7 +23,6 @@ function ContactUs() {
     email: '',
     message: '',
   });
-  console.log(`user`, user);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -50,7 +51,8 @@ function ContactUs() {
         return;
       }
       await axios.post('/contactUs', contactData);
-      alert('Sending Message Successful');
+      setModal({ active: true, message: 'Sending Message Successful', header: 'STATUS', redirect: '' });
+      // alert('Sending Message Successful');
       history.push('/');
     } catch (err) {
       console.log(err.message);
@@ -66,6 +68,7 @@ function ContactUs() {
         minHeight: '70vh',
       }}
     >
+      <Modal modal={modal} setModal={setModal} />
       <div
         className='my-5 p-5'
         style={{
