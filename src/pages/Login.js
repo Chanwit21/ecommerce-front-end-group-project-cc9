@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { validateEmail, validatePassword } from '../service/validateForm';
 import { useAuthContext } from '../context/AuthContext';
 import axios from '../config/axios';
+import Modal from '../component/Modal';
 
 function Login() {
+  const [modal, setModal] = useState({ active: false, redirect: '', header: '', message: '', reload: false });
   const { dispatch } = useAuthContext();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      setModal({
+        active: true,
+        redirect: '/login',
+        header: 'Forgot Password!!',
+        message: location.state.message,
+        reload: false,
+      });
+    }
+  }, [location]);
+
   const responseGoogle = async (resGoogle) => {
     console.log(resGoogle);
     if (resGoogle.error) {
@@ -95,6 +111,7 @@ function Login() {
         minHeight: '70vh',
       }}
     >
+      <Modal modal={modal} setModal={setModal} />
       <div
         className='bg-white my-5'
         style={{
@@ -173,6 +190,13 @@ function Login() {
                     </button>
                   )}
                 />
+              </div>
+              <div className='col-12 text-center mb-2'>
+                <div>
+                  <Link to='/forgot_password' style={{ textDecoration: 'none', color: '#000' }}>
+                    Forgot Password?
+                  </Link>
+                </div>
               </div>
               <div className='col-12 text-center mb-4'>
                 <div>

@@ -24,6 +24,8 @@ import MyProfileOrder from '../pages/MyProfileOrder';
 import AdminOrder from '../pages/AdminOrder';
 import EditAdminProfile from '../pages/EditAdminProfile';
 import AdminOrderSummary from '../pages/AdminOrderSummary';
+import ForgotPassword from '../pages/ForgotPassword';
+import ResetPassword from '../pages/ResetPassword';
 
 const routesAll = {
   GUEST: {
@@ -34,6 +36,8 @@ const routesAll = {
       { path: '/contact_us', component: ContactUs },
       { path: '/allProduct/:category', component: AllProduct },
       { path: '/termCondition', component: TermCondition },
+      { path: '/forgot_password', component: ForgotPassword },
+      { path: '/reset_password/:token', component: ResetPassword },
       {
         path: '/productDescription/:productName',
         component: ProductDescription,
