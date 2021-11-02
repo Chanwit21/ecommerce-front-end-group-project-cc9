@@ -14,8 +14,6 @@ function MyAddress() {
     try {
       const run = async () => {
         const { data: { allAddress, count } } = await axios.get('/address')
-        console.log(`allAddress`, allAddress)
-        console.log(`count`, count)
         setAllAddresses(allAddress)
         setCount(count)
       }

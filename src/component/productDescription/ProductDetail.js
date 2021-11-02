@@ -3,8 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useAuthContext } from '../../context/AuthContext';
 import { useCartContext } from '../../context/CartContext';
 import '../../css/scrollBar.css';
+import Modal from '../../component/Modal';
+
 
 function ProductDetail({ product, IsFavorite, productImage }) {
+  const [modal, setModal] = useState({ active: false, message: '', header: '', redirect: '/', reload: true });
   const { state: { user } } = useAuthContext();
   const [numberOfProduct, setNumberOfProduct] = useState(1);
   const [checkFavorite, setCheckFavorite] = useState(IsFavorite); //IsFavorite from database
@@ -31,8 +34,9 @@ function ProductDetail({ product, IsFavorite, productImage }) {
 
   const handleClickFavorite = async () => {
     try {
-      if (user.role === 'ADMIN') {
-        alert(`ADMIN DOESN'T HAVE FAVORITE`)
+      if (user?.role === 'ADMIN') {
+        setModal({ active: true, message: `ADMIN DOESN'T HAVE FAVORITE`, header: 'STATUS', redirect: '' });
+        // alert(`ADMIN DOESN'T HAVE FAVORITE`)
         return;
       }
       if (!checkFavorite) {
@@ -54,8 +58,9 @@ function ProductDetail({ product, IsFavorite, productImage }) {
 
   const handleAddToCart = async () => {
     try {
-      if (user.role === 'ADMIN') {
-        alert(`ADMIN DOESN'T HAVE CART`)
+      if (user?.role === 'ADMIN') {
+        setModal({ active: true, message: `ADMIN DOESN'T HAVE CART`, header: 'STATUS', redirect: '' });
+        // alert(`ADMIN DOESN'T HAVE CART`)
         return;
       }
       setNumberOfProduct(1);
@@ -66,7 +71,8 @@ function ProductDetail({ product, IsFavorite, productImage }) {
           productId: productImage[imageIdx].Product.id,
         });
         dispatch({ type: 'ADD_CART', payload: { product: res.data.cartItem } });
-        alert('add to cart successful');
+        setModal({ active: true, message: 'Add to cart successful', header: 'STATUS', redirect: '' });
+        // alert('add to cart successful');
       } else {
         const cartItemUpdate = { ...carts[cartItemIdx], quality: carts[cartItemIdx].quality + numberOfProduct };
         await axios.post(`/carts/cart_item/${cartItemUpdate.id}`, { quality: cartItemUpdate.quality });
@@ -82,6 +88,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
 
   return (
     <div>
+      <Modal modal={modal} setModal={setModal} />
       <div
         className=' p-4'
         style={{

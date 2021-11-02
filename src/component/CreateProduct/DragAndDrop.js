@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
 import '../../css/DragAndDrop.css';
 import { toBase64 } from '../../service/convertFile';
+import Modal from '../../component/Modal';
 
 function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile, setDeletedImg, imagesShow }) {
+  const [modal, setModal] = useState({ active: false, message: '', header: '', redirect: '/', reload: true });
   const [isDragOver, setIsDragOver] = useState(false);
   const inputRef = useRef();
 
@@ -31,7 +33,8 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile, setDeleted
           console.log(err);
         }
       } else {
-        alert('Only .png, .jpg and .jpeg format allowed!');
+        setModal({ active: true, message: 'Only .png, .jpg and .jpeg format allowed!', header: 'STATUS', redirect: '' });
+        // alert('Only .png, .jpg and .jpeg format allowed!');
       }
     }
   };
@@ -68,7 +71,8 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile, setDeleted
           console.log(err);
         }
       } else {
-        alert('Only .png, .jpg and .jpeg format allowed!');
+        setModal({ active: true, message: 'Only .png, .jpg and .jpeg format allowed!', header: 'STATUS', redirect: '' });
+        // alert('Only .png, .jpg and .jpeg format allowed!');
       }
     }
   };
@@ -91,6 +95,7 @@ function DragAndDrop({ imageUrl, index, setImagesShow, setImagesFile, setDeleted
 
   return (
     <>
+      <Modal modal={modal} setModal={setModal} />
       <div className='DragAndDrop col-lg-4 col-md-6 col-sm-12 p-2'>
         <div
           onClick={handleClickAddImage}

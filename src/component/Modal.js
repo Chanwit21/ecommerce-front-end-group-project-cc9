@@ -15,7 +15,7 @@ function Modal({ modal, setModal }) {
     if (modal.reload) {
       window.location.reload();
     } else {
-      history.push({ pathname: modal.redirect });
+      modal.redirect && history.push({ pathname: modal.redirect });
     }
   };
 

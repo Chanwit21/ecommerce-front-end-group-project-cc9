@@ -16,8 +16,6 @@ function AdminInbox() {
         const {
           data: { contactUs, numberOfPage },
         } = await axios.get(`/contactUs?offset=${7 * (onPage - 1)}`);
-        console.log(`contactUs`, contactUs);
-        console.log(`numberOfPage`, numberOfPage);
         setContactUs(contactUs);
         setnumberOfPage(numberOfPage);
       };

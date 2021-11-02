@@ -7,8 +7,10 @@ import {
   validateLastName,
   validatePasswordAndConfirmPassWord,
 } from '../service/validateForm';
+import Modal from '../component/Modal';
 
 function SignUp() {
+  const [modal, setModal] = useState({ active: false, message: '', header: '', redirect: '/', reload: true });
   const [signUpForm, setSignUpForm] = useState({
     firstName: '',
     lastName: '',
@@ -74,7 +76,8 @@ function SignUp() {
           });
           history.push({ pathname: '/login' });
         } else {
-          alert('Please Read the Privace Policy and accept');
+          setModal({ active: true, message: 'Please Read the Privace Policy and accept', header: 'STATUS', redirect: '' });
+          // alert('Please Read the Privace Policy and accept');
         }
       } catch (err) {
         console.dir(err);
@@ -91,6 +94,7 @@ function SignUp() {
         minHeight: '70vh',
       }}
     >
+      <Modal modal={modal} setModal={setModal} />
       <div
         className='bg-white my-5'
         style={{

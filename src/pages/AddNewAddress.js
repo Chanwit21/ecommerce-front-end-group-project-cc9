@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import AccountHeader from "../component/AccountHeader";
 import { validateAddress1, validateAddress2, validateDistrict, validateFirstName, validateLastName, validatePhoneNumber, validateProvince, validateSubDistrict } from "../service/validateForm";
 import { useHistory, useLocation } from "react-router";
+import Modal from '../component/Modal';
 
 function AddNewAddress() {
+  const [modal, setModal] = useState({ active: false, message: '', header: '', redirect: '/', reload: true });
   const history = useHistory()
   const location = useLocation();
   const [addressData, setAddressData] = useState({})
@@ -97,7 +99,8 @@ function AddNewAddress() {
       }
 
       await axios.put(`/address/${location.state.id}`, addressData)
-      alert('Editing Address is Successful')
+      setModal({ active: true, message: 'Editing Address is Successful', header: 'STATUS', redirect: '' });
+      // alert('Editing Address is Successful')
       history.push('/myAddress')
     }
     catch (err) {
@@ -131,7 +134,8 @@ function AddNewAddress() {
       }
 
       await axios.post('/address', { ...addressData })
-      alert('Adding Address is Successful')
+      setModal({ active: true, message: 'Adding Address is Successful', header: 'STATUS', redirect: '' });
+      // alert('Adding Address is Successful')
       history.push('/myAddress')
     }
     catch (err) {
@@ -215,6 +219,7 @@ function AddNewAddress() {
   return (
 
     <>
+      <Modal modal={modal} setModal={setModal} />
       <AccountHeader />
       <h6 className=" fw-bold d-flex justify-content-center mt-5">{`${location?.state ? 'EDIT ADDRESS' : 'ADD NEW ADDRESS'}`} </h6>
       <div className="container my-4 d-flex flex-column justify-content-center align-items-center" style={{ width: "35vw" }}>
