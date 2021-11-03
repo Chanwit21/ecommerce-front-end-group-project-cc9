@@ -51,7 +51,7 @@ export default function ShoppingCart() {
           </div>
         </>
       ) : (
-        <div className="container d-flex justify-content-center">
+        <div className="container d-flex justify-content-center" style={{ minHeight: '50vh' }}>
           <div>
             <img
               src={emptyShoppingCart}

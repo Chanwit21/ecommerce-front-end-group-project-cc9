@@ -7,7 +7,7 @@ import { validateEmail, validateFirstName, validateLastName, validatePhoneNumber
 import Modal from '../../component/Modal';
 
 function Profile({ button }) {
-  const [modal, setModal] = useState({ active: false, message: '', header: '', redirect: '/', reload: true });
+  const [modal, setModal] = useState({ active: false, message: '', header: '', redirect: '/', reload: false });
   const {
     state: {
       user: { id: userId, role },
@@ -90,10 +90,10 @@ function Profile({ button }) {
       formData.append('imageUrl', profileData.imageUrl);
       await axios.put('/users', formData);
       setShowSpinner(false);
-      setModal({ active: true, message: 'Editing Profile Successful', header: 'STATUS', redirect: '' });
+      setModal({ active: true, message: 'Editing Profile Successful', header: 'STATUS', redirect: '/admin_profile', reload: false });
       // alert('Editing Profile Successful');
       const parth = role === 'ADMIN' ? '/admin_profile' : '/myProFile';
-      history.push(parth);
+      // history.push(parth);
     } catch (err) {
       console.log(err.message);
     }
