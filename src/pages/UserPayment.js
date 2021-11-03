@@ -40,14 +40,16 @@ function UserPayment() {
   return (
     <>
       <AccountHeader />
-      <div className='container text-center my-5'>
-        <h4>CARD LIST</h4>
-        {customerCardsShow}
-        <button className='btn btn-dark mt-3 mb-5'>
-          <Link to='/user_add_card' className='nav-link' style={{ color: 'inherit' }}>
-            ADD NEW CARD
-          </Link>
-        </button>
+      <div className='container d-flex align-items-center justify-content-center my-5' style={{ minHeight: '40vh' }}>
+        <div className='text-center' style={{ width: '80%' }}>
+          <h4>CARD LIST</h4>
+          {customerCardsShow}
+          <button className='btn btn-dark mt-3 mb-5'>
+            <Link to='/user_add_card' className='nav-link' style={{ color: 'inherit' }}>
+              ADD NEW CARD
+            </Link>
+          </button>
+        </div>
       </div>
     </>
   );

@@ -11,13 +11,15 @@ function ProductCardList({ name, imageUrl, price, width, height, alt }) {
       >
         <div>
           <img style={{ width, height, objectFit: 'cover' }} src={imageUrl} alt={alt} />
-          <h5 className='p-3'>{name}</h5>
+          <h5 className='p-3 text-center'>{name}</h5>
         </div>
 
-        <span className='mt-1 mb-1'>{formatePrice(price)}</span>
-        <button className='btn btn-dark' style={{ cursor: 'pointer' }}>
-          <span>SELECT SHADE</span>
-        </button>
+        <div className='d-flex align-items-center justify-content-end flex-column' style={{ height: '30%' }}>
+          <span className='mb-1'>{formatePrice(price)}</span>
+          <button className='btn btn-dark' style={{ cursor: 'pointer' }}>
+            SELECT SHADE
+          </button>
+        </div>
       </div>
     </Link>
   );
