@@ -50,6 +50,7 @@ function AllProduct() {
       }
     };
     fetchProductByCategoryFilter();
+    window.scrollTo(0, 0);
   }, [filterValue, onPage, params]);
 
   const headerName = ['ALL PRODUCT', 'FACE', 'SHEEK', 'LIPS', 'EYES', 'BODY'].includes(params.category.toUpperCase())
@@ -72,18 +73,31 @@ function AllProduct() {
             <FilterProduct allowFilter={allowFilter} filterValue={filterValue} setFilterValue={setFilterValue} />
           </div>
           <div className='col-10 row my-3 mx-0'>
-            {product.map((item) => (
-              <div className='col-4' key={item.id}>
-                <ProductCardList
-                  name={item.name}
-                  imageUrl={item.imageUrl}
-                  price={item.price}
-                  width='290px'
-                  height='290px'
-                  alt={item.name}
-                />
+            {product.length === 0 ? (
+              <div className='col-12 d-flex justify-content-center align-items-center flex-column'>
+                <p className='text-center' style={{ color: '#979797', fontSize: '1.3vw' }}>
+                  SORRY, THERE ARE NO SEARCH RESULTS FOR KEYWORD
+                </p>
+                <p style={{ color: '#979797', fontSize: '1.3vw' }} className='text-center'>
+                  CAN'T FIND WHAT YOU'RE LOOKING FOR? TRY ANOTHER SERCH
+                </p>
               </div>
-            ))}
+            ) : (
+              <>
+                {product.map((item) => (
+                  <div className='col-4' key={item.id}>
+                    <ProductCardList
+                      name={item.name}
+                      imageUrl={item.imageUrl}
+                      price={item.price}
+                      width='290px'
+                      height='290px'
+                      alt={item.name}
+                    />
+                  </div>
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>

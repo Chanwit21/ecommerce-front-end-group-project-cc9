@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContext';
@@ -30,6 +30,8 @@ function Profile({ button }) {
     email: '',
     phoneNumber: '',
   });
+
+  const refInputImage = useRef();
 
   useEffect(() => {
     const run = async () => {
@@ -98,30 +100,45 @@ function Profile({ button }) {
       console.log(err.message);
     }
   };
+
+  const handleClickImage = () => {
+    if (button !== 'EDIT MY PROFILE') {
+      refInputImage.current.click();
+    }
+  };
+
   return (
     <>
       <Modal modal={modal} setModal={setModal} />
       <div className='container'>
         <div className='row my-5 mx-1 p-0'>
           <div className='col-5' style={{ width: '175px', height: '175px' }}>
-            <input onChange={handleOnchange} type='file' id='imageUrl' hidden />
-            <label htmlFor='imageUrl'>
-              <h6 className='ms-4 my-3' style={{ width: '120px', cursor: 'pointer' }}>
+            <input onChange={handleOnchange} type='file' hidden ref={refInputImage} />
+            <label onClick={handleClickImage}>
+              <h6
+                className='ms-4 my-3'
+                style={{ width: '120px', cursor: button === 'EDIT MY PROFILE' ? 'default' : 'pointer' }}
+              >
                 <div className='d-flex flex-column justify-content-center align-items-center p-0 m-0'>
                   {profileData?.imageShow || user?.imageUrl ? (
                     <img
                       className='m-0 p-0 rounded-circle ms-1'
-                      style={{ width: '120px', height: '120px', cursor: 'pointer', objectFit: 'cover' }}
+                      style={{
+                        width: '120px',
+                        height: '120px',
+                        cursor: button === 'EDIT MY PROFILE' ? 'default' : 'pointer',
+                        objectFit: 'cover',
+                      }}
                       src={profileData.imageShow ? profileData.imageShow : user.imageUrl}
                       alt='avartar'
                     />
                   ) : (
-                    <i style={{ fontSize: '40px' }} className='bi bi-plus-circle'></i>
+                    <i style={{ fontSize: '90px', color: '#979797' }} className='bi bi-person-circle'></i>
                   )}
                   {profileData?.imageShow || user?.imageUrl ? (
-                    <p className='m-0 p-0 text-middle'>Change picture</p>
+                    <>{button === 'EDIT MY PROFILE' ? null : <p className='m-0 p-0 text-middle'>Change picture</p>}</>
                   ) : (
-                    <p className='m-0 p-0 text-middle'>Add picture</p>
+                    <>{button === 'EDIT MY PROFILE' ? null : <p className='m-0 p-0 text-middle'>Add picture</p>}</>
                   )}
                 </div>
               </h6>
