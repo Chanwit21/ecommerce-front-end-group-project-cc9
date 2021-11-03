@@ -72,7 +72,6 @@ function CreateProduct() {
 
   const handleClickUpdate = async () => {
     try {
-      setShowSpinner(true);
       const errorProductName = validateProductName(productData.productName);
       const errorPrice = validatePrice(productData.price);
       const errorQuantity = validateQuantity(productData.quantity);
@@ -125,11 +124,12 @@ function CreateProduct() {
           formData.append('imageUrl', item);
         }
       });
+      setShowSpinner(true);
       await axios.put(`/product/${location.state.product.id}`, formData);
       setShowSpinner(false);
-      setModal({ active: true, message: 'Update is Successful', header: 'STATUS', redirect: '' });
+      setModal({ active: true, message: 'Update is Successful', header: 'STATUS', redirect: '/product_summary' });
       // alert('Update is Successful');
-      history.push('/product_summary');
+      // history.push('/product_summary');
     } catch (err) {
       console.log(err.message);
     }
@@ -151,7 +151,6 @@ function CreateProduct() {
 
   const handleClickSave = async () => {
     try {
-      setShowSpinner(true);
       const errorProductName = validateProductName(productData.productName);
       const errorPrice = validatePrice(productData.price);
       const errorQuantity = validateQuantity(productData.quantity);
@@ -204,11 +203,12 @@ function CreateProduct() {
         }
       });
 
+      setShowSpinner(true);
       await axios.post('/product', formData);
       setShowSpinner(false);
-      setModal({ active: true, message: 'Create is Successful', header: 'STATUS', redirect: '' });
+      setModal({ active: true, message: 'Create is Successful', header: 'STATUS', redirect: '/product_summary' });
       // alert('Create is Successful');
-      history.push('/product_summary');
+      // history.push('/product_summary');
     }
     catch (err) {
       console.log(err.message)

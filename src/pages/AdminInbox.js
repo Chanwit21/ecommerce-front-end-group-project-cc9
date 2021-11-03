@@ -28,14 +28,19 @@ function AdminInbox() {
   return (
     <>
       <AdminHeader />
-      <div className='my-5'>
-        <div className='container d-flex justify-content-end' style={{ width: '75%' }}>
-          {numberOfPage === 0 ? null : <Pagination countPage={numberOfPage} onPage={onPage} setOnPage={setOnPage} />}
+      {contactUs.length ?
+        <div className='my-5'>
+          <div className='container d-flex justify-content-end' style={{ width: '75%' }}>
+            {numberOfPage === 0 ? null : <Pagination countPage={numberOfPage} onPage={onPage} setOnPage={setOnPage} />}
+          </div>
+          {contactUs.map((item) => (
+            <InboxMessage key={item.id} message={item} setOnPage={setOnPage} setRefresh={setRefresh} />
+          ))}
+        </div> :
+        <div className='my-5 text-center ' style={{ width: '80%', margin: 'auto' }}>
+          <p style={{ fontSize: '20px' }}>There hasn't been any inboxes yet.</p>
         </div>
-        {contactUs.map((item) => (
-          <InboxMessage key={item.id} message={item} setOnPage={setOnPage} setRefresh={setRefresh} />
-        ))}
-      </div>
+      }
     </>
   );
 }

@@ -80,6 +80,7 @@ function ProductDetail({ product, IsFavorite, productImage }) {
           type: 'UPDATE_CART',
           payload: { product: cartItemUpdate, productId: productImage[imageIdx].Product.id },
         });
+        setModal({ active: true, message: 'Add to cart successful', header: 'STATUS', redirect: '' });
       }
     } catch (err) {
       console.dir(err);
