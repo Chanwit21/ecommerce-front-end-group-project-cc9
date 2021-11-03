@@ -3,7 +3,7 @@ import OrderSummary from '../component/OrderSummary';
 import CustomerInformation from '../component/CustomerInformation';
 import axios from '../config/axios';
 import { useAuthContext } from '../context/AuthContext';
-import { orderItems } from '../mocks/orderItems';
+
 import {
   validateAddress1,
   validateCraditCardExp,
@@ -103,7 +103,7 @@ function Checkout() {
     fetchCustomerCard();
   }, []);
 
-  const subTotal = orderItems.reduce((acc, cur) => {
+  const subTotal = carts.reduce((acc, cur) => {
     return acc + cur.quality * cur.price;
   }, 0);
 
@@ -143,6 +143,23 @@ function Checkout() {
             expiration: errorExp,
             securityCode: errorSecureCode,
           });
+          setErrorAddressFrom({
+            firstName: errorFirstName,
+            lastName: errorLastName,
+            address1: errorAddress1,
+            province: errorProvince,
+            district: errorDistrict,
+            subDistrict: errorSubDistrict,
+            phoneNumber: errorPhoneNumber,
+          });
+        } else if (haveErrorCreditCardForm) {
+          setCardContentError({
+            number: errorNumber,
+            name: errorName,
+            expiration: errorExp,
+            securityCode: errorSecureCode,
+          });
+        } else if (haveErrorAddressFrom) {
           setErrorAddressFrom({
             firstName: errorFirstName,
             lastName: errorLastName,

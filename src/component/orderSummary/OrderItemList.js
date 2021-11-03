@@ -13,7 +13,7 @@ function OrderItemList({ imageUrl, name, color, quality, totalPrice }) {
         style={{ height: '4.6875vw', width: '4.6875vw', objectFit: 'cover' }}
         className='rounded'
       />
-      <div className='d-flex flex-column' style={{ width: '75%', height: '4.6875vw' }}>
+      <div className='d-flex flex-column p-2' style={{ width: '100%' }}>
         <h5 className='m-0 p-0'>{name}</h5>
         <p className='m-0 p-0 opacity-50'>{color}</p>
         <div className='d-flex justify-content-between'>

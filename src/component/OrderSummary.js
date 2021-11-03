@@ -18,11 +18,16 @@ function OrderSummary({ orderItems, subTotal, shipping, status }) {
 
   return (
     <>
-      <div className="d-flex justify-content-between align-items-center" style={{ borderBottom: '1px solid #0003' }}>
-        <h2 className='pb-3' >
-          ORDER SUMMARY
-        </h2>
-        {status && <p className="badge py-3" style={{ fontSize: '14px', padding: '0px 10px', backgroundColor: '#E5F7EA', color: '#05B535' }}>{status}</p>}
+      <div className='d-flex justify-content-between align-items-center' style={{ borderBottom: '1px solid #0003' }}>
+        <h2 className='pb-3'>ORDER SUMMARY</h2>
+        {status && (
+          <p
+            className='badge py-3'
+            style={{ fontSize: '14px', padding: '0px 10px', backgroundColor: '#E5F7EA', color: '#05B535' }}
+          >
+            {status}
+          </p>
+        )}
       </div>
       <div className='overflow-auto' style={{ maxHeight: '29.16666666666668vw' }}>
         {orderItemsShow}

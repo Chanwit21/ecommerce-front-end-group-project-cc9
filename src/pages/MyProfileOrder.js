@@ -26,7 +26,15 @@ function MyProfileOrder() {
   return (
     <>
       <AccountHeader />
-      <OrderTable isAdminOrder={false} orderData={orderData} />
+      {orderData.length === 0 ? (
+        <div className='d-flex align-items-center justify-content-center' style={{ minHeight: '40vh' }}>
+          <p className='text-center' style={{ color: '#979797', fontSize: '1.3vw' }}>
+            No order found Looks like you have not made your order yet.
+          </p>
+        </div>
+      ) : (
+        <OrderTable isAdminOrder={false} orderData={orderData} />
+      )}
     </>
   );
 }
