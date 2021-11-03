@@ -83,7 +83,7 @@ function ResetPassword() {
               }}
               onClick={handleClickToggleNewPassWord}
             >
-              {isShowNewPassword ? (
+              {!isShowNewPassword ? (
                 <>
                   {/* <i className='bi bi-unlock' style={{ opacity: '70%' }}></i> */}
                   <i className='bi bi-eye' style={{ opacity: '70%' }}></i>
@@ -119,7 +119,7 @@ function ResetPassword() {
               }}
               onClick={handleClickToggleConfirmPassWord}
             >
-              {isShowingConfirmPassword ? (
+              {!isShowingConfirmPassword ? (
                 <>
                   {/* <i className='bi bi-unlock' style={{ opacity: '70%' }}></i> */}
                   <i className='bi bi-eye' style={{ opacity: '70%' }}></i>

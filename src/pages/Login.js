@@ -9,6 +9,7 @@ import Modal from '../component/Modal';
 
 function Login() {
   const [modal, setModal] = useState({ active: false, redirect: '', header: '', message: '', reload: false });
+  const [isShowPassword, setIsShowPassword] = useState(false);
   const { dispatch } = useAuthContext();
   const location = useLocation();
 
@@ -102,6 +103,10 @@ function Login() {
     }
   };
 
+  const handleClickTogglePassWord = () => {
+    setIsShowPassword((cur) => !cur);
+  };
+
   return (
     <div
       className='d-flex justify-content-center align-items-center'
@@ -142,16 +147,40 @@ function Login() {
                 <label htmlFor='password' className='mb-1'>
                   Password
                 </label>
-                <input
-                  type='password'
-                  className={`form-control${errorLoginFrom.password || errorLoginFrom.response ? ' is-invalid' : ''}`}
-                  id='password'
-                  style={{ backgroundColor: '#FEF3F5' }}
-                  value={loginForm.password}
-                  onChange={(e) => handleChangeInput('password', e)}
-                />
-                {errorLoginFrom.password ? <div className='invalid-feedback'>{errorLoginFrom.password}</div> : null}
-                {errorLoginFrom.response ? <div className='invalid-feedback'>{errorLoginFrom.response}</div> : null}
+                <div className='input-group'>
+                  <input
+                    type={isShowPassword ? 'text' : 'password'}
+                    className={`form-control${errorLoginFrom.password || errorLoginFrom.response ? ' is-invalid' : ''}`}
+                    id='password'
+                    style={{ backgroundColor: '#FEF3F5', borderRight: 'none' }}
+                    value={loginForm.password}
+                    onChange={(e) => handleChangeInput('password', e)}
+                  />
+                  <button
+                    type='button'
+                    style={{
+                      backgroundColor: '#FEF3F5',
+                      border: errorLoginFrom.password ? '1.5px solid #dc3545' : '1px solid #ced4da',
+                      paddingRight: '0.7vw',
+                      borderRadius: '0 0.25rem 0.25rem 0',
+                    }}
+                    onClick={handleClickTogglePassWord}
+                  >
+                    {!isShowPassword ? (
+                      <>
+                        {/* <i className='bi bi-unlock' style={{ opacity: '70%' }}></i> */}
+                        <i className='bi bi-eye' style={{ opacity: '70%' }}></i>
+                      </>
+                    ) : (
+                      <>
+                        {/* <i className='bi bi-lock' style={{ opacity: '70%' }}></i> */}
+                        <i className='bi bi-eye-slash' style={{ opacity: '70%' }}></i>
+                      </>
+                    )}
+                  </button>
+                  {errorLoginFrom.password ? <div className='invalid-feedback'>{errorLoginFrom.password}</div> : null}
+                  {errorLoginFrom.response ? <div className='invalid-feedback'>{errorLoginFrom.response}</div> : null}
+                </div>
               </div>
               <div className='col-12 mb-2'>
                 <button
