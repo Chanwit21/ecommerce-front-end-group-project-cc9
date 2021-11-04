@@ -97,7 +97,7 @@ function Profile({ button }) {
         active: true,
         message: 'Editing Profile Successful',
         header: 'STATUS',
-        redirect: '/admin_profile',
+        redirect: role === 'ADMIN' ? '/admin_profile' : '/myProFile',
         reload: false,
       });
       // alert('Editing Profile Successful');

@@ -7,7 +7,7 @@ function ProductCardList({ name, imageUrl, price, width, height, alt }) {
     <Link to={`/productDescription/${name}`} className='nav-link'>
       <div
         className='d-flex align-items-center justify-content-between flex-column p-3'
-        style={{ color: '#000', height: '31vw' }}
+        style={{ color: '#000', height: '480px' }}
       >
         <div>
           <img style={{ width, height, objectFit: 'cover' }} src={imageUrl} alt={alt} />
