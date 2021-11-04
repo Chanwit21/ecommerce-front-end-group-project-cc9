@@ -53,6 +53,7 @@ function Profile({ button }) {
     };
     run();
   }, []);
+
   const handleOnchange = (e) => {
     if (e.target.id === 'imageUrl') {
       let fileReader = new FileReader();
@@ -92,7 +93,13 @@ function Profile({ button }) {
       formData.append('imageUrl', profileData.imageUrl);
       await axios.put('/users', formData);
       setShowSpinner(false);
-      setModal({ active: true, message: 'Editing Profile Successful', header: 'STATUS', redirect: '/admin_profile', reload: false });
+      setModal({
+        active: true,
+        message: 'Editing Profile Successful',
+        header: 'STATUS',
+        redirect: '/admin_profile',
+        reload: false,
+      });
       // alert('Editing Profile Successful');
       const parth = role === 'ADMIN' ? '/admin_profile' : '/myProFile';
       // history.push(parth);
@@ -113,7 +120,7 @@ function Profile({ button }) {
       <div className='container'>
         <div className='row my-5 mx-1 p-0'>
           <div className='col-5' style={{ width: '175px', height: '175px' }}>
-            <input onChange={handleOnchange} type='file' hidden ref={refInputImage} />
+            <input id='imageUrl' onChange={handleOnchange} type='file' hidden ref={refInputImage} />
             <label onClick={handleClickImage}>
               <h6
                 className='ms-4 my-3'
@@ -122,6 +129,7 @@ function Profile({ button }) {
                 <div className='d-flex flex-column justify-content-center align-items-center p-0 m-0'>
                   {profileData?.imageShow || user?.imageUrl ? (
                     <img
+                      id='imageUrl'
                       className='m-0 p-0 rounded-circle ms-1'
                       style={{
                         width: '120px',
