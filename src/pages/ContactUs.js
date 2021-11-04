@@ -51,9 +51,8 @@ function ContactUs() {
         return;
       }
       await axios.post('/contactUs', contactData);
-      setModal({ active: true, message: 'Sending Message Successful', header: 'STATUS', redirect: '' });
+      setModal({ active: true, message: 'Sending Message Successful', header: 'STATUS', redirect: '/', reload: false });
       // alert('Sending Message Successful');
-      history.push('/');
     } catch (err) {
       console.log(err.message);
     }
