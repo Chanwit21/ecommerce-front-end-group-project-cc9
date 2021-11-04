@@ -160,7 +160,10 @@ function Login() {
                     type='button'
                     style={{
                       backgroundColor: '#FEF3F5',
-                      border: errorLoginFrom.password ? '1.5px solid #dc3545' : '1px solid #ced4da',
+                      border:
+                        errorLoginFrom.password || errorLoginFrom.response
+                          ? '1.5px solid #dc3545'
+                          : '1px solid #ced4da',
                       paddingRight: '0.7vw',
                       borderRadius: '0 0.25rem 0.25rem 0',
                     }}
